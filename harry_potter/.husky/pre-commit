@@ -1,1 +1,1 @@
-cd hurry_potter && npm run lint && npm run format:fix
+cd harry_potter && npm run lint && npm run format:fix

@@ -9,7 +9,7 @@
     "format:fix": "prettier --write .",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "cd .. && husky stapi/.husky"
+    "prepare": "cd .. && husky harry_potter/.husky"
   },
   "dependencies": {
     "react": "^18.3.1",
