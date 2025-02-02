@@ -32,6 +32,7 @@ class App extends React.Component<object, State> {
   }
 
   async requestForServer() {
+    localStorage.setItem('searchTerm', this.state.searchTerm);
     this.setState({
       loading: true,
       error: { message: '', stack: '' },
@@ -68,7 +69,6 @@ class App extends React.Component<object, State> {
 
   handleSearchTermChange = async (searchTerm: string) => {
     this.setState({ searchTerm });
-    localStorage.setItem('searchTerm', searchTerm);
   };
 
   handleSearch = async () => {
