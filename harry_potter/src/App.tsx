@@ -7,12 +7,18 @@ import { Footer } from './components/footer';
 import { State } from './types/types';
 import { Api } from './api/api';
 import { Spinner } from './components/spinner';
+import { ErrorModal } from './components/errorModal';
 
 class App extends React.Component<State> {
   public state: State = {
     searchTerm: localStorage.getItem('searchTerm') || '',
     charactersList: [],
     loading: false,
+    error: {
+      message: '',
+      stack: '',
+    },
+    showErrorModal: false,
   };
   api = new Api(this.state.searchTerm);
 
@@ -21,18 +27,31 @@ class App extends React.Component<State> {
   }
 
   async requestForServer() {
-    this.setState({ loading: true });
-    console.log(this.state.searchTerm);
-    await this.api
-      .fetchCharactersDataList(this.state.searchTerm)
-      .then((response) => {
-        console.log(response);
-        this.setState({ charactersList: response, loading: false });
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        this.setState({ loading: false });
+    this.setState({
+      loading: true,
+      error: { message: '', stack: '' },
+      showErrorModal: false,
+    });
+    try {
+      const response = await this.api.fetchCharactersDataList(
+        this.state.searchTerm
+      );
+      console.log(response.length, this.state.searchTerm.length);
+      if (response[0] === 'error') {
+        throw new Error('Network response was not ok');
+      }
+      this.setState({ charactersList: response, loading: false });
+    } catch (error) {
+      console.error('Error:', error);
+      this.setState({
+        loading: false,
+        error: {
+          message: 'Network response was not ok',
+          stack: '',
+        },
+        showErrorModal: true,
       });
+    }
   }
 
   handleSearchTermChange = async (searchTerm: string) => {
@@ -45,8 +64,11 @@ class App extends React.Component<State> {
     await this.requestForServer();
   };
 
+  closeError = () => {
+    this.setState({ showErrorModal: false });
+  };
+
   render() {
-    console.log(this.state);
     return (
       <>
         <div className="main_container">
@@ -67,6 +89,9 @@ class App extends React.Component<State> {
           </main>
           <Footer></Footer>
         </div>
+        {this.state.showErrorModal && (
+          <ErrorModal error={this.state.error} onClose={this.closeError} />
+        )}
       </>
     );
   }

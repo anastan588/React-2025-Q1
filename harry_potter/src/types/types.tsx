@@ -2,6 +2,8 @@ export type State = {
   searchTerm: string;
   charactersList: Character[];
   loading: boolean;
+  error: ErrorDetails;
+  showErrorModal: boolean;
 };
 
 export interface SearchResultsCharacterListProps {
@@ -16,6 +18,16 @@ export interface SearchTermProps {
   searchTerm: string;
   onSearchTermChange: (searchTerm: string) => void;
   onSearch: () => void;
+}
+
+export interface ErrorDetails {
+  message: string;
+  stack?: string;
+}
+
+export interface ErrorProps {
+  error: ErrorDetails;
+  onClose: () => void;
 }
 
 export interface CharactersResponse {

@@ -234,3 +234,41 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.error_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 50px;
+  background-color: #dd607d;
+}
+
+.error_title {
+  color: white;
+  font-size: 170%;
+}
+
+.error_button {
+  border: 2px solid white;
+  color: #dd607d;
+  border-radius: 10px;
+  font-size: 150%;
+}
