@@ -1,34 +1,68 @@
-export interface SearchState {
+export type State = {
   searchTerm: string;
   charactersList: Character[];
   loading: boolean;
+};
+
+export interface SearchResultsCharacterListProps {
+  charactersList: Character[]; // Prop definition
 }
 
-interface Character {
-  aliasNames: string[];
-  animagus: string;
-  bloodStatus: string;
-  boggart: string;
-  born: string;
-  died: string;
-  eyeColor: string;
-  familyMembers: string[];
-  gender: string;
-  hairColor: string;
-  height: string;
-  house: string;
-  image: string;
-  jobs: string[];
-  maritalStatus: string;
-  name: string;
-  nationality: string;
-  patronus: string;
-  romances: string[];
-  skinColor: string;
-  slug: string;
-  species: string;
-  titles: string[];
-  wands: string[];
-  weight: string;
-  wiki: string;
+export interface SearchResultsCharacterProps {
+  character: Character; // Prop definition
+}
+
+export interface SearchTermProps {
+  searchTerm: string;
+  onSearchTermChange: (searchTerm: string) => void;
+  onSearch: () => void;
+}
+
+export interface CharactersResponse {
+  data: Character[];
+  links: { self: string; current: string; next: string; last: string };
+  meta: {
+    copyright: string;
+    generated_at: string;
+    pagination: {
+      current: number;
+      next: number;
+      last: number;
+      records: number;
+    };
+  };
+}
+
+export interface Character {
+  id: string;
+  type: string;
+  attributes: {
+    slug: string | null;
+    alias_names: [];
+    animagus: string | null;
+    blood_status: string | null;
+    boggart: string | null;
+    born: string | null;
+    died: string | null;
+    eye_color: string | null;
+    family_members: [];
+    gender: string | null;
+    hair_color: string | null;
+    height: string | null;
+    house: string | null;
+    image: string | null;
+    jobs: [];
+    marital_status: string | null;
+    name: string;
+    nationality: string | null;
+    patronus: string | null;
+    romances: string | null;
+    skin_color: string | null;
+    species: string | null;
+    titles: [];
+    wands: [];
+    weight: string | null;
+    wiki: string;
+  };
+  links: { self: string };
 }

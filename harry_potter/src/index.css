@@ -131,10 +131,12 @@ h6 {
 
 .main {
   flex: 1 1 auto;
+  padding: 15px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  max-width: 100vw;
 }
 
 footer {
@@ -171,4 +173,46 @@ footer {
 .search-button:hover {
   transform: scale(1.2);
   transition: transform 0.2s ease-in-out;
+}
+
+.search_result {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.character {
+  display: flex;
+  gap: 30px;
+  font-size: 150%;
+  border: 1px solid white;
+  padding: 20px 30px;
+  background-color: #ffc0cb;
+  justify-content: space-around;
+}
+
+.character_name {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.character_description {
+  display: flex;
+}
+
+.table_head {
+  border-radius: 20px;
+  width: 100%;
+  font-size: 200%;
+  background-color: #dd607d;
+  justify-content: space-around;
+  color: white;
+}
+
+a {
+  color: #0a5c5c;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

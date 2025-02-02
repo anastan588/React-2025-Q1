@@ -1,33 +1,66 @@
-// import { useState } from 'react';
 import './App.css';
-import { Component } from 'react';
+import React from 'react';
 import { SearchFieldComponent } from './components/searchField';
+import { SearchResultsComponent } from './components/searchResults';
+import { Header } from './components/header';
+import { Footer } from './components/footer';
+import { State } from './types/types';
+import { Api } from './api/api';
 
-class App extends Component {
-  // const [count, setCount] = useState(0);
+class App extends React.Component<State> {
+  public state: State = {
+    searchTerm: localStorage.getItem('searchTerm') || '',
+    charactersList: [],
+    loading: false,
+  };
+  api = new Api(this.state.searchTerm);
+
+  async componentDidMount() {
+    await this.requestForServer();
+  }
+
+  async requestForServer() {
+    this.setState({ loading: true });
+    console.log(this.state.searchTerm);
+    await this.api
+      .fetchCharactersDataList(this.state.searchTerm)
+      .then((response) => {
+        console.log(response);
+        this.setState({ charactersList: response, loading: false });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        this.setState({ loading: false });
+      });
+  }
+
+  handleSearchTermChange = async (searchTerm: string) => {
+    this.setState({ searchTerm });
+    localStorage.setItem('searchTerm', searchTerm);
+    console.log(this.state);
+  };
+
+  handleSearch = async () => {
+    await this.requestForServer();
+  };
 
   render() {
+    console.log(this.state);
     return (
       <>
         <div className="main_container">
-          <header className="header">
-            <h1>Harry Potter Characters</h1>
-          </header>
+          <Header></Header>
           <main className="main">
-            <SearchFieldComponent></SearchFieldComponent>
+            <SearchFieldComponent
+              searchTerm={this.state.searchTerm}
+              onSearchTermChange={this.handleSearchTermChange}
+              onSearch={this.handleSearch}
+            />
+            <SearchResultsComponent
+              charactersList={this.state.charactersList}
+            />
           </main>
-          <footer className="footer">
-            <p className="footer_item">anastan588</p>
-            <p className="footer_item">2025</p>
-            <a
-              className="footer_item github"
-              href="https://github.com/anastan588"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Github
-            </a>
-          </footer>
+          <Footer></Footer>
         </div>
       </>
     );

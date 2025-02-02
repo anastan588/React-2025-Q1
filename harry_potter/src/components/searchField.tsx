@@ -1,42 +1,26 @@
-import { Component } from 'react';
+import React from 'react';
 import { Api } from '../api/api';
-import { SearchState } from '../types/types';
+import { SearchTermProps, State } from '../types/types';
 
-export class SearchFieldComponent extends Component<object, SearchState> {
+export class SearchFieldComponent extends React.Component<
+  SearchTermProps,
+  State
+> {
   api: Api;
-  constructor(props: object) {
+  searchTerm: string;
+  constructor(props: SearchTermProps) {
     super(props);
-    console.log(props);
-    this.state = {
-      searchTerm: localStorage.getItem('searchTerm') || '',
-      charactersList: [],
-      loading: false,
-    };
-    this.api = new Api();
+    this.searchTerm = localStorage.getItem('searchTerm') || '';
+    this.api = new Api(this.searchTerm);
   }
 
-  async componentDidMount() {
-    console.log(this.state);
-    await this.api.fetchCharactersDataList(this.state);
-  }
   handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchTerm: event.target.value });
-    console.log(this.state);
+    this.searchTerm = event.target.value.toLowerCase();
+    this.props.onSearchTermChange(this.searchTerm);
   };
 
-  async requestForServer() {
-    await this.api
-      .fetchCharactersDataList(this.state)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
-
-  handleSearch = async () => {
-    await this.requestForServer();
+  handleSearch = () => {
+    this.props.onSearch();
   };
 
   render() {
@@ -46,9 +30,9 @@ export class SearchFieldComponent extends Component<object, SearchState> {
           <input
             className="search-input"
             type="text"
-            value={this.state.searchTerm}
+            value={this.searchTerm}
             onChange={this.handleSearchInputChange}
-            placeholder="Search for chracters"
+            placeholder="Search for character"
           />
           <button className="search-button" onClick={this.handleSearch}>
             Search
