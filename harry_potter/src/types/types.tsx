@@ -4,14 +4,15 @@ export type State = {
   loading: boolean;
   error: ErrorDetails;
   showErrorModal: boolean;
+  errorThrown: boolean;
 };
 
 export interface SearchResultsCharacterListProps {
-  charactersList: Character[]; // Prop definition
+  charactersList: Character[];
 }
 
 export interface SearchResultsCharacterProps {
-  character: Character; // Prop definition
+  character: Character;
 }
 
 export interface SearchTermProps {
@@ -28,6 +29,10 @@ export interface ErrorDetails {
 export interface ErrorProps {
   error: ErrorDetails;
   onClose: () => void;
+}
+
+export interface ErrorBoundaryState {
+  hasError: boolean;
 }
 
 export interface CharactersResponse {

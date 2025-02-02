@@ -23,12 +23,12 @@ export class Api extends Component {
         throw new Error('Network response was not ok');
       }
       const data: CharactersResponse = await response.json();
-      console.log(data.data);
+
       localStorage.setItem('searchTerm', searchTerm);
-      return data.data; // Return the characters data
+      return data.data;
     } catch (error) {
       console.error('Fetch error:', error);
-      return ['error']; // Return an empty array in case of an error
+      return ['error'];
     }
   }
 }

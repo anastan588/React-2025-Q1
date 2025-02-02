@@ -9,18 +9,23 @@ import { Api } from './api/api';
 import { Spinner } from './components/spinner';
 import { ErrorModal } from './components/errorModal';
 
-class App extends React.Component<State> {
-  public state: State = {
-    searchTerm: localStorage.getItem('searchTerm') || '',
-    charactersList: [],
-    loading: false,
-    error: {
-      message: '',
-      stack: '',
-    },
-    showErrorModal: false,
-  };
-  api = new Api(this.state.searchTerm);
+class App extends React.Component<object, State> {
+  api: Api;
+  constructor(props: object) {
+    super(props);
+    this.state = {
+      searchTerm: localStorage.getItem('searchTerm') || '',
+      charactersList: [],
+      loading: false,
+      error: {
+        message: '',
+        stack: '',
+      },
+      showErrorModal: false,
+      errorThrown: false,
+    };
+    this.api = new Api(this.state.searchTerm);
+  }
 
   async componentDidMount() {
     await this.requestForServer();
@@ -36,13 +41,20 @@ class App extends React.Component<State> {
       const response = await this.api.fetchCharactersDataList(
         this.state.searchTerm
       );
-      console.log(response.length, this.state.searchTerm.length);
       if (response[0] === 'error') {
         throw new Error('Network response was not ok');
       }
-      this.setState({ charactersList: response, loading: false });
+      if (
+        Array.isArray(response) &&
+        response.every((item) => typeof item === 'object')
+      ) {
+        this.setState({
+          charactersList: response,
+          loading: false,
+        });
+      }
     } catch (error) {
-      console.error('Error:', error);
+      console.log(error);
       this.setState({
         loading: false,
         error: {
@@ -57,7 +69,6 @@ class App extends React.Component<State> {
   handleSearchTermChange = async (searchTerm: string) => {
     this.setState({ searchTerm });
     localStorage.setItem('searchTerm', searchTerm);
-    console.log(this.state);
   };
 
   handleSearch = async () => {
@@ -67,8 +78,14 @@ class App extends React.Component<State> {
   closeError = () => {
     this.setState({ showErrorModal: false });
   };
+  throwError = () => {
+    this.setState({ errorThrown: true });
+  };
 
   render() {
+    if (this.state.errorThrown) {
+      throw new Error('This is a test error');
+    }
     return (
       <>
         <div className="main_container">
@@ -81,17 +98,19 @@ class App extends React.Component<State> {
             />
             {this.state.loading ? (
               <Spinner />
+            ) : this.state.showErrorModal ? (
+              <ErrorModal error={this.state.error} onClose={this.closeError} />
             ) : (
               <SearchResultsComponent
                 charactersList={this.state.charactersList}
               />
             )}
+            <button className="error_bound" onClick={this.throwError}>
+              Throw Error
+            </button>
           </main>
           <Footer></Footer>
         </div>
-        {this.state.showErrorModal && (
-          <ErrorModal error={this.state.error} onClose={this.closeError} />
-        )}
       </>
     );
   }
