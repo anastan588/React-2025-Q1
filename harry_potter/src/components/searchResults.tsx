@@ -13,7 +13,6 @@ export class SearchResultsComponent extends React.Component<
 > {
   render() {
     const { charactersList } = this.props;
-    console.log(this.props);
     return (
       <>
         <div className="search_result">
@@ -24,7 +23,6 @@ export class SearchResultsComponent extends React.Component<
             </p>
           </div>
           {charactersList.map((character: Character) => {
-            console.log(character);
             return (
               <ResultItemComponent key={character.id} character={character} />
             );

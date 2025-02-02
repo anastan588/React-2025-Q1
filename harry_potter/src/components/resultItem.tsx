@@ -3,7 +3,7 @@ import { SearchResultsCharacterProps } from '../types/types';
 
 export class ResultItemComponent extends Component<SearchResultsCharacterProps> {
   render() {
-    const { character } = this.props; //
+    const { character } = this.props;
     return (
       <>
         <div className="character">
