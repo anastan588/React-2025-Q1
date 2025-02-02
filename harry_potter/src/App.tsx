@@ -6,6 +6,7 @@ import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { State } from './types/types';
 import { Api } from './api/api';
+import { Spinner } from './components/spinner';
 
 class App extends React.Component<State> {
   public state: State = {
@@ -56,9 +57,13 @@ class App extends React.Component<State> {
               onSearchTermChange={this.handleSearchTermChange}
               onSearch={this.handleSearch}
             />
-            <SearchResultsComponent
-              charactersList={this.state.charactersList}
-            />
+            {this.state.loading ? (
+              <Spinner />
+            ) : (
+              <SearchResultsComponent
+                charactersList={this.state.charactersList}
+              />
+            )}
           </main>
           <Footer></Footer>
         </div>

@@ -195,7 +195,6 @@ footer {
 .character_name {
   display: flex;
   justify-content: center;
-  
 }
 
 .character_description {
@@ -215,4 +214,23 @@ a {
   color: #0a5c5c;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.spinner {
+  border: 10px solid rgba(255, 255, 255, 0.3);
+  border-top: 10px solid #dd607d;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
