@@ -3,20 +3,18 @@ import { Component } from 'react';
 export class Footer extends Component {
   render() {
     return (
-      <>
-        <footer className="footer">
-          <p className="footer_item">anastan588</p>
-          <p className="footer_item">2025</p>
-          <a
-            className="footer_item github"
-            href="https://github.com/anastan588"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Github
-          </a>
-        </footer>
-      </>
+      <footer className="w-full flex justify-around p-1.5 bg-rose-400 text-white text-lg ">
+        <p>anastan588</p>
+        <p>2025</p>
+        <a
+          className="text-white"
+          href="https://github.com/anastan588"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Github
+        </a>
+      </footer>
     );
   }
 }

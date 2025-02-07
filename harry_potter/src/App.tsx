@@ -1,5 +1,5 @@
-import './App.css';
 import React from 'react';
+import './App.css';
 import { SearchFieldComponent } from './components/searchField';
 import { SearchResultsComponent } from './components/searchResults';
 import { Header } from './components/header';
@@ -88,9 +88,9 @@ class App extends React.Component<object, State> {
     }
     return (
       <>
-        <div className="main_container">
+        <div className="flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen">
           <Header></Header>
-          <main className="main">
+          <main className="flex-1 flex flex-col items-center gap-4 p-0 px-5 w-full max-w-screen">
             <SearchFieldComponent
               searchTerm={this.state.searchTerm}
               onSearchTermChange={this.handleSearchTermChange}
@@ -105,7 +105,10 @@ class App extends React.Component<object, State> {
                 charactersList={this.state.charactersList}
               />
             )}
-            <button className="error_bound" onClick={this.throwError}>
+            <button
+              className="self-end border-2 border-white rounded-lg py-2.5 px-6 bg-slate-50 text-[120%] text-rose-500"
+              onClick={this.throwError}
+            >
               Throw Error
             </button>
           </main>
