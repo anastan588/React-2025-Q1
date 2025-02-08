@@ -12,6 +12,12 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
       searchTerm: newTerm,
     }));
   };
+  const updateRecords = (newRecords: number) => {
+    setState((prevState) => ({
+      ...prevState,
+      records: newRecords,
+    }));
+  };
   const updatePageNumber = async (newPageNumber: number) => {
     console.log(newPageNumber);
     return new Promise<State>((resolve) => {
@@ -29,7 +35,8 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
         updateCharactesList,
         updateLoading,
         updateShowModal,
-        updateErrorMessage
+        updateErrorMessage,
+        updateRecords
       )
     );
   };
@@ -77,6 +84,7 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
         updateLoading,
         updateErrorMessage,
         updatePageNumber,
+        updateRecords,
       }}
     >
       {children}

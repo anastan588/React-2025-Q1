@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { handleRequestForCharacters } from '../api/api';
 import { DataAppContext } from '../context/dataAppContext';
+import useSearchStringLS from '../hooks/useSearchStringLS';
 
 export function SearchFieldComponent() {
+  const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
   const {
     state,
     updateSearchTerm,
@@ -10,6 +12,8 @@ export function SearchFieldComponent() {
     updateLoading,
     updateShowModal,
     updateErrorMessage,
+    updatePageNumber,
+    updateRecords,
   } = useContext(DataAppContext);
 
   useEffect(() => {
@@ -18,25 +22,30 @@ export function SearchFieldComponent() {
       updateCharactesList,
       updateLoading,
       updateShowModal,
-      updateErrorMessage
+      updateErrorMessage,
+      updateRecords
     );
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm: string = event.target.value.toLowerCase();
+    console.log(searchTerm);
     updateSearchTerm(newSearchTerm);
   };
 
   const handleSearch = () => {
-    localStorage.setItem('searchTerm', state.searchTerm);
+    setSearchTerm(state.searchTerm);
+    updatePageNumber(1);
     handleRequestForCharacters(
       state,
       updateCharactesList,
       updateLoading,
       updateShowModal,
-      updateErrorMessage
+      updateErrorMessage,
+      updateRecords
     );
   };
+
   return (
     <div className="flex justify-center gap-5">
       <input

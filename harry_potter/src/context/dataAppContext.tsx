@@ -13,6 +13,7 @@ export const initialState: State = {
   errorThrow: false,
   pageNumber: 1,
   pageSize: 20,
+  records: 0,
 };
 
 const defaultContextValue: DataAppContextType = {
@@ -24,6 +25,7 @@ const defaultContextValue: DataAppContextType = {
   updateLoading: () => {},
   updateErrorMessage: () => {},
   updatePageNumber: () => {},
+  updateRecords: () => {},
 };
 
 export const DataAppContext =

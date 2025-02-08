@@ -9,6 +9,7 @@ export type State = {
   errorThrow: boolean;
   pageSize: number;
   pageNumber: number;
+  records: number;
 };
 
 export interface DataAppProviderProps {
@@ -24,6 +25,7 @@ export interface DataAppContextType {
   updateLoading: (condition: boolean) => void;
   updateErrorMessage: (message: string, stack: string) => void;
   updatePageNumber: (newPage: number) => void;
+  updateRecords: (newPage: number) => void;
 }
 
 export interface SearchResultsCharacterListProps {

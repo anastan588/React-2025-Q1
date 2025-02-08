@@ -5,7 +5,10 @@ import {
   State,
 } from '../types/types';
 
-async function requestForCharacters(state: State) {
+async function requestForCharacters(
+  state: State,
+  updateRecords: (newPage: number) => void
+) {
   const url = `https://api.potterdb.com/v1/characters?filter[name_cont]=${state.searchTerm}&page[number]=${state.pageNumber}&page[size]=${state.pageSize}`;
 
   try {
@@ -20,6 +23,7 @@ async function requestForCharacters(state: State) {
     }
     const data: CharactersResponse = await response.json();
     console.log(data);
+    updateRecords(data.meta.pagination.records);
     return data.data;
   } catch (error) {
     console.error('Fetch error:', error);
@@ -32,11 +36,12 @@ export async function handleRequestForCharacters(
   updateCharactesList: (newCharactes: Character[]) => void,
   updateLoading: (condition: boolean) => void,
   updateShowModal: (condition: boolean) => void,
-  updateErrorMessage: (message: string, stack: string) => void
+  updateErrorMessage: (message: string, stack: string) => void,
+  updateRecords: (newPage: number) => void
 ) {
   updateLoading(true);
   try {
-    const response = await requestForCharacters(state);
+    const response = await requestForCharacters(state, updateRecords);
     if (response[0] === 'error') {
       throw new Error('Network response was not ok');
     }
