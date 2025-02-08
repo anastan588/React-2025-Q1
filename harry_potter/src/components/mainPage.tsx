@@ -6,6 +6,7 @@ import { SearchFieldComponent } from './searchField';
 import { Spinner } from './spinner';
 import { DataAppContext } from '../context/dataAppContext';
 import { CardList } from './searchResults';
+import { Pangination } from './pangination';
 
 export function MainPage() {
   const state = useContext(DataAppContext);
@@ -25,10 +26,11 @@ export function MainPage() {
   }
 
   return (
-    <div className="flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen">
+    <div className="relative flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen">
       <Header />
-      <main className="flex-1 flex flex-col items-center gap-4 p-0 px-5 w-full max-w-screen">
+      <main className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen">
         <SearchFieldComponent />
+        {!state.state.loading && <Pangination />}
         {state.state.loading ? (
           <Spinner />
         ) : state.state.showErrorModal ? (
@@ -38,7 +40,7 @@ export function MainPage() {
         )}
 
         <button
-          className="self-end border-2 border-white rounded-lg py-2.5 px-6 bg-slate-50 text-[120%] text-rose-500 hover:bg-rose-400 hover:text-white"
+          className="fixed right-[20px] bottom-[50px] border-2 border-white rounded-lg py-2 px-3 bg-slate-50 text-rose-500 hover:bg-rose-400 hover:text-white"
           onClick={throwError}
         >
           Throw Error

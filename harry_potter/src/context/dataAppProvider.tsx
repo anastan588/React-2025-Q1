@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DataAppContext, initialState } from './dataAppContext';
-import { Character, DataAppProviderProps } from '../types/types';
+import { Character, DataAppProviderProps, State } from '../types/types';
+import { handleRequestForCharacters } from '../api/api';
 
 export function DataAppProvider({ children }: DataAppProviderProps) {
   const [state, setState] = useState(initialState);
@@ -10,6 +11,27 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
       ...prevState,
       searchTerm: newTerm,
     }));
+  };
+  const updatePageNumber = async (newPageNumber: number) => {
+    console.log(newPageNumber);
+    return new Promise<State>((resolve) => {
+      setState((prevState) => {
+        const newState = {
+          ...prevState,
+          pageNumber: newPageNumber,
+        };
+        resolve(newState);
+        return newState;
+      });
+    }).then((newState) =>
+      handleRequestForCharacters(
+        newState,
+        updateCharactesList,
+        updateLoading,
+        updateShowModal,
+        updateErrorMessage
+      )
+    );
   };
   const updateCharactesList = (newCharactersList: Character[]) => {
     setState((prevState) => ({
@@ -54,6 +76,7 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
         updateShowModal,
         updateLoading,
         updateErrorMessage,
+        updatePageNumber,
       }}
     >
       {children}

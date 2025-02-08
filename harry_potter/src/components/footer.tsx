@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="w-full flex justify-around p-1.5 bg-rose-400 text-white text-lg ">
+    <footer className="w-full fixed bottom-[0px] flex justify-around p-1.5 bg-rose-400 text-white text-lg ">
       <p>anastan588</p>
       <p>2025</p>
       <a

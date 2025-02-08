@@ -4,7 +4,7 @@ import { DataAppContextType, State } from '../types/types';
 export const initialState: State = {
   searchTerm: localStorage.getItem('searchTerm') || '',
   charactersList: [],
-  loading: false,
+  loading: true,
   error: {
     message: '',
     stack: '',
@@ -23,6 +23,7 @@ const defaultContextValue: DataAppContextType = {
   updateCharactesList: () => {},
   updateLoading: () => {},
   updateErrorMessage: () => {},
+  updatePageNumber: () => {},
 };
 
 export const DataAppContext =
