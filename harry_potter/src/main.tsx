@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 import { BrowserRouter } from 'react-router';
-import './index.css';
 import App from './App.tsx';
-import { ErrorBoundary } from './components/ErrorBoundary/errorBoundary.tsx';
+import { ErrorBoundary } from '$/components/ErrorBoundary';
+import './index.css';
 
 const rootElement = document.getElementById('root');
 
