@@ -1,4 +1,9 @@
-import { Character, CharactersResponse, State } from '../types/types';
+import {
+  Character,
+  CharacterResponse,
+  CharactersResponse,
+  State,
+} from '../types/types';
 
 async function requestForCharacters(state: State) {
   const url = `https://api.potterdb.com/v1/characters?filter[name_cont]=${state.searchTerm}&page[number]=${state.pageNumber}&page[size]=${state.pageSize}`;
@@ -47,5 +52,17 @@ export async function handleRequestForCharacters(
     updateLoading(false);
     updateShowModal(true);
     updateErrorMessage('Network response was not ok', '');
+  }
+}
+
+export async function handleRequestCharacterDetails(id: string) {
+  try {
+    const response: CharacterResponse = await fetch(
+      `https://api.potterdb.com/v1/characters/${id}`
+    ).then((res) => res.json());
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Pokemon details:', error);
   }
 }

@@ -36,8 +36,9 @@ export function MainPage() {
         ) : (
           <CardList charactersList={state.state.charactersList} />
         )}
+
         <button
-          className="self-end border-2 border-white rounded-lg py-2.5 px-6 bg-slate-50 text-[120%] text-rose-500"
+          className="self-end border-2 border-white rounded-lg py-2.5 px-6 bg-slate-50 text-[120%] text-rose-500 hover:bg-rose-400 hover:text-white"
           onClick={throwError}
         >
           Throw Error

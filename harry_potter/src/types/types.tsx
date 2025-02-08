@@ -29,10 +29,6 @@ export interface SearchResultsCharacterListProps {
   charactersList: Character[];
 }
 
-// export interface SearchResultsCharacterProps {
-//   character: Character;
-// }
-
 export interface SearchTermProps {
   searchTerm: string;
   onSearchTermChange: (searchTerm: string) => void;
@@ -55,6 +51,21 @@ export interface ErrorBoundaryState {
 
 export interface CharactersResponse {
   data: Character[];
+  links: { self: string; current: string; next: string; last: string };
+  meta: {
+    copyright: string;
+    generated_at: string;
+    pagination: {
+      current: number;
+      next: number;
+      last: number;
+      records: number;
+    };
+  };
+}
+
+export interface CharacterResponse {
+  data: Character;
   links: { self: string; current: string; next: string; last: string };
   meta: {
     copyright: string;

@@ -12,7 +12,7 @@ export const initialState: State = {
   showErrorModal: false,
   errorThrow: false,
   pageNumber: 1,
-  pageSize: 10,
+  pageSize: 20,
 };
 
 const defaultContextValue: DataAppContextType = {
