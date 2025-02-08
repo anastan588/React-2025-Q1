@@ -1,19 +1,37 @@
+import { ReactNode } from 'react';
+
 export type State = {
   searchTerm: string;
   charactersList: Character[];
   loading: boolean;
   error: ErrorDetails;
   showErrorModal: boolean;
-  errorThrown: boolean;
+  errorThrow: boolean;
+  pageSize: number;
+  pageNumber: number;
 };
+
+export interface DataAppProviderProps {
+  children: ReactNode;
+}
+
+export interface DataAppContextType {
+  state: State;
+  updateSearchTerm: (newTerm: string) => void;
+  updateCharactesList: (newCharactes: Character[]) => void;
+  updateErrorThrow: (condition: boolean) => void;
+  updateShowModal: (condition: boolean) => void;
+  updateLoading: (condition: boolean) => void;
+  updateErrorMessage: (message: string, stack: string) => void;
+}
 
 export interface SearchResultsCharacterListProps {
   charactersList: Character[];
 }
 
-export interface SearchResultsCharacterProps {
-  character: Character;
-}
+// export interface SearchResultsCharacterProps {
+//   character: Character;
+// }
 
 export interface SearchTermProps {
   searchTerm: string;

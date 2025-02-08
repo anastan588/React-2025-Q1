@@ -7,7 +7,9 @@ export class ErrorBoundary extends React.Component<
 > {
   constructor(props: React.PropsWithChildren) {
     super(props);
+    console.log(this.state);
     this.state = { hasError: false };
+    console.log(this.state);
   }
 
   logErrorToMyService(error: Error, errorInfo: ErrorInfo) {
