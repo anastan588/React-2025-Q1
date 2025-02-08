@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { ErrorModal } from './errorModal';
-import { Footer } from './footer';
-import { Header } from './header';
-import { SearchFieldComponent } from './searchField';
-import { Spinner } from './spinner';
-import { DataAppContext } from '../context/dataAppContext';
-import { CardList } from './searchResults';
-import { Pangination } from './pangination';
+import { ErrorModal } from '../../components/ErrorModal/errorModal';
+import { Footer } from '../../components/Footer/footer';
+import { Header } from '../../components/Header/header';
+import { SearchFieldComponent } from '../../components/search/searchField';
+import { Spinner } from '../../components/spinner/spinner';
+import { DataAppContext } from '../../context/dataAppContext';
+import { CardList } from '../../components/results/searchResults';
+import { Pangination } from '../../components/pangination/pangination';
 import { useNavigate } from 'react-router';
 
 export function MainPage() {

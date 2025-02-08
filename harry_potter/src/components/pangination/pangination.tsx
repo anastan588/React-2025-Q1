@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { DataAppContext } from '../context/dataAppContext';
+import { DataAppContext } from '../../context/dataAppContext';
 
 export function Pangination() {
   const { state, updatePageNumber } = useContext(DataAppContext);

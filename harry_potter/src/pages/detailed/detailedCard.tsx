@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Character } from '../types/types';
-import { DataAppContext } from '../context/dataAppContext';
-import { handleRequestCharacterDetails } from '../api/api';
-import { Spinner } from './spinner';
-import MissCharacter from '../assets/icons/missing_character.svg';
+import { Character } from '../../types/types';
+import { DataAppContext } from '../../context/dataAppContext';
+import { handleRequestCharacterDetails } from '../../api/api';
+import { Spinner } from '../../components/spinner/spinner';
+import { MissCharacter } from '$/assets/assetsExport.ts';
 
 export function DetailedCard() {
   const { state, updateDetailesOpened } = useContext(DataAppContext);

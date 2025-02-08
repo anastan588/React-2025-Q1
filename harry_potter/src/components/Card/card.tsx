@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import { Character } from '../types/types';
-import MissCharacter from '../assets/icons/missing_character.svg';
+import { Character } from '../../types/types';
+import { MissCharacter } from '$/assets/assetsExport.ts';
 
 interface CardProps {
   character: Character;

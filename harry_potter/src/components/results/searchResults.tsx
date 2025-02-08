@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router';
-import { Character } from '../types/types';
-import { Card } from './resultItem';
+import { Character } from '../../types/types';
+import { Card } from '$/components/Card';
 import { useContext, useEffect } from 'react';
-import { DataAppContext } from '../context/dataAppContext';
+import { DataAppContext } from '../../context/dataAppContext';
 
 interface CardListProps {
   charactersList: Character[];

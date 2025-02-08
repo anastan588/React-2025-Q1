@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { handleRequestForCharacters } from '../api/api';
-import { DataAppContext } from '../context/dataAppContext';
-import useSearchStringLS from '../hooks/useSearchStringLS';
+import { handleRequestForCharacters } from '../../api/api';
+import { DataAppContext } from '../../context/dataAppContext';
+import useSearchStringLS from '../../hooks/useSearchStringLS';
 
 export function SearchFieldComponent() {
   const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
