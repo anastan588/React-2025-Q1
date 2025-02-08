@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import { Character } from '../../types/types';
 import { DataAppContext } from '../../context/dataAppContext';
 import { handleRequestCharacterDetails } from '../../api/api';
-import { Spinner } from '../../components/spinner/spinner';
+import { Spinner } from '../../components/Spinner/spinner';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 
 export function DetailedCard() {

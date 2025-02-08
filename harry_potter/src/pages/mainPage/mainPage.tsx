@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { ErrorModal } from '../../components/ErrorModal/errorModal';
 import { Footer } from '../../components/Footer/footer';
 import { Header } from '../../components/Header/header';
-import { SearchFieldComponent } from '../../components/search/searchField';
-import { Spinner } from '../../components/spinner/spinner';
+import { SearchFieldComponent } from '../../components/Search/searchField';
+import { Spinner } from '../../components/Spinner/spinner';
 import { DataAppContext } from '../../context/dataAppContext';
-import { CardList } from '../../components/results/searchResults';
-import { Pangination } from '../../components/pangination/pangination';
+import { CardList } from '../../components/Results/cardList';
+import { Pangination } from '../../components/Pangination/pangination';
 import { useNavigate } from 'react-router';
 
 export function MainPage() {
