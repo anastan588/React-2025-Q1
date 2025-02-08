@@ -64,6 +64,12 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
       loading: condition,
     }));
   };
+  const updateDetailesOpened = (condition: boolean) => {
+    setState((prevState) => ({
+      ...prevState,
+      detailesOpened: condition,
+    }));
+  };
   const updateErrorMessage = (message: string, stack: string) => {
     setState((prevState) => ({
       ...prevState,
@@ -85,6 +91,7 @@ export function DataAppProvider({ children }: DataAppProviderProps) {
         updateErrorMessage,
         updatePageNumber,
         updateRecords,
+        updateDetailesOpened,
       }}
     >
       {children}

@@ -5,8 +5,6 @@ export function Pangination() {
   const { state, updatePageNumber } = useContext(DataAppContext);
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
   const [disabledPrev, setDisabledPrev] = useState<boolean>(false);
-  console.log(state.charactersList);
-  console.log(Math.ceil(state.charactersList.length / state.pageSize));
 
   useEffect(() => {
     const disableNext =

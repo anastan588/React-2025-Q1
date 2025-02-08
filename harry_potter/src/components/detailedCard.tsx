@@ -7,31 +7,35 @@ import { Spinner } from './spinner';
 import MissCharacter from '../assets/icons/missing_character.svg';
 
 export function DetailedCard() {
-  const { state } = useContext(DataAppContext);
+  const { state, updateDetailesOpened } = useContext(DataAppContext);
   const { id } = useParams<{ id: string }>();
-  console.log(id);
   const [characterDatailes, setCharacterDetailes] = useState<Character>();
   const navigate = useNavigate();
 
   useEffect(() => {
+    updateDetailesOpened(true);
     const url = `/?page=${state.pageNumber}&details=${id}`;
     window.history.pushState({}, '', url);
     if (id) {
       try {
-        handleRequestCharacterDetails(id).then((response) =>
-          setCharacterDetailes(response)
-        );
+        handleRequestCharacterDetails(id).then((response) => {
+          console.log(response);
+          setCharacterDetailes(response);
+        });
       } catch (error) {
         console.error('Error fetching Character details:', error);
       }
     }
+    console.log(characterDatailes);
   }, [id]);
 
   if (!characterDatailes) {
+    console.log(characterDatailes);
     return <Spinner />;
   }
   const handleCloseClick = () => {
     navigate(`/?page=${state.pageNumber}`, { replace: true });
+    // updateDetailesOpened(false);
   };
 
   return (

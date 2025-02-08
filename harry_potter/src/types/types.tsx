@@ -6,6 +6,7 @@ export type State = {
   loading: boolean;
   error: ErrorDetails;
   showErrorModal: boolean;
+  detailesOpened: boolean;
   errorThrow: boolean;
   pageSize: number;
   pageNumber: number;
@@ -21,6 +22,7 @@ export interface DataAppContextType {
   updateSearchTerm: (newTerm: string) => void;
   updateCharactesList: (newCharactes: Character[]) => void;
   updateErrorThrow: (condition: boolean) => void;
+  updateDetailesOpened: (condition: boolean) => void;
   updateShowModal: (condition: boolean) => void;
   updateLoading: (condition: boolean) => void;
   updateErrorMessage: (message: string, stack: string) => void;

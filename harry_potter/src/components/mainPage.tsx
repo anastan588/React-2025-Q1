@@ -7,36 +7,49 @@ import { Spinner } from './spinner';
 import { DataAppContext } from '../context/dataAppContext';
 import { CardList } from './searchResults';
 import { Pangination } from './pangination';
+import { useNavigate } from 'react-router';
 
 export function MainPage() {
-  const state = useContext(DataAppContext);
+  const { state, updateDetailesOpened, updateErrorThrow, updateShowModal } =
+    useContext(DataAppContext);
+  const navigate = useNavigate();
 
   const throwError = () => {
     console.log('error');
-    state.updateErrorThrow(true);
+    updateErrorThrow(true);
     throw new Error('This is a test error');
   };
 
   const closeError = () => {
-    state.updateShowModal(false);
+    updateShowModal(false);
   };
 
-  if (state.state.errorThrow) {
+  if (state.errorThrow) {
     throw new Error('This is a test error');
   }
+
+  const handleDetailesClose = () => {
+    if (state.detailesOpened) {
+      updateDetailesOpened(false);
+      navigate(`/?page=${state.pageNumber}`, { replace: true });
+    }
+  };
 
   return (
     <div className="relative flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen">
       <Header />
-      <main className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen">
+      <main
+        className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen"
+        onClick={handleDetailesClose}
+      >
         <SearchFieldComponent />
-        {!state.state.loading && <Pangination />}
-        {state.state.loading ? (
+        {!state.loading && <Pangination />}
+        {state.loading ? (
           <Spinner />
-        ) : state.state.showErrorModal ? (
-          <ErrorModal error={state.state.error} onClose={closeError} />
+        ) : state.showErrorModal ? (
+          <ErrorModal error={state.error} onClose={closeError} />
         ) : (
-          <CardList charactersList={state.state.charactersList} />
+          <CardList charactersList={state.charactersList} />
         )}
 
         <button
