@@ -1,4 +1,3 @@
-// import { createContext } from 'react';
 import { State } from '../types/types';
 
 export const initialState: State = {

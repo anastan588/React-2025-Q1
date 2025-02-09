@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router';
 import { DetailedCard } from './pages/detailed/detailedCard';
 import { NotFoundPage } from './pages/notFound/notFoundPage';
 import { useState } from 'react';
-import { initialState } from './data/initDatatsx';
+import { initialState } from './data/initData.tsx';
 
 function App() {
   const [state, setState] = useState(initialState);
