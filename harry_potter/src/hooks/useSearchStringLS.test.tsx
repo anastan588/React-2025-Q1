@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import useSearchStringLS from './useSearchStringLS';
+import { useSearchStringLS } from '$/hooks';
 
 describe('useSearchStringLS Hook', () => {
   const mockKey = 'testKey';

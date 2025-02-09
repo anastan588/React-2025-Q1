@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { handleRequestForCharacters } from '../../api/api';
-import useSearchStringLS from '../../hooks/useSearchStringLS';
+import { useSearchStringLS } from '$/hooks';
 import { State, StateProps } from '$/types/types';
 
 export function SearchFieldComponent({ state, setState }: StateProps) {

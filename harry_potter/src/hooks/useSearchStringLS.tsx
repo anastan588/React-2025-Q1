@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useSearchStringLS(
+export function useSearchStringLS(
   key: string
 ): [string, React.Dispatch<React.SetStateAction<string>>] {
   const [query, setQuery] = useState(() => {
@@ -13,5 +13,3 @@ function useSearchStringLS(
 
   return [query, setQuery];
 }
-
-export default useSearchStringLS;

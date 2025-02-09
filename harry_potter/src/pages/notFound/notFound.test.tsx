@@ -1,6 +1,4 @@
-import { Character } from '$/types';
 import { render, screen } from '@testing-library/react';
-
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { NotFoundPage } from './notFoundPage';
 import { MemoryRouter } from 'react-router';
