@@ -1,1 +1,1 @@
-cd harry_potter && npm test
+cd harry_potter && npx vitest --run

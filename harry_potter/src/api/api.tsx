@@ -19,7 +19,6 @@ export async function requestForCharacters({ state, setState }: StateProps) {
       throw new Error('Network response was not ok');
     }
     const data: CharactersResponse = await response.json();
-    console.log(data);
     setState((prevState: State) => ({
       ...prevState,
       records: data.meta.pagination.records,
@@ -48,7 +47,6 @@ export async function handleRequestForCharacters({
       Array.isArray(response) &&
       response.every((item) => typeof item === 'object')
     ) {
-      console.log(response);
       setState((prevState: State) => ({
         ...prevState,
         charactersList: response,
@@ -57,7 +55,6 @@ export async function handleRequestForCharacters({
         ...prevState,
         loading: false,
       }));
-      console.log(state);
     }
   } catch (error) {
     console.log(error);
@@ -83,7 +80,6 @@ export async function handleRequestCharacterDetails(id: string) {
     const response: CharacterResponse = await fetch(
       `https://api.potterdb.com/v1/characters/${id}`
     ).then((res) => res.json());
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching Pokemon details:', error);
