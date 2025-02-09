@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { State, StateProps } from '$/types/types';
 import { handleRequestForCharacters } from '$/api/api';
+import { State, StateProps } from '$/types/types';
 
 export function Pangination({ state, setState }: StateProps) {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
@@ -14,45 +14,22 @@ export function Pangination({ state, setState }: StateProps) {
     const disablePrev = pageNumber === 1 ? true : false;
     setDisabledPrev(disablePrev);
   }, [pageNumber, pageSize, records]);
-  // useEffect(() => {
-  //   const disableNext =
-  //     state.pageNumber === Math.ceil(state.records / state.pageSize)
-  //       ? true
-  //       : false;
-  //   setDisabledNext(disableNext);
-  //   const disablePrev = state.pageNumber === 1 ? true : false;
-  //   setDisabledPrev(disablePrev);
-  // }, []);
 
-  const handlePrevPage = () => {
+  const handlePrevPage = async () => {
     if (state.pageNumber > 1) {
-      return new Promise<State>((resolve) => {
-        setState((prevState) => {
-          const newState = {
-            ...prevState,
-            pageNumber: prevState.pageNumber - 1,
-          };
-          resolve(newState);
-          return newState;
-        });
-      }).then(() => handleRequestForCharacters({ state, setState }));
+      setState((prevState: State) => ({
+        ...prevState,
+        pageNumber: prevState.pageNumber - 1,
+      }));
+      await handleRequestForCharacters({ state, setState });
     }
   };
   const handleNextPage = async () => {
-    return new Promise<State>((resolve) => {
-      setState((prevState) => {
-        console.log(prevState);
-        const newState = {
-          ...prevState,
-          pageNumber: prevState.pageNumber + 1,
-        };
-        resolve(newState);
-        return newState;
-      });
-    }).then((state) => {
-      console.log(state);
-      handleRequestForCharacters({ state, setState });
-    });
+    setState((prevState: State) => ({
+      ...prevState,
+      pageNumber: prevState.pageNumber + 1,
+    }));
+    await handleRequestForCharacters({ state, setState });
   };
   return (
     <div className="flex gap-3 self-start">

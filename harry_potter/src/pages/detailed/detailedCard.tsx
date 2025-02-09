@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Character, State, StateProps } from '../../types/types';
-import { handleRequestCharacterDetails } from '../../api/api';
+import { handleRequestCharacterDetails } from '$/api';
 import { Spinner } from '$/components/Spinner';
+import { Character, State, StateProps } from '$/types';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 
 export function DetailedCard({ state, setState }: StateProps) {
@@ -27,8 +27,9 @@ export function DetailedCard({ state, setState }: StateProps) {
         console.error('Error fetching Character details:', error);
       }
     }
-    console.log(characterDatailes);
-  }, [id]);
+    console.log(characterDatailes, 5454548878);
+    console.log(id);
+  }, [characterDatailes, id, setState, state.pageNumber]);
 
   if (!characterDatailes) {
     console.log(characterDatailes);
@@ -44,6 +45,7 @@ export function DetailedCard({ state, setState }: StateProps) {
 
   return (
     <div
+      data-testid="detailed"
       key={characterDatailes?.id}
       className="flex flex-col gap-1.5 rounded border-2 border-gray-200 p-4 flex flex-col self-start"
     >
@@ -74,15 +76,15 @@ export function DetailedCard({ state, setState }: StateProps) {
         </p>
         <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
           <span className="font-bold">Alias names:</span>
-          {characterDatailes.attributes.alias_names.map((alias, index) => (
-            <span key={index}> {alias} ;</span>
-          ))}
+          {characterDatailes.attributes?.alias_names?.map((alias, index) => (
+            <span key={index}>{alias}; </span>
+          )) || <span>No aliases available</span>}
         </p>
         <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
           <span className="font-bold">Family members:</span>
-          {characterDatailes.attributes.family_members.map((member, index) => (
-            <span key={index}> {member} ;</span>
-          ))}
+          {characterDatailes.attributes?.family_members?.map(
+            (member, index) => <span key={index}>{member}; </span>
+          ) || <span>No family members available</span>}
         </p>
         <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
           <span className="font-bold">More information:</span>{' '}

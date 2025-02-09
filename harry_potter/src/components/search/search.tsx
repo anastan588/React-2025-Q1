@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { handleRequestForCharacters } from '../../api/api';
+import { handleRequestForCharacters } from '$/api';
 import { useSearchStringLS } from '$/hooks';
 import { State, StateProps } from '$/types/types';
 

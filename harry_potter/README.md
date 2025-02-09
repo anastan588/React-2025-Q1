@@ -3,6 +3,7 @@
 App downloads information about Harry Potter's world
 
 ### Apps and Packages
+
 "react"
 "react-router"
 "eslint"
@@ -27,6 +28,3 @@ npm run test
 ##### with coverage:
 
 npm run test:coverage
-
-
-

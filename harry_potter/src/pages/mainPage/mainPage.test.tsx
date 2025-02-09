@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { MemoryRouter } from 'react-router';
+import { MainPage } from '$/pages/MainPage';
 import { Character } from '$/types';
-import { MainPage } from './mainPage';
 
 const mockCharacterList: Character[] = [
   {
@@ -47,7 +47,6 @@ describe('Main Component', () => {
         <MainPage state={mockState} setState={mockSetState} />
       </MemoryRouter>
     );
-    screen.debug();
     const button = screen.getByRole('button', { name: 'Throw Error' });
     expect(() => {
       fireEvent.click(button);

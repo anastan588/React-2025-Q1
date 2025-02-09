@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Character } from '../../types/types';
+import { Character } from '$/types';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 
 interface CardProps {

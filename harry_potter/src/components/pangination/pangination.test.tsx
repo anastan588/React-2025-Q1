@@ -34,8 +34,10 @@ describe('Pangination Component', () => {
     pageSize: 20,
     records: 0,
   };
+
   beforeEach(() => {
     vi.clearAllMocks();
+
     window.history.pushState({}, '', '?page=2');
   });
 
@@ -45,7 +47,6 @@ describe('Pangination Component', () => {
         <Pangination state={mockState} setState={mockSetState} />
       </MemoryRouter>
     );
-    screen.debug();
     await act(async () => {
       const nextPageButton = screen.getByText('Next page');
       fireEvent.click(nextPageButton);
@@ -54,5 +55,16 @@ describe('Pangination Component', () => {
         expect(window.location.search).toBe('?page=2');
       });
     });
+  });
+
+  test('make sure handleNextPage function called', async () => {
+    render(
+      <MemoryRouter>
+        <Pangination state={mockState} setState={mockSetState} />
+      </MemoryRouter>
+    );
+    const nextPageButton = screen.getByText('Next page');
+    fireEvent.click(nextPageButton);
+    expect(mockSetState).toHaveBeenCalled();
   });
 });

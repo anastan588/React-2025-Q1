@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { NotFoundPage } from './notFoundPage';
+import { NotFoundPage } from '$/pages/NotFound';
 import { MemoryRouter } from 'react-router';
 
 describe('Detailed Component', () => {

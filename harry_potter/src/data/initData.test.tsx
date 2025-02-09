@@ -1,6 +1,6 @@
 import { State } from '$/types/types';
 import { describe, expect, it } from 'vitest';
-import { initialState } from './initData';
+import { initialState } from '$/data';
 
 describe('initialState', () => {
   it('should have the correct initial values', () => {

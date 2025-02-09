@@ -2,7 +2,7 @@ import { Character } from '$/types';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { DetailedCard } from './detailedCard';
+import { DetailedCard } from '$/pages/Detailed';
 
 const mockCharacterList: Character[] = [
   {
@@ -47,7 +47,6 @@ describe('Detailed Component', () => {
       </MemoryRouter>
     );
     screen.debug();
-    console.log(screen.getByTestId('spinner'));
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

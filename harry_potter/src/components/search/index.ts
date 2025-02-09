@@ -1,1 +1,1 @@
-export { SearchFieldComponent } from './searchField.tsx';
+export { SearchFieldComponent } from './search.tsx';
