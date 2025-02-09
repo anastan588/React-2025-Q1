@@ -6,13 +6,11 @@ import { Spinner } from '$/components/Spinner';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 
 export function DetailedCard({ state, setState }: StateProps) {
-  // const { state, updateDetailesOpened } = useContext(DataAppContext);
   const { id } = useParams<{ id: string }>();
   const [characterDatailes, setCharacterDetailes] = useState<Character>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // updateDetailesOpened(true);
     setState((prevState: State) => ({
       ...prevState,
       detailesOpened: true,
@@ -38,7 +36,6 @@ export function DetailedCard({ state, setState }: StateProps) {
   }
   const handleCloseClick = () => {
     navigate(`/?page=${state.pageNumber}`, { replace: true });
-    // updateDetailesOpened(false);
     setState((prevState: State) => ({
       ...prevState,
       detailesOpened: false,
@@ -77,13 +74,13 @@ export function DetailedCard({ state, setState }: StateProps) {
         </p>
         <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
           <span className="font-bold">Alias names:</span>
-          {characterDatailes?.attributes.alias_names.map((alias, index) => (
+          {characterDatailes.attributes.alias_names.map((alias, index) => (
             <span key={index}> {alias} ;</span>
           ))}
         </p>
         <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
           <span className="font-bold">Family members:</span>
-          {characterDatailes?.attributes.family_members.map((member, index) => (
+          {characterDatailes.attributes.family_members.map((member, index) => (
             <span key={index}> {member} ;</span>
           ))}
         </p>

@@ -9,9 +9,6 @@ import { Pangination } from '$/components/Pangination';
 import { State, StateProps } from '$/types/types';
 
 export function MainPage({ state, setState }: StateProps) {
-  // const { state, updateDetailesOpened, updateErrorThrow, updateShowModal } =
-  //   useContext(DataAppContext);
-
   const navigate = useNavigate();
 
   const throwError = () => {

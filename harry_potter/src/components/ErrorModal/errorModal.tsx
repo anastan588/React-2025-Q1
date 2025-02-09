@@ -1,4 +1,4 @@
-import { ErrorProps } from '../../types/types';
+import { ErrorProps } from '$/types';
 
 export function ErrorModal({ error, onClose }: ErrorProps) {
   return (

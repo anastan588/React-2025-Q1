@@ -20,7 +20,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "types": ["vitest"]
+    "types": ["vitest/globals"]
   },
 
   "include": ["vite.config.ts"]

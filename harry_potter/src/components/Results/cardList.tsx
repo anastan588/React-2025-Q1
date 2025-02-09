@@ -3,28 +3,28 @@ import { Outlet } from 'react-router';
 import { Character, StateProps } from '../../types/types';
 import { Card } from '$/components/Card';
 
-// interface CardListProps {
-//   charactersList: Character[];
-// }
-
 export function CardList({ state }: StateProps) {
-  // const { state } = useContext(DataAppContext);
+  const { searchTerm, pageNumber, charactersList } = state;
   useEffect(() => {
-    console.log(state.searchTerm);
+    console.log(searchTerm, 545454545);
     const params = new URLSearchParams(window.location.search);
-    params.set('page', state.pageNumber.toString());
+    params.set('page', pageNumber.toString());
     params.delete('search');
-    if (state.searchTerm !== '') {
-      params.set('search', state.searchTerm);
+    if (searchTerm !== '') {
+      params.set('search', searchTerm);
     }
+    console.log(params.toString(), 123);
     window.history.pushState({}, '', `?${params.toString()}`);
-  }, []);
+    console.log(params.toString(), 123);
+  }, [pageNumber, searchTerm]);
   return (
     <div className="flex gap-2.5">
       <div className="grid gap-4 grid-cols-4">
-        {state.charactersList.map((character: Character) => (
-          <Card key={character.id} character={character} />
-        ))}
+        {charactersList.length === 0
+          ? 'No data'
+          : state.charactersList.map((character: Character) => (
+              <Card key={character.id} character={character} />
+            ))}
       </div>
       <Outlet />
     </div>

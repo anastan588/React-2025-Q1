@@ -7,7 +7,10 @@ interface CardProps {
 }
 export function Card({ character }: CardProps) {
   return (
-    <div className="flex flex-col gap-1.5 rounded border-2 border-gray-200 p-4 flex flex-col max-h-[520px] max-w-[340px]">
+    <div
+      role="article"
+      className="flex flex-col gap-1.5 rounded border-2 border-gray-200 p-4 flex flex-col max-h-[520px] max-w-[340px]"
+    >
       <img
         src={character.attributes.image || MissCharacter}
         className="rounded-lg h-auto w-auto object-contain object-center max-h-[300px]"

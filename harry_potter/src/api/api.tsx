@@ -3,9 +3,9 @@ import {
   CharactersResponse,
   State,
   StateProps,
-} from '../types/types';
+} from '$/types';
 
-async function requestForCharacters({ state, setState }: StateProps) {
+export async function requestForCharacters({ state, setState }: StateProps) {
   const url = `https://api.potterdb.com/v1/characters?filter[name_cont]=${state.searchTerm}&page[number]=${state.pageNumber}&page[size]=${state.pageSize}`;
 
   try {

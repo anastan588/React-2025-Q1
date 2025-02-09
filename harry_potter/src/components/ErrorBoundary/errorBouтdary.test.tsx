@@ -1,0 +1,41 @@
+import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { MemoryRouter } from 'react-router';
+import { ErrorBoundary } from '$/components/ErrorBoundary';
+
+describe('ErrorBoundary Component', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+  test('renders message about error', async () => {
+    const TestComponentWithError = () => {
+      throw new Error('123');
+    };
+    render(
+      <MemoryRouter>
+        <ErrorBoundary>
+          <TestComponentWithError />
+        </ErrorBoundary>
+      </MemoryRouter>
+    );
+    await waitFor(() => {
+      expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    });
+  });
+  test("renders button 'Try again'", async () => {
+    const TestComponentWithError = () => {
+      throw new Error('Error test');
+    };
+    render(
+      <MemoryRouter>
+        <ErrorBoundary>
+          <TestComponentWithError />
+        </ErrorBoundary>
+      </MemoryRouter>
+    );
+    await waitFor(() => {
+      expect(screen.getByText('Try again')).toBeInTheDocument();
+    });
+  });
+});

@@ -1,6 +1,6 @@
+import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Footer } from '$/components/Footer';
-import { describe, expect, test } from 'vitest';
 
 describe('Footer Component', () => {
   test('renders footer with correct content', () => {

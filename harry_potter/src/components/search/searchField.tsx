@@ -5,16 +5,6 @@ import { State, StateProps } from '$/types/types';
 
 export function SearchFieldComponent({ state, setState }: StateProps) {
   const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
-  // const {
-  //   state,
-  //   updateSearchTerm,
-  //   updateCharactesList,
-  //   updateLoading,
-  //   updateShowModal,
-  //   updateErrorMessage,
-  //   updatePageNumber,
-  //   updateRecords,
-  // } = useContext(DataAppContext);
 
   useEffect(() => {
     handleRequestForCharacters({ state, setState });

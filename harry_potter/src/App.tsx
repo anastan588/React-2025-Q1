@@ -1,10 +1,9 @@
-import './App.css';
-import { MainPage } from './pages/mainPage/mainPage';
-import { Route, Routes } from 'react-router';
-import { DetailedCard } from './pages/detailed/detailedCard';
-import { NotFoundPage } from './pages/notFound/notFoundPage';
 import { useState } from 'react';
-import { initialState } from './data/initData.tsx';
+import { Route, Routes } from 'react-router';
+import { MainPage } from '$/pages/MainPage';
+import { DetailedCard } from '$/pages/Detailed';
+import { NotFoundPage } from '$/pages/NotFound';
+import { initialState } from '$/data/initData';
 
 function App() {
   const [state, setState] = useState(initialState);
