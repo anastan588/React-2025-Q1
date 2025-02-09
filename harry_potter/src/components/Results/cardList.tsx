@@ -13,7 +13,7 @@ export function CardList({ state }: StateProps) {
       params.set('search', searchTerm);
     }
     window.history.pushState({}, '', `?${params.toString()}`);
-  }, [pageNumber, searchTerm]);
+  }, [pageNumber, searchTerm, charactersList]);
   return (
     <div className="flex gap-2.5">
       <div className="grid gap-4 grid-cols-4">

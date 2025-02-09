@@ -41,6 +41,7 @@ export function MainPage({ state, setState }: StateProps) {
     }
   };
 
+  console.log(state.charactersList);
   return (
     <div className="relative flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen">
       <Header />
