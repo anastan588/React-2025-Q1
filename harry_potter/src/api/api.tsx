@@ -5,10 +5,7 @@ import {
   StateProps,
 } from '../types/types';
 
-async function requestForCharacters(
-  { state, setState }: StateProps
-  // updateRecords: (newPage: number) => void
-) {
+async function requestForCharacters({ state, setState }: StateProps) {
   const url = `https://api.potterdb.com/v1/characters?filter[name_cont]=${state.searchTerm}&page[number]=${state.pageNumber}&page[size]=${state.pageSize}`;
 
   try {
@@ -27,7 +24,6 @@ async function requestForCharacters(
       ...prevState,
       records: data.meta.pagination.records,
     }));
-    // updateRecords(data.meta.pagination.records);
     return data.data;
   } catch (error) {
     console.error('Fetch error:', error);
@@ -35,15 +31,10 @@ async function requestForCharacters(
   }
 }
 
-export async function handleRequestForCharacters(
-  { state, setState }: StateProps
-  // updateCharactesList: (newCharactes: Character[]) => void,
-  // updateLoading: (condition: boolean) => void,
-  // updateShowModal: (condition: boolean) => void,
-  // updateErrorMessage: (message: string, stack: string) => void,
-  // updateRecords: (newPage: number) => void
-) {
-  // updateLoading(true);
+export async function handleRequestForCharacters({
+  state,
+  setState,
+}: StateProps) {
   setState((prevState: State) => ({
     ...prevState,
     loading: true,
@@ -67,22 +58,23 @@ export async function handleRequestForCharacters(
         loading: false,
       }));
       console.log(state);
-      // updateCharactesList(response);
-      // updateLoading(false);
     }
   } catch (error) {
     console.log(error);
     setState((prevState: State) => ({
       ...prevState,
       showErrorModal: true,
+    }));
+    setState((prevState: State) => ({
+      ...prevState,
       loading: false,
+    }));
+    setState((prevState: State) => ({
+      ...prevState,
       error: {
         message: 'Network response was not ok',
       },
     }));
-    // updateLoading(false);
-    // updateShowModal(true);
-    // updateErrorMessage('Network response was not ok', '');
   }
 }
 
