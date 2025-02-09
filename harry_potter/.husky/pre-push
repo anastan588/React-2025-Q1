@@ -1,1 +1,1 @@
-cd harry_potter && npm run test
+cd harry_potter && npm test

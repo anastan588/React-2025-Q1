@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "cd .. && husky harry_potter/.husky",
-    "test": "vitest",
+    "test": "vitest --watchAll=false",
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
