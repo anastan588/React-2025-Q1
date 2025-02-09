@@ -1,27 +1,33 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { ErrorModal } from '$/components/ErrorModal';
 import { Footer } from '$/components/Footer';
 import { Header } from '$/components/Header';
 import { SearchFieldComponent } from '$/components/Search';
 import { Spinner } from '$/components/Spinner';
-import { DataAppContext } from '../../context/dataAppContext';
 import { CardList } from '$/components/Results';
 import { Pangination } from '$/components/Pangination';
+import { State, StateProps } from '$/types/types';
 
-export function MainPage() {
-  const { state, updateDetailesOpened, updateErrorThrow, updateShowModal } =
-    useContext(DataAppContext);
+export function MainPage({ state, setState }: StateProps) {
+  // const { state, updateDetailesOpened, updateErrorThrow, updateShowModal } =
+  //   useContext(DataAppContext);
+
   const navigate = useNavigate();
 
   const throwError = () => {
     console.log('error');
-    updateErrorThrow(true);
+    setState((prevState: State) => ({
+      ...prevState,
+      errorThrow: true,
+    }));
     throw new Error('This is a test error');
   };
 
   const closeError = () => {
-    updateShowModal(false);
+    setState((prevState: State) => ({
+      ...prevState,
+      showErrorModal: false,
+    }));
   };
 
   if (state.errorThrow) {
@@ -30,7 +36,10 @@ export function MainPage() {
 
   const handleDetailesClose = () => {
     if (state.detailesOpened) {
-      updateDetailesOpened(false);
+      setState((prevState: State) => ({
+        ...prevState,
+        detailesOpened: false,
+      }));
       navigate(`/?page=${state.pageNumber}`, { replace: true });
     }
   };
@@ -42,14 +51,14 @@ export function MainPage() {
         className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen"
         onClick={handleDetailesClose}
       >
-        <SearchFieldComponent />
-        {!state.loading && <Pangination />}
+        <SearchFieldComponent state={state} setState={setState} />
+        {!state.loading && <Pangination state={state} setState={setState} />}
         {state.loading ? (
           <Spinner />
         ) : state.showErrorModal ? (
           <ErrorModal error={state.error} onClose={closeError} />
         ) : (
-          <CardList charactersList={state.charactersList} />
+          <CardList state={state} setState={setState} />
         )}
 
         <button

@@ -1,13 +1,13 @@
 import {
-  Character,
   CharacterResponse,
   CharactersResponse,
   State,
+  StateProps,
 } from '../types/types';
 
 async function requestForCharacters(
-  state: State,
-  updateRecords: (newPage: number) => void
+  { state, setState }: StateProps
+  // updateRecords: (newPage: number) => void
 ) {
   const url = `https://api.potterdb.com/v1/characters?filter[name_cont]=${state.searchTerm}&page[number]=${state.pageNumber}&page[size]=${state.pageSize}`;
 
@@ -23,7 +23,11 @@ async function requestForCharacters(
     }
     const data: CharactersResponse = await response.json();
     console.log(data);
-    updateRecords(data.meta.pagination.records);
+    setState((prevState: State) => ({
+      ...prevState,
+      records: data.meta.pagination.records,
+    }));
+    // updateRecords(data.meta.pagination.records);
     return data.data;
   } catch (error) {
     console.error('Fetch error:', error);
@@ -32,16 +36,20 @@ async function requestForCharacters(
 }
 
 export async function handleRequestForCharacters(
-  state: State,
-  updateCharactesList: (newCharactes: Character[]) => void,
-  updateLoading: (condition: boolean) => void,
-  updateShowModal: (condition: boolean) => void,
-  updateErrorMessage: (message: string, stack: string) => void,
-  updateRecords: (newPage: number) => void
+  { state, setState }: StateProps
+  // updateCharactesList: (newCharactes: Character[]) => void,
+  // updateLoading: (condition: boolean) => void,
+  // updateShowModal: (condition: boolean) => void,
+  // updateErrorMessage: (message: string, stack: string) => void,
+  // updateRecords: (newPage: number) => void
 ) {
-  updateLoading(true);
+  // updateLoading(true);
+  setState((prevState: State) => ({
+    ...prevState,
+    loading: true,
+  }));
   try {
-    const response = await requestForCharacters(state, updateRecords);
+    const response = await requestForCharacters({ state, setState });
     if (response[0] === 'error') {
       throw new Error('Network response was not ok');
     }
@@ -49,14 +57,32 @@ export async function handleRequestForCharacters(
       Array.isArray(response) &&
       response.every((item) => typeof item === 'object')
     ) {
-      updateCharactesList(response);
-      updateLoading(false);
+      console.log(response);
+      setState((prevState: State) => ({
+        ...prevState,
+        charactersList: response,
+      }));
+      setState((prevState: State) => ({
+        ...prevState,
+        loading: false,
+      }));
+      console.log(state);
+      // updateCharactesList(response);
+      // updateLoading(false);
     }
   } catch (error) {
     console.log(error);
-    updateLoading(false);
-    updateShowModal(true);
-    updateErrorMessage('Network response was not ok', '');
+    setState((prevState: State) => ({
+      ...prevState,
+      showErrorModal: true,
+      loading: false,
+      error: {
+        message: 'Network response was not ok',
+      },
+    }));
+    // updateLoading(false);
+    // updateShowModal(true);
+    // updateErrorMessage('Network response was not ok', '');
   }
 }
 

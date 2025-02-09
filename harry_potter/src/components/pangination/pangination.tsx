@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import { DataAppContext } from '../../context/dataAppContext';
+import { useEffect, useState } from 'react';
+import { State, StateProps } from '$/types/types';
+import { handleRequestForCharacters } from '$/api/api';
 
-export function Pangination() {
-  const { state, updatePageNumber } = useContext(DataAppContext);
+export function Pangination({ state, setState }: StateProps) {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
   const [disabledPrev, setDisabledPrev] = useState<boolean>(false);
 
@@ -18,12 +18,31 @@ export function Pangination() {
 
   const handlePrevPage = () => {
     if (state.pageNumber > 1) {
-      updatePageNumber(state.pageNumber - 1);
+      // updatePageNumber(state.pageNumber - 1);
+      return new Promise<State>((resolve) => {
+        setState((prevState) => {
+          const newState = {
+            ...prevState,
+            pageNumber: state.pageNumber - 1,
+          };
+          resolve(newState);
+          return newState;
+        });
+      }).then(() => handleRequestForCharacters({ state, setState }));
     }
   };
-
   const handleNextPage = () => {
-    updatePageNumber(state.pageNumber + 1);
+    // updatePageNumber(state.pageNumber + 1);
+    return new Promise<State>((resolve) => {
+      setState((prevState) => {
+        const newState = {
+          ...prevState,
+          pageNumber: state.pageNumber + 1,
+        };
+        resolve(newState);
+        return newState;
+      });
+    }).then(() => handleRequestForCharacters({ state, setState }));
   };
   return (
     <div className="flex gap-3 self-start">

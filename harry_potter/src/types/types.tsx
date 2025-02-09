@@ -17,6 +17,11 @@ export interface DataAppProviderProps {
   children: ReactNode;
 }
 
+export interface StateProps {
+  state: State;
+  setState: React.Dispatch<React.SetStateAction<State>>;
+}
+
 export interface DataAppContextType {
   state: State;
   updateSearchTerm: (newTerm: string) => void;

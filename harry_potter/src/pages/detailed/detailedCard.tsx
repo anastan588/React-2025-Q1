@@ -1,19 +1,22 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Character } from '../../types/types';
-import { DataAppContext } from '../../context/dataAppContext';
+import { Character, State, StateProps } from '../../types/types';
 import { handleRequestCharacterDetails } from '../../api/api';
 import { Spinner } from '$/components/Spinner';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 
-export function DetailedCard() {
-  const { state, updateDetailesOpened } = useContext(DataAppContext);
+export function DetailedCard({ state, setState }: StateProps) {
+  // const { state, updateDetailesOpened } = useContext(DataAppContext);
   const { id } = useParams<{ id: string }>();
   const [characterDatailes, setCharacterDetailes] = useState<Character>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    updateDetailesOpened(true);
+    // updateDetailesOpened(true);
+    setState((prevState: State) => ({
+      ...prevState,
+      detailesOpened: true,
+    }));
     const url = `/?page=${state.pageNumber}&details=${id}`;
     window.history.pushState({}, '', url);
     if (id) {
@@ -36,6 +39,10 @@ export function DetailedCard() {
   const handleCloseClick = () => {
     navigate(`/?page=${state.pageNumber}`, { replace: true });
     // updateDetailesOpened(false);
+    setState((prevState: State) => ({
+      ...prevState,
+      detailesOpened: false,
+    }));
   };
 
   return (

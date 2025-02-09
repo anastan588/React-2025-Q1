@@ -1,49 +1,41 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { handleRequestForCharacters } from '../../api/api';
-import { DataAppContext } from '../../context/dataAppContext';
 import useSearchStringLS from '../../hooks/useSearchStringLS';
+import { State, StateProps } from '$/types/types';
 
-export function SearchFieldComponent() {
+export function SearchFieldComponent({ state, setState }: StateProps) {
   const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
-  const {
-    state,
-    updateSearchTerm,
-    updateCharactesList,
-    updateLoading,
-    updateShowModal,
-    updateErrorMessage,
-    updatePageNumber,
-    updateRecords,
-  } = useContext(DataAppContext);
+  // const {
+  //   state,
+  //   updateSearchTerm,
+  //   updateCharactesList,
+  //   updateLoading,
+  //   updateShowModal,
+  //   updateErrorMessage,
+  //   updatePageNumber,
+  //   updateRecords,
+  // } = useContext(DataAppContext);
 
   useEffect(() => {
-    handleRequestForCharacters(
-      state,
-      updateCharactesList,
-      updateLoading,
-      updateShowModal,
-      updateErrorMessage,
-      updateRecords
-    );
+    handleRequestForCharacters({ state, setState });
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm: string = event.target.value.toLowerCase();
     console.log(searchTerm);
-    updateSearchTerm(newSearchTerm);
+    setState((prevState: State) => ({
+      ...prevState,
+      searchTerm: newSearchTerm,
+    }));
   };
 
   const handleSearch = () => {
     setSearchTerm(state.searchTerm);
-    updatePageNumber(1);
-    handleRequestForCharacters(
-      state,
-      updateCharactesList,
-      updateLoading,
-      updateShowModal,
-      updateErrorMessage,
-      updateRecords
-    );
+    setState((prevState: State) => ({
+      ...prevState,
+      pageNumber: 1,
+    }));
+    handleRequestForCharacters({ state, setState });
   };
 
   return (
