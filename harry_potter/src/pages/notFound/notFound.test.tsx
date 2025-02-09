@@ -14,7 +14,6 @@ describe('Detailed Component', () => {
         <NotFoundPage />
       </MemoryRouter>
     );
-    console.log(screen.getByText('Page not found'));
     expect(screen.getByText('Page not found')).toBeTruthy();
   });
 });

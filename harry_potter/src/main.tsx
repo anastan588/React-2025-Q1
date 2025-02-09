@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client';
-import React from 'react';
 import { BrowserRouter } from 'react-router';
 import App from './App.tsx';
 import { ErrorBoundary } from '$/components/ErrorBoundary';

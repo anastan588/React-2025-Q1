@@ -20,19 +20,15 @@ export function DetailedCard({ state, setState }: StateProps) {
     if (id) {
       try {
         handleRequestCharacterDetails(id).then((response) => {
-          console.log(response);
           setCharacterDetailes(response);
         });
       } catch (error) {
         console.error('Error fetching Character details:', error);
       }
     }
-    console.log(characterDatailes, 5454548878);
-    console.log(id);
   }, [characterDatailes, id, setState, state.pageNumber]);
 
   if (!characterDatailes) {
-    console.log(characterDatailes);
     return <Spinner />;
   }
   const handleCloseClick = () => {

@@ -46,7 +46,6 @@ describe('Detailed Component', () => {
         <DetailedCard state={mockState} setState={mockSetState} />
       </MemoryRouter>
     );
-    screen.debug();
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });
