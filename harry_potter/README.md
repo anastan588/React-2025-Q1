@@ -17,8 +17,11 @@ App downloads information about Harry Potter's world
 ### Working locally
 
 cd harry_potter
+
 npm i
+
 npm run build
+
 npm run dev
 
 ##### You can run all tests from the harry_potter dir with:
