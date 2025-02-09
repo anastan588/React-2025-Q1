@@ -24,10 +24,10 @@ npm run build
 
 npm run dev
 
-##### You can run all tests from the harry_potter dir with:
+### You can run all tests from the harry_potter dir with:
 
 npm run test
 
-##### with coverage:
+### with coverage:
 
 npm run test:coverage
