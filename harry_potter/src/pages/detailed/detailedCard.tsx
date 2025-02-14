@@ -10,11 +10,12 @@ export function DetailedCard({ state, setState }: StateProps) {
   const [characterDatailes, setCharacterDetailes] = useState<Character>();
   const navigate = useNavigate();
 
+  // setState((prevState: State) => ({
+  //   ...prevState,
+  //   detailesOpened: true,
+  // }));
+
   useEffect(() => {
-    setState((prevState: State) => ({
-      ...prevState,
-      detailesOpened: true,
-    }));
     const url = `/?page=${state.pageNumber}&details=${id}`;
     window.history.pushState({}, '', url);
     if (id) {
@@ -26,7 +27,7 @@ export function DetailedCard({ state, setState }: StateProps) {
         console.error('Error fetching Character details:', error);
       }
     }
-  }, [characterDatailes, id, setState, state.pageNumber]);
+  }, []);
 
   if (!characterDatailes) {
     return <Spinner />;

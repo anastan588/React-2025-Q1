@@ -31,24 +31,26 @@ export function MainPage({ state, setState }: StateProps) {
     throw new Error('This is a test error');
   }
 
-  const handleDetailesClose = () => {
-    if (state.detailesOpened) {
-      setState((prevState: State) => ({
-        ...prevState,
-        detailesOpened: false,
-      }));
-      navigate(`/?page=${state.pageNumber}`, { replace: true });
+  const handleDetailesClose: React.MouseEventHandler<HTMLElement> = (event) => {
+    const currentTarget = event.target as HTMLElement;
+    if (currentTarget) {
+      if (currentTarget.innerText !== 'More...') {
+        navigate(`/?page=${state.pageNumber}`, { replace: true });
+      }
     }
+    // setState((prevState: State) => ({
+    //   ...prevState,
+    //   detailesOpened: false,
+    // }));
   };
 
-  console.log(state.charactersList);
   return (
-    <div className="relative flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen">
+    <div
+      className="relative flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen"
+      onClick={handleDetailesClose}
+    >
       <Header />
-      <main
-        className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen"
-        onClick={handleDetailesClose}
-      >
+      <main className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen">
         <SearchFieldComponent state={state} setState={setState} />
         {!state.loading && <Pangination state={state} setState={setState} />}
         {state.loading ? (

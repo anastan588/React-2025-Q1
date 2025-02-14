@@ -13,7 +13,6 @@ export function Pangination({ state, setState }: StateProps) {
     setDisabledNext(disableNext);
     const disablePrev = pageNumber === 1 ? true : false;
     setDisabledPrev(disablePrev);
-    console.log('Updated pageNumber:', pageNumber);
   }, [pageNumber, pageSize, records]);
 
   const handlePrevPage = async () => {
