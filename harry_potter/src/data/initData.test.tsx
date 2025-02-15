@@ -1,5 +1,6 @@
-import { State } from '$/types/types';
 import { describe, expect, it } from 'vitest';
+
+import { State } from '$/types/types';
 import { initialState } from '$/data';
 
 describe('initialState', () => {
@@ -16,7 +17,7 @@ describe('initialState', () => {
       errorThrow: false,
       detailesOpened: false,
       pageNumber: 1,
-      pageSize: 20,
+      pageSize: 30,
       records: 0,
     };
     expect(initialState).toEqual(expectedState);

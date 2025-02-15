@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { MemoryRouter } from 'react-router';
+import { render, screen } from '@testing-library/react';
+
 import { CardList } from '$/components/Results';
 import { Character } from '$/types';
+import { MemoryRouter } from 'react-router';
 
 const mockCharacterList: Character[] = [
   {
@@ -42,7 +43,7 @@ describe('CardList Component', () => {
       records: 0,
     };
     render(<CardList state={mockState} setState={mockSetState} />);
-    expect(screen.getByText('No data')).toBeTruthy();
+    expect(screen.getByText('Characters haven&apos;t been found')).toBeTruthy();
   });
 
   test('renders cards', async () => {

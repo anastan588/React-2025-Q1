@@ -17,17 +17,17 @@ export function CardList({ state }: StateProps) {
   }, [pageNumber, searchTerm, charactersList]);
   return (
     <div className="flex gap-2.5">
-      <div className="grid grid-cols-5 gap-4">
-        {charactersList.length === 0 ? (
-          <p className="text-dark-yellow self-center text-lg">
-            Characters haven&apos;t been found
-          </p>
-        ) : (
-          state.charactersList.map((character: Character) => (
+      {charactersList.length === 0 ? (
+        <p className="text-dark-yellow self-center text-lg">
+          Characters haven&apos;t been found
+        </p>
+      ) : (
+        <div className="grid grid-cols-5 gap-4">
+          {state.charactersList.map((character: Character) => (
             <Card key={character.id} character={character} />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
       <Outlet />
     </div>
   );
