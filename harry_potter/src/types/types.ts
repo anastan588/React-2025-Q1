@@ -17,6 +17,12 @@ export interface StateProps {
   setState: React.Dispatch<React.SetStateAction<State>>;
 }
 
+export interface SearchPropsForCharacters {
+  searchTerm: string;
+  pageSize: number;
+  pageNumber: number;
+}
+
 export interface ErrorDetails {
   message: string;
   stack?: string;

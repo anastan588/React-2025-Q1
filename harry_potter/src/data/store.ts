@@ -1,10 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+
+import { potterApi } from './apiRequest';
+import potterReducer from './storeSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    potterData: potterReducer,
+    [potterApi.reducerPath]: potterApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(potterApi.middleware),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+setupListeners(store.dispatch);
+
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+
 export type AppDispatch = typeof store.dispatch;
