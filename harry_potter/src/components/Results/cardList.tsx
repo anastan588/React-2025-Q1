@@ -1,8 +1,8 @@
-import { Character, StateProps } from '../../types/types';
-
-import { Card } from '$/components/Card';
-import { Outlet } from 'react-router';
 import { useEffect } from 'react';
+import { Outlet } from 'react-router';
+
+import { Character, StateProps } from '../../types/types';
+import { Card } from '$/components/Card';
 
 export function CardList({ state }: StateProps) {
   const { searchTerm, pageNumber, charactersList } = state;

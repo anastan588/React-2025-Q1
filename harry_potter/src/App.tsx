@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router';
-import { MainPage } from '$/pages/mainPage';
-import { DetailedCard } from '$/pages/detailed';
-import { NotFoundPage } from '$/pages/notFound';
+
 import { initialState } from '$/data/initData';
+import { DetailedCard } from '$/pages/detailed';
+import { MainPage } from '$/pages/mainPage';
+import { NotFoundPage } from '$/pages/notFound';
 
 function App() {
   const [state, setState] = useState(initialState);

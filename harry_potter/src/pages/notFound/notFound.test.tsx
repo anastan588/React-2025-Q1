@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { NotFoundPage } from '$/pages/NotFound';
 import { MemoryRouter } from 'react-router';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+
+import { NotFoundPage } from '$/pages/NotFound';
 
 describe('Detailed Component', () => {
   beforeEach(() => {

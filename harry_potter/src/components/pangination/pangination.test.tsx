@@ -7,6 +7,7 @@ import {
 } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+
 import { Pangination } from '$/components/Pangination';
 import { Character } from '$/types';
 

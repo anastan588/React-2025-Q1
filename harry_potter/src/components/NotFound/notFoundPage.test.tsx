@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
+import { describe, expect, test } from 'vitest';
+
 import { NotFoundPage } from '$/components/NotFound';
 
 describe('NotFoundPage Component', () => {

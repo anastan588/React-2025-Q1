@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { MemoryRouter } from 'react-router';
-import { Character } from '$/types';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+
 import { Card } from '$/components/Card';
+import { Character } from '$/types';
 
 const mockCharacter: Character = {
   id: '8b7e8ccb-f2ef-42b0-a4cd-fb3c2572e619',

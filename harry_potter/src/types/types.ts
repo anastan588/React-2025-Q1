@@ -1,6 +1,7 @@
 export type State = {
   searchTerm: string;
   charactersList: Character[];
+  selectedCharacters: Character[];
   loading: boolean;
   error: ErrorDetails;
   showErrorModal: boolean;

@@ -1,14 +1,14 @@
-import { Cathle, Snow } from '$/assets/assetsExport';
-import { State, StateProps } from '$/types/types';
+import { useNavigate } from 'react-router';
 
-import { CardList } from '$/components/Results';
+import { Cathle, Snow } from '$/assets/assetsExport';
 import { ErrorModal } from '$/components/ErrorModal';
 import { Footer } from '$/components/Footer';
 import { Header } from '$/components/Header';
 import { Pangination } from '$/components/pangination';
+import { CardList } from '$/components/Results';
 import { SearchFieldComponent } from '$/components/search';
 import { Spinner } from '$/components/spinner';
-import { useNavigate } from 'react-router';
+import { State, StateProps } from '$/types/types';
 
 export function MainPage({ state, setState }: StateProps) {
   const navigate = useNavigate();

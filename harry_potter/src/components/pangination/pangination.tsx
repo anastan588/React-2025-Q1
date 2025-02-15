@@ -1,7 +1,7 @@
-import { State, StateProps } from '$/types/types';
 import { useEffect, useState } from 'react';
 
 import { handleRequestForCharacters } from '$/api/api';
+import { State, StateProps } from '$/types/types';
 
 export function Pangination({ state, setState }: StateProps) {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);

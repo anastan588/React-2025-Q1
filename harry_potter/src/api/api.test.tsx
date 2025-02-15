@@ -1,7 +1,9 @@
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+
 import { requestForCharacters } from '$/api';
-import { StateProps, CharactersResponse } from '$/types';
 import { handleRequestCharacterDetails } from '$/api';
+import { CharactersResponse, StateProps } from '$/types';
+
 import { handleRequestForCharacters } from './api';
 
 global.fetch = vi.fn();

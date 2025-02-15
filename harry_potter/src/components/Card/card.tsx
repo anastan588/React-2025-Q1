@@ -1,7 +1,7 @@
-import { Griffindor, MissCharacter, Slitherin } from '$/assets/assetsExport.ts';
-
-import { Character } from '$/types';
 import { Link } from 'react-router';
+
+import { Griffindor, MissCharacter, Slitherin } from '$/assets/assetsExport.ts';
+import { Character } from '$/types';
 
 interface CardProps {
   character: Character;

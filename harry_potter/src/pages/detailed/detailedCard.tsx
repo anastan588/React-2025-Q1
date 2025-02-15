@@ -1,10 +1,10 @@
-import { Character, State, StateProps } from '$/types';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
+import { handleRequestCharacterDetails } from '$/api';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 import { Spinner } from '$/components/spinner';
-import { handleRequestCharacterDetails } from '$/api';
+import { Character, State, StateProps } from '$/types';
 
 export function DetailedCard({ state, setState }: StateProps) {
   const { id } = useParams<{ id: string }>();

@@ -3,6 +3,7 @@ import { State } from '../types/types';
 export const initialState: State = {
   searchTerm: localStorage.getItem('searchTerm') || '',
   charactersList: [],
+  selectedCharacters: [],
   loading: true,
   error: {
     message: '',

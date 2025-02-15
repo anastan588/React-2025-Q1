@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, test, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+
 import { ErrorModal } from '$/components/ErrorModal';
 
 describe('ErrorModal Component', () => {

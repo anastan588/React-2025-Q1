@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom';
+
 import { render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { MemoryRouter } from 'react-router';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+
 import { ErrorBoundary } from '$/components/ErrorBoundary';
 
 describe('ErrorBoundary Component', () => {

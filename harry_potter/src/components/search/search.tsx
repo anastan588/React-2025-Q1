@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { State, StateProps } from '$/types/types';
 
 import { handleRequestForCharacters } from '$/api';
 import { useSearchStringLS } from '$/hooks';
+import { State, StateProps } from '$/types/types';
 
 export function SearchFieldComponent({ state, setState }: StateProps) {
   const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');

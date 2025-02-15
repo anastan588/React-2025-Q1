@@ -1,9 +1,9 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { CardList } from '$/components/Results';
 import { Character } from '$/types';
-import { MemoryRouter } from 'react-router';
 
 const mockCharacterList: Character[] = [
   {

@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { MemoryRouter } from 'react-router';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+
 import { MainPage } from '$/pages/MainPage';
 import { Character } from '$/types';
 
