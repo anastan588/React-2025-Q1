@@ -43,7 +43,7 @@ describe('CardList Component', () => {
       records: 0,
     };
     render(<CardList state={mockState} setState={mockSetState} />);
-    expect(screen.getByText('Characters haven&apos;t been found')).toBeTruthy();
+    expect(screen.getByText("Characters haven't been found")).toBeTruthy();
   });
 
   test('renders cards', async () => {
