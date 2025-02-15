@@ -1,5 +1,7 @@
 import React, { ErrorInfo } from 'react';
+
 import { ErrorBoundaryState } from '../../types/types';
+import { Snow } from '$/assets/assetsExport';
 
 export class ErrorBoundary extends React.Component<
   React.PropsWithChildren,
@@ -27,10 +29,15 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="h-screen flex flex-col items-center gap-5 p-10 bg-teal-300 ">
-          <h1 className="text-teal-800 text-[130%]">Something went wrong</h1>
+        <div
+          className="bg-dark-blue flex h-screen flex-col items-center gap-5 p-10"
+          style={{
+            backgroundImage: `url(${Snow})`,
+          }}
+        >
+          <h1 className="text-dark-yellow text-[130%]">Something went wrong</h1>
           <button
-            className="border-2 border-white  rounded-lg py-2.5 px-6 text-rose-500 text-[130%]"
+            className="text-light-red rounded-lg border-2 border-white px-6 py-2.5 text-[130%]"
             type="button"
             onClick={() => this.setState({ hasError: false })}
           >

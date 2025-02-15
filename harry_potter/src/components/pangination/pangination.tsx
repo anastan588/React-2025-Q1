@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { handleRequestForCharacters } from '$/api/api';
 import { State, StateProps } from '$/types/types';
+import { useEffect, useState } from 'react';
+
+import { handleRequestForCharacters } from '$/api/api';
 
 export function Pangination({ state, setState }: StateProps) {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
@@ -40,15 +41,15 @@ export function Pangination({ state, setState }: StateProps) {
   return (
     <div className="flex gap-3 self-start">
       <button
-        className={`self-end rounded-lg py-2.5 px-6 bg-slate-50 text-[120%] hover:bg-rose-400 hover:text-white ${disabledPrev ? 'pointer-events-none text-rose-100' : 'text-rose-500'}`}
+        className={`hover:bg-dark-green self-end rounded-lg bg-slate-50 px-6 py-2.5 text-[120%] hover:text-white ${disabledPrev ? 'pointer-events-none text-white' : 'text-dark-green'}`}
         onClick={handlePrevPage}
         disabled={disabledPrev}
       >
         Prev page
       </button>
       <button
-        className={`self-end rounded-lg py-2.5 px-6 bg-slate-50 text-[120%] hover:bg-rose-400  hover:text-white ${
-          disabledNext ? 'pointer-events-none text-rose-100' : 'text-rose-500'
+        className={`hover:bg-dark-green self-end rounded-lg bg-slate-50 px-6 py-2.5 text-[120%] hover:text-white ${
+          disabledNext ? 'pointer-events-none text-white' : 'text-dark-green'
         }`}
         onClick={handleNextPage}
         disabled={disabledNext}

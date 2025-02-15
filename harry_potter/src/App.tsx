@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router';
-import { MainPage } from '$/pages/MainPage';
-import { DetailedCard } from '$/pages/Detailed';
-import { NotFoundPage } from '$/pages/NotFound';
+import { MainPage } from '$/pages/mainPage';
+import { DetailedCard } from '$/pages/detailed';
+import { NotFoundPage } from '$/pages/notFound';
 import { initialState } from '$/data/initData';
 
 function App() {

@@ -2,10 +2,10 @@ import { ErrorProps } from '$/types';
 
 export function ErrorModal({ error, onClose }: ErrorProps) {
   return (
-    <div className="flex flex-col gap-2.5 p-12 w-full bg-rose-400 rounded-lg text-center ">
-      <p className="text-white text-[130%]">{error.message}</p>
+    <div className="flex w-full flex-col gap-2.5 rounded-lg bg-rose-400 p-12 text-center">
+      <p className="text-[130%] text-white">{error.message}</p>
       <button
-        className="border-2 border-white rounded-lg p-2.5 text-white text-[120%]  hover:bg-white hover:text-rose-500"
+        className="rounded-lg border-2 border-white p-2.5 text-[120%] text-white hover:bg-white hover:text-rose-500"
         onClick={onClose}
       >
         Close

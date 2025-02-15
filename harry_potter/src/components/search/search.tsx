@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { State, StateProps } from '$/types/types';
+
 import { handleRequestForCharacters } from '$/api';
 import { useSearchStringLS } from '$/hooks';
-import { State, StateProps } from '$/types/types';
 
 export function SearchFieldComponent({ state, setState }: StateProps) {
   const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
@@ -31,14 +32,14 @@ export function SearchFieldComponent({ state, setState }: StateProps) {
   return (
     <div className="flex justify-center gap-5">
       <input
-        className="p-2.5 px-6 rounded-lg text-lg bg-white"
+        className="text-dark-green rounded-lg bg-white p-2.5 px-6 text-lg"
         type="text"
         value={state.searchTerm}
         onChange={handleInputChange}
         placeholder="Search for character"
       />
       <button
-        className="p-2.5 px-6 rounded-lg bg-rose-400 text-lg text-white transform hover:scale-110 transition-transform duration-200 ease-in-out"
+        className="bg-dark-red transform rounded-lg p-2.5 px-6 text-lg text-white transition-transform duration-200 ease-in-out hover:scale-110"
         onClick={handleSearch}
       >
         Search

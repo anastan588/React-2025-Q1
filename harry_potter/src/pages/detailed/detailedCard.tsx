@@ -1,9 +1,10 @@
+import { Character, State, StateProps } from '$/types';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { handleRequestCharacterDetails } from '$/api';
-import { Spinner } from '$/components/Spinner';
-import { Character, State, StateProps } from '$/types';
+
 import { MissCharacter } from '$/assets/assetsExport.ts';
+import { Spinner } from '$/components/spinner';
+import { handleRequestCharacterDetails } from '$/api';
 
 export function DetailedCard({ state, setState }: StateProps) {
   const { id } = useParams<{ id: string }>();
@@ -44,58 +45,74 @@ export function DetailedCard({ state, setState }: StateProps) {
     <div
       data-testid="detailed"
       key={characterDatailes?.id}
-      className="flex flex-col gap-1.5 rounded border-2 border-gray-200 p-4 flex flex-col self-start"
+      className="bg-light-blue/70 flex flex-col justify-between gap-1.5 self-start rounded border-2 border-gray-200 p-3 tracking-widest"
     >
-      <img
-        className="rounded-lg h-auto w-auto object-contain object-center max-h-[300px]"
-        src={characterDatailes?.attributes.image || MissCharacter}
-        alt="character"
-      />
-      <div className="flex flex-col gap-1.5">
-        <h3 className="text-center font-bold">
-          {characterDatailes?.attributes.name.toLocaleUpperCase()}
-        </h3>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Born:</span>{' '}
-          {characterDatailes?.attributes.height}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Nationality:</span>{' '}
-          {characterDatailes?.attributes.nationality}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">House:</span>{' '}
-          {characterDatailes?.attributes.house}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Blood status:</span>{' '}
-          {characterDatailes?.attributes.blood_status}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Alias names:</span>
-          {characterDatailes.attributes?.alias_names?.map((alias, index) => (
-            <span key={index}>{alias}; </span>
-          )) || <span>No aliases available</span>}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Family members:</span>
-          {characterDatailes.attributes?.family_members?.map(
-            (member, index) => <span key={index}>{member}; </span>
-          ) || <span>No family members available</span>}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">More information:</span>{' '}
-          <a
-            href={characterDatailes?.attributes.wiki}
-            target="_blank"
-            className="flex text-teal-800 overflow-hidden truncate"
-            rel="noreferrer"
-          >
-            {characterDatailes?.attributes.wiki}
-          </a>
-        </p>
+      <div className="flex max-h-40 flex-col justify-center">
+        <img
+          src={characterDatailes.attributes.image || MissCharacter}
+          className="max-h-40 w-full rounded-lg object-contain object-center"
+          alt="character"
+        />
+      </div>{' '}
+      <h3 className="text-center font-bold">
+        {characterDatailes?.attributes.name.toLocaleUpperCase()}
+      </h3>
+      <div className="flex flex-1 flex-col gap-0.5">
+        {characterDatailes?.attributes.height && (
+          <p className="flex gap-0.5">
+            <span className="text-dark-yellow font-bold">Born: </span>
+            {characterDatailes?.attributes.height}
+          </p>
+        )}
+        {characterDatailes?.attributes.nationality && (
+          <p className="flex gap-0.5">
+            <span className="text-dark-yellow font-bold">Nationality: </span>
+            {characterDatailes?.attributes.nationality}
+          </p>
+        )}
+        {characterDatailes?.attributes.house && (
+          <p className="flex gap-0.5">
+            <span className="text-dark-yellow font-bold">House: </span>
+            {characterDatailes?.attributes.house}
+          </p>
+        )}
+        {characterDatailes?.attributes.blood_status && (
+          <p className="flex gap-0.5">
+            <span className="text-dark-yellow font-bold">Blood status: </span>
+            {characterDatailes?.attributes.blood_status}
+          </p>
+        )}
+        {characterDatailes.attributes?.alias_names?.length !== 0 && (
+          <p className="flex flex-col gap-0.5">
+            <span className="text-dark-yellow font-bold">Alias names: </span>
+            {characterDatailes.attributes?.alias_names?.map((alias, index) => (
+              <span key={index}>{alias}; </span>
+            )) || <span>No aliases available</span>}
+          </p>
+        )}
+        {characterDatailes.attributes?.family_members?.length !== 0 && (
+          <p className="flex flex-col gap-0.5">
+            <span className="text-dark-yellow font-bold">Family members: </span>
+            {characterDatailes.attributes?.family_members?.map(
+              (member, index) => <span key={index}>{member}; </span>
+            ) || <span>No family members available</span>}
+          </p>
+        )}
+        {characterDatailes?.attributes.wiki && (
+          <p className="flex gap-0.5">
+            <span className="text-dark-yellow font-bold">More info:</span>
+            <a
+              href={characterDatailes?.attributes.wiki}
+              target="_blank"
+              className="text-light-red flex truncate overflow-hidden"
+              rel="noreferrer"
+            >
+              {characterDatailes?.attributes.wiki}
+            </a>
+          </p>
+        )}
         <button
-          className="mt-auto text-center bg-secondary rounded-lg py-2 opacity-90 hover:bg-rose-400 hover:text-white bg-slate-50 text-rose-500"
+          className="bg-secondary text-dark-red hover:bg-dark-red mt-auto rounded-lg bg-slate-50 py-2 text-center opacity-90 hover:text-white"
           onClick={handleCloseClick}
         >
           Close

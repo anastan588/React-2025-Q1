@@ -1,12 +1,14 @@
-import { useNavigate } from 'react-router';
+import { Cathle, Snow } from '$/assets/assetsExport';
+import { State, StateProps } from '$/types/types';
+
+import { CardList } from '$/components/Results';
 import { ErrorModal } from '$/components/ErrorModal';
 import { Footer } from '$/components/Footer';
 import { Header } from '$/components/Header';
-import { SearchFieldComponent } from '$/components/Search';
-import { Spinner } from '$/components/Spinner';
-import { CardList } from '$/components/Results';
-import { Pangination } from '$/components/Pangination';
-import { State, StateProps } from '$/types/types';
+import { Pangination } from '$/components/pangination';
+import { SearchFieldComponent } from '$/components/search';
+import { Spinner } from '$/components/spinner';
+import { useNavigate } from 'react-router';
 
 export function MainPage({ state, setState }: StateProps) {
   const navigate = useNavigate();
@@ -46,11 +48,19 @@ export function MainPage({ state, setState }: StateProps) {
 
   return (
     <div
-      className="relative flex flex-col items-center bg-teal-300 gap-7 h-full relative min-h-screen"
+      className="bg-light-blue relative flex h-full min-h-screen flex-col items-center bg-contain bg-center"
       onClick={handleDetailesClose}
+      style={{
+        backgroundImage: `url(${Snow})`,
+      }}
     >
       <Header />
-      <main className="flex-1 flex flex-col items-center gap-4 p-0 px-5 pb-[60px] w-full max-w-screen">
+      <main
+        className="flex w-full max-w-screen flex-1 flex-col items-center gap-4 bg-cover bg-fixed px-5 pt-5 pb-[60px] text-white"
+        style={{
+          backgroundImage: `url(${Cathle})`,
+        }}
+      >
         <SearchFieldComponent state={state} setState={setState} />
         {!state.loading && <Pangination state={state} setState={setState} />}
         {state.loading ? (
@@ -62,7 +72,7 @@ export function MainPage({ state, setState }: StateProps) {
         )}
 
         <button
-          className="fixed right-[20px] bottom-[50px] border-2 border-white rounded-lg py-2 px-3 bg-slate-50 text-rose-500 hover:bg-rose-400 hover:text-white"
+          className="text-dark-red hover:bg-dark-red fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-slate-50 px-3 py-2 hover:text-white"
           onClick={throwError}
         >
           Throw Error

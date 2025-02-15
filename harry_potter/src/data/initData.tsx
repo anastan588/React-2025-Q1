@@ -12,6 +12,6 @@ export const initialState: State = {
   errorThrow: false,
   detailesOpened: false,
   pageNumber: 1,
-  pageSize: 20,
+  pageSize: 30,
   records: 0,
 };
