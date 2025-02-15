@@ -1,5 +1,5 @@
 import React, { ErrorInfo } from 'react';
-import { ErrorBoundaryState } from '../types/types';
+import { ErrorBoundaryState } from '../../types/types';
 
 export class ErrorBoundary extends React.Component<
   React.PropsWithChildren,
@@ -27,10 +27,10 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="bound_container">
-          <h1 className="bound_title">Something went wrong</h1>
+        <div className="h-screen flex flex-col items-center gap-5 p-10 bg-teal-300 ">
+          <h1 className="text-teal-800 text-[130%]">Something went wrong</h1>
           <button
-            className="bound_return"
+            className="border-2 border-white  rounded-lg py-2.5 px-6 text-rose-500 text-[130%]"
             type="button"
             onClick={() => this.setState({ hasError: false })}
           >

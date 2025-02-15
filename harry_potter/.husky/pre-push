@@ -1,0 +1,1 @@
+cd harry_potter && npx vitest --run

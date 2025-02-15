@@ -1,14 +1,17 @@
 import { createRoot } from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from 'react-router';
 import App from './App.tsx';
-import { ErrorBoundary } from './components/errorBoundary.tsx';
+import { ErrorBoundary } from '$/components/ErrorBoundary';
+import './index.css';
 
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
   createRoot(rootElement).render(
     <ErrorBoundary>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ErrorBoundary>
   );
 } else {
