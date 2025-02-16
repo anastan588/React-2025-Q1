@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { CardList } from '$/components/Results';
+import { store } from '$/data/store';
+import { updateCharactersList } from '$/data/storeSlice';
 import { Character } from '$/types';
 
 const mockCharacterList: Character[] = [
@@ -20,53 +23,29 @@ const mockCharacterList: Character[] = [
   },
 ];
 
-const mockSetState = vi.fn();
-
 describe('CardList Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
   test('renders message about empty cards', async () => {
-    const mockState = {
-      searchTerm: '',
-      charactersList: [],
-      loading: true,
-      error: {
-        message: '',
-        stack: '',
-      },
-      showErrorModal: false,
-      errorThrow: false,
-      detailesOpened: false,
-      pageNumber: 1,
-      pageSize: 20,
-      records: 0,
-    };
-    render(<CardList state={mockState} setState={mockSetState} />);
+    render(
+      <Provider store={store}>
+        <CardList />
+      </Provider>
+    );
     expect(screen.getByText("Characters haven't been found")).toBeTruthy();
   });
 
   test('renders cards', async () => {
-    const mockState = {
-      searchTerm: '',
-      charactersList: mockCharacterList,
-      loading: true,
-      error: {
-        message: '',
-        stack: '',
-      },
-      showErrorModal: false,
-      errorThrow: false,
-      detailesOpened: false,
-      pageNumber: 1,
-      pageSize: 20,
-      records: 0,
-    };
+    store.dispatch(updateCharactersList(mockCharacterList));
     render(
       <MemoryRouter>
-        <CardList state={mockState} setState={mockSetState} />
+        <Provider store={store}>
+          <CardList />
+        </Provider>
       </MemoryRouter>
     );
+    console.log(store.getState());
     const list = screen.getAllByRole('article');
     expect(list).toHaveLength(mockCharacterList.length);
   });

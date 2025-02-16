@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router';
 
 import { ErrorBoundary } from '$/components/ErrorBoundary';
+import { store } from '$/data';
 
 import App from './App.tsx';
-import { store } from './data/store.ts';
 
 const rootElement = document.getElementById('root');
 

@@ -8,6 +8,7 @@ describe('initialState', () => {
     const expectedState: State = {
       searchTerm: localStorage.getItem('searchTerm') || '',
       charactersList: [],
+      selectedCharacters: [],
       loading: true,
       error: {
         message: '',

@@ -1,20 +1,12 @@
-import { useState } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { initialState } from '$/data/initData';
-import { DetailedCard } from '$/pages/detailed';
-import { MainPage } from '$/pages/mainPage';
-import { NotFoundPage } from '$/pages/notFound';
+import { DetailedCard, MainPage, NotFoundPage } from '$/pages';
 
 function App() {
-  const [state, setState] = useState(initialState);
   return (
     <Routes>
-      <Route path="/" element={<MainPage state={state} setState={setState} />}>
-        <Route
-          path="/details/:id"
-          element={<DetailedCard state={state} setState={setState} />}
-        />
+      <Route path="/" element={<MainPage />}>
+        <Route path="/details/:id" element={<DetailedCard />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

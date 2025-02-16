@@ -1,32 +1,27 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { handleRequestForCharacters } from '$/api';
+import { RootState } from '$/data/store';
+import { updatePageNumber, updateSerchTerm } from '$/data/storeSlice';
 import { useSearchStringLS } from '$/hooks';
-import { State, StateProps } from '$/types/types';
 
-export function SearchFieldComponent({ state, setState }: StateProps) {
-  const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
+export function SearchFieldComponent() {
+  const [searchTermInComponent, setSearchTermInComponent] =
+    useSearchStringLS('searchTerm');
+  const { searchTerm } = useSelector((state: RootState) => state.potterData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    handleRequestForCharacters({ state, setState });
-  }, []);
+    setSearchTermInComponent(searchTerm);
+  }, [searchTerm, setSearchTermInComponent]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchTerm: string = event.target.value.toLowerCase();
-    console.log(searchTerm);
-    setState((prevState: State) => ({
-      ...prevState,
-      searchTerm: newSearchTerm,
-    }));
+    setSearchTermInComponent(event.target.value.toLowerCase());
   };
 
   const handleSearch = () => {
-    setSearchTerm(state.searchTerm);
-    setState((prevState: State) => ({
-      ...prevState,
-      pageNumber: 1,
-    }));
-    handleRequestForCharacters({ state, setState });
+    dispatch(updateSerchTerm(searchTermInComponent));
+    dispatch(updatePageNumber(1));
   };
 
   return (
@@ -34,7 +29,7 @@ export function SearchFieldComponent({ state, setState }: StateProps) {
       <input
         className="text-dark-green rounded-lg bg-white p-2.5 px-6 text-lg"
         type="text"
-        value={state.searchTerm}
+        value={searchTermInComponent}
         onChange={handleInputChange}
         placeholder="Search for character"
       />

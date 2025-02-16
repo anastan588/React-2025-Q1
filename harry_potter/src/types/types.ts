@@ -5,6 +5,8 @@ export type State = {
   loading: boolean;
   error: ErrorDetails;
   showErrorModal: boolean;
+  detailedId: string;
+  detailedCard: Character | undefined;
   detailesOpened: boolean;
   errorThrow: boolean;
   pageSize: number;

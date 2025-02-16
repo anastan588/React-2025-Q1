@@ -1,12 +1,34 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 
 import { Griffindor, MissCharacter, Slitherin } from '$/assets/assetsExport.ts';
+import { RootState } from '$/data';
+import {
+  addSelectedCharacters,
+  removeSelectedChacters,
+} from '$/data/storeSlice';
 import { Character } from '$/types';
 
 interface CardProps {
   character: Character;
 }
 export function Card({ character }: CardProps) {
+  const { charactersList } = useSelector(
+    (state: RootState) => state.potterData
+  );
+  const dispatch = useDispatch();
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLElement>,
+    character: Character
+  ) => {
+    console.log(event);
+    if (charactersList.some((character) => character.id === character.id)) {
+      dispatch(removeSelectedChacters(character));
+    } else {
+      dispatch(addSelectedCharacters(character));
+    }
+  };
+
   return (
     <div
       role="article"
@@ -23,6 +45,20 @@ export function Card({ character }: CardProps) {
           {character.attributes.name}
         </p>
         <div className="my-4 flex flex-col">
+          <div className="flex justify-center">
+            <input
+              type="checkbox"
+              id="favourite"
+              className="accent-dark-red h-5 w-5"
+              onChange={(event) => handleCheckboxChange(event, character)}
+            />
+            <label
+              htmlFor="favourite"
+              className="text-dark-yellow ml-2 tracking-wider"
+            >
+              Add to favourite
+            </label>
+          </div>
           {character.attributes.gender && (
             <div className="flex gap-2.5">
               <img className="max-h-7 max-w-7" src={Griffindor} alt="Gender" />

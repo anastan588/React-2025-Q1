@@ -1,7 +1,7 @@
 import React, { ErrorInfo } from 'react';
 
-import { ErrorBoundaryState } from '../../types/types';
 import { Snow } from '$/assets/assetsExport';
+import { ErrorBoundaryState } from '$/types';
 
 export class ErrorBoundary extends React.Component<
   React.PropsWithChildren,
@@ -11,7 +11,6 @@ export class ErrorBoundary extends React.Component<
     super(props);
     this.state = { hasError: false };
   }
-
   logErrorToMyService(error: Error, errorInfo: ErrorInfo) {
     console.error('Error:', error);
     console.error('Error Info:', errorInfo);
@@ -26,6 +25,13 @@ export class ErrorBoundary extends React.Component<
     this.logErrorToMyService(error, errorInfo);
   }
 
+  handleResetError = () => {
+    console.log('kgjfgfkgjfkg');
+    console.log(this.props.children);
+    this.setState({ hasError: false });
+    console.log(this.state);
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -39,7 +45,7 @@ export class ErrorBoundary extends React.Component<
           <button
             className="text-light-red rounded-lg border-2 border-white px-6 py-2.5 text-[130%]"
             type="button"
-            onClick={() => this.setState({ hasError: false })}
+            onClick={this.handleResetError}
           >
             Try again
           </button>

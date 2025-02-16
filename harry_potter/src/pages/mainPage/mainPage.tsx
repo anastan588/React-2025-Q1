@@ -1,35 +1,63 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import { Cathle, Snow } from '$/assets/assetsExport';
-import { ErrorModal } from '$/components/ErrorModal';
-import { Footer } from '$/components/Footer';
-import { Header } from '$/components/Header';
-import { Pangination } from '$/components/pangination';
-import { CardList } from '$/components/Results';
-import { SearchFieldComponent } from '$/components/search';
-import { Spinner } from '$/components/spinner';
-import { State, StateProps } from '$/types/types';
+import {
+  CardList,
+  ErrorModal,
+  Footer,
+  Header,
+  Pangination,
+  SearchFieldComponent,
+  Spinner,
+} from '$/components';
+import { potterApi, RootState } from '$/data';
+import {
+  updateIsDetailedOpened,
+  updateLoading,
+  updateShowErrorMessageWindow,
+} from '$/data/storeSlice';
 
-export function MainPage({ state, setState }: StateProps) {
+export function MainPage() {
+  const {
+    searchTerm,
+    pageNumber,
+    pageSize,
+    loading,
+    showErrorModal,
+    error,
+    charactersList,
+  } = useSelector((state: RootState) => state.potterData);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorThrownInMain, setErrorThrownInMain] = useState(false);
+
+  const { refetch } = potterApi.endpoints.getCharacters.useQuery({
+    searchTerm: searchTerm,
+    pageNumber: pageNumber,
+    pageSize: pageSize,
+  });
+
+  useEffect(() => {
+    if (searchTerm) {
+      refetch();
+    }
+    if (searchTerm || charactersList.length === 0) {
+      dispatch(updateLoading(true));
+    }
+  }, [charactersList.length, dispatch, pageNumber, refetch, searchTerm]);
 
   const throwError = () => {
-    console.log('error');
-    setState((prevState: State) => ({
-      ...prevState,
-      errorThrow: true,
-    }));
+    setErrorThrownInMain(true);
     throw new Error('This is a test error');
   };
 
   const closeError = () => {
-    setState((prevState: State) => ({
-      ...prevState,
-      showErrorModal: false,
-    }));
+    dispatch(updateShowErrorMessageWindow(false));
   };
 
-  if (state.errorThrow) {
+  if (errorThrownInMain) {
     throw new Error('This is a test error');
   }
 
@@ -37,13 +65,10 @@ export function MainPage({ state, setState }: StateProps) {
     const currentTarget = event.target as HTMLElement;
     if (currentTarget) {
       if (currentTarget.innerText !== 'More...') {
-        navigate(`/?page=${state.pageNumber}`, { replace: true });
+        navigate(`/?page=${pageNumber}`, { replace: true });
       }
     }
-    // setState((prevState: State) => ({
-    //   ...prevState,
-    //   detailesOpened: false,
-    // }));
+    dispatch(updateIsDetailedOpened(false));
   };
 
   return (
@@ -61,16 +86,17 @@ export function MainPage({ state, setState }: StateProps) {
           backgroundImage: `url(${Cathle})`,
         }}
       >
-        <SearchFieldComponent state={state} setState={setState} />
-        {!state.loading && <Pangination state={state} setState={setState} />}
-        {state.loading ? (
+        <SearchFieldComponent />
+        {loading ? (
           <Spinner />
-        ) : state.showErrorModal ? (
-          <ErrorModal error={state.error} onClose={closeError} />
+        ) : showErrorModal ? (
+          <ErrorModal error={error} onClose={closeError} />
         ) : (
-          <CardList state={state} setState={setState} />
+          <>
+            <Pangination />
+            <CardList />
+          </>
         )}
-
         <button
           className="text-dark-red hover:bg-dark-red fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-slate-50 px-3 py-2 hover:text-white"
           onClick={throwError}

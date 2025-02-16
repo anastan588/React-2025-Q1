@@ -6,7 +6,7 @@ import { CharacterResponse, SearchPropsForCharacters } from '$/types/types';
 export const potterApi = createApi({
   reducerPath: 'potterApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.potterdb.com/v1/',
+    baseUrl: `https://api.potterdb.com/v1/`,
   }),
   endpoints: (builder) => ({
     getCharacters: builder.query<CharactersResponse, SearchPropsForCharacters>({
@@ -16,7 +16,10 @@ export const potterApi = createApi({
       },
     }),
     getCharacterById: builder.query<CharacterResponse, string>({
-      query: (id) => `characters/${id}`,
+      query: (detailedId: string) => {
+        console.log(detailedId);
+        return `characters/${detailedId}`;
+      },
     }),
   }),
 });

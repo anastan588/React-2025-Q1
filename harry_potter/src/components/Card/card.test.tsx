@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { Card } from '$/components/Card';
+import { store } from '$/data';
 import { Character } from '$/types';
 
 const mockCharacter: Character = {
@@ -19,7 +21,9 @@ describe('CardList Component', () => {
   test('renders Card', async () => {
     render(
       <MemoryRouter>
-        <Card key={mockCharacter.id} character={mockCharacter} />
+        <Provider store={store}>
+          <Card key={mockCharacter.id} character={mockCharacter} />
+        </Provider>
       </MemoryRouter>
     );
     expect(screen.getByText('More...')).toBeTruthy();

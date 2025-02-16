@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { handleRequestForCharacters } from '$/api/api';
-import { State, StateProps } from '$/types/types';
+import { RootState } from '$/data/store';
+import { updatePageNumber } from '$/data/storeSlice';
 
-export function Pangination({ state, setState }: StateProps) {
+export function Pangination() {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
   const [disabledPrev, setDisabledPrev] = useState<boolean>(false);
-  const { pageNumber, records, pageSize } = state;
+  const { pageNumber, records, pageSize } = useSelector(
+    (state: RootState) => state.potterData
+  );
 
   useEffect(() => {
     const disableNext =
@@ -15,28 +18,15 @@ export function Pangination({ state, setState }: StateProps) {
     const disablePrev = pageNumber === 1 ? true : false;
     setDisabledPrev(disablePrev);
   }, [pageNumber, pageSize, records]);
+  const dispatch = useDispatch();
 
   const handlePrevPage = async () => {
     if (pageNumber > 1) {
-      setState((prevState: State) => {
-        const updatedState = {
-          ...prevState,
-          pageNumber: pageNumber - 1,
-        };
-        handleRequestForCharacters({ state: updatedState, setState });
-        return updatedState;
-      });
+      dispatch(updatePageNumber(pageNumber - 1));
     }
   };
   const handleNextPage = async () => {
-    setState((prevState: State) => {
-      const updatedState = {
-        ...prevState,
-        pageNumber: pageNumber + 1,
-      };
-      handleRequestForCharacters({ state: updatedState, setState });
-      return updatedState;
-    });
+    dispatch(updatePageNumber(pageNumber + 1));
   };
   return (
     <div className="flex gap-3 self-start">
