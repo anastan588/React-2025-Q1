@@ -10,6 +10,7 @@ export function Pangination() {
   const { pageNumber, records, pageSize } = useSelector(
     (state: RootState) => state.potterData
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const disableNext =
@@ -18,9 +19,9 @@ export function Pangination() {
     const disablePrev = pageNumber === 1 ? true : false;
     setDisabledPrev(disablePrev);
   }, [pageNumber, pageSize, records]);
-  const dispatch = useDispatch();
 
   const handlePrevPage = async () => {
+    console.log('prev');
     if (pageNumber > 1) {
       dispatch(updatePageNumber(pageNumber - 1));
     }

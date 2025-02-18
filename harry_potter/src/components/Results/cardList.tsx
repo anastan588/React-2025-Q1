@@ -23,8 +23,11 @@ export function CardList() {
     if (charactersList.length > 0) {
       setListLength(charactersList.length);
     }
+    console.log(charactersList);
   }, [pageNumber, searchTerm, charactersList, charactersList.length]);
+
   console.log(listLength);
+  console.log(pageNumber);
   return (
     <div className="flex gap-2.5">
       {charactersList.length === 0 ? (
@@ -36,7 +39,7 @@ export function CardList() {
           className={
             listLength
               ? listLength < 5
-                ? `grid grid-cols-${listLength} gap-4`
+                ? `grid grid-cols-${listLength.toString()} gap-4`
                 : `grid grid-cols-5 gap-4`
               : `grid grid-cols-5 gap-4`
           }

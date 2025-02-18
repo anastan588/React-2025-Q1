@@ -6,6 +6,7 @@ import { Cathle, Snow } from '$/assets/assetsExport';
 import {
   CardList,
   ErrorModal,
+  FlyoutElement,
   Footer,
   Header,
   Pangination,
@@ -28,6 +29,7 @@ export function MainPage() {
     showErrorModal,
     error,
     charactersList,
+    selectedCharacters,
   } = useSelector((state: RootState) => state.potterData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,7 +42,13 @@ export function MainPage() {
   });
 
   useEffect(() => {
+    console.log('sezrc', searchTerm);
     if (searchTerm) {
+      console.log('sezrc1', searchTerm);
+      refetch();
+    }
+    if (pageNumber) {
+      console.log('page1', searchTerm);
       refetch();
     }
     if (searchTerm || charactersList.length === 0) {
@@ -97,6 +105,7 @@ export function MainPage() {
             <CardList />
           </>
         )}
+        {selectedCharacters.length !== 0 && <FlyoutElement />}
         <button
           className="text-dark-red hover:bg-dark-red fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-slate-50 px-3 py-2 hover:text-white"
           onClick={throwError}

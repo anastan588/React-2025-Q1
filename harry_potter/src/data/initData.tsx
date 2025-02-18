@@ -15,4 +15,6 @@ export const initialState: State = {
   pageNumber: 1,
   pageSize: 30,
   records: 0,
+  detailedId: '',
+  detailedCard: undefined,
 };

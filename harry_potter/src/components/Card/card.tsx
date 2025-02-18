@@ -13,18 +13,26 @@ interface CardProps {
   character: Character;
 }
 export function Card({ character }: CardProps) {
-  const { charactersList } = useSelector(
+  const { selectedCharacters } = useSelector(
     (state: RootState) => state.potterData
   );
   const dispatch = useDispatch();
+
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLElement>,
     character: Character
   ) => {
     console.log(event);
-    if (charactersList.some((character) => character.id === character.id)) {
+    console.log(character);
+    if (
+      selectedCharacters.some(
+        (characterFromSelected) => characterFromSelected.id === character.id
+      )
+    ) {
+      console.log('true');
       dispatch(removeSelectedChacters(character));
     } else {
+      console.log('false');
       dispatch(addSelectedCharacters(character));
     }
   };
@@ -50,6 +58,9 @@ export function Card({ character }: CardProps) {
               type="checkbox"
               id="favourite"
               className="accent-dark-red h-5 w-5"
+              checked={selectedCharacters.some(
+                (item) => item.id === character.id
+              )}
               onChange={(event) => handleCheckboxChange(event, character)}
             />
             <label

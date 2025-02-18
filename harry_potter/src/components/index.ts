@@ -8,3 +8,4 @@ export { Pangination } from './pangination';
 export { CardList } from './Results';
 export { SearchFieldComponent } from './search';
 export { Spinner } from './spinner';
+export { FlyoutElement } from './FlyoutElement';
