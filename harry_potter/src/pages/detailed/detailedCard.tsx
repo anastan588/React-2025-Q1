@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
+import { potterApi } from '$/api';
 import { MissCharacter } from '$/assets/assetsExport.ts';
 import { Spinner } from '$/components/spinner';
-import { potterApi, RootState } from '$/data';
+import { RootState } from '$/data';
 import { updateDetailedId, updateIsDetailedOpened } from '$/data/storeSlice';
 
 export function DetailedCard() {

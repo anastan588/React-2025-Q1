@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
+import { potterApi } from '$/api';
 import { Cathle, Snow } from '$/assets/assetsExport';
 import {
   CardList,
@@ -13,7 +14,7 @@ import {
   SearchFieldComponent,
   Spinner,
 } from '$/components';
-import { potterApi, RootState } from '$/data';
+import { RootState } from '$/data';
 import {
   updateIsDetailedOpened,
   updateLoading,

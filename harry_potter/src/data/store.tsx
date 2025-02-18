@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
-import { potterApi } from './apiRequest';
+import { potterApi } from '$/api';
+
 import potterReducer from './storeSlice';
 
 export const store = configureStore({

@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { potterApi } from '../api/apiRequest';
 import { Character, ErrorDetails, State } from '$/types';
-
-import { potterApi } from './apiRequest';
 
 const initialState: State = {
   searchTerm: localStorage.getItem('searchTerm') || '',
