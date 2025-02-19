@@ -26,8 +26,6 @@ export function CardList() {
     console.log(charactersList);
   }, [pageNumber, searchTerm, charactersList, charactersList.length]);
 
-  console.log(listLength);
-  console.log(pageNumber);
   return (
     <div className="flex gap-2.5">
       {charactersList.length === 0 ? (

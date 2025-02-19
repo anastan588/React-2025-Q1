@@ -1,9 +1,17 @@
-import { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import { potterApi } from '$/api';
-import { Cathle, Snow } from '$/assets/assetsExport';
+import {
+  Castle,
+  Castle2,
+  Dark,
+  Light,
+  NoSound,
+  Snow,
+  Sound,
+} from '$/assets/assetsExport';
 import {
   CardList,
   ErrorModal,
@@ -14,6 +22,7 @@ import {
   SearchFieldComponent,
   Spinner,
 } from '$/components';
+import { SoundContext, ThemeContext } from '$/context';
 import { RootState } from '$/data';
 import {
   updateIsDetailedOpened,
@@ -35,6 +44,8 @@ export function MainPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorThrownInMain, setErrorThrownInMain] = useState(false);
+  const { sound, toggleSound } = useContext(SoundContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const { refetch } = potterApi.endpoints.getCharacters.useQuery({
     searchTerm: searchTerm,
@@ -90,9 +101,9 @@ export function MainPage() {
     >
       <Header />
       <main
-        className="flex w-full max-w-screen flex-1 flex-col items-center gap-4 bg-cover bg-fixed px-5 pt-5 pb-[60px] text-white"
+        className={`flex w-full max-w-screen flex-1 flex-col items-center gap-4 ${theme === 'light' ? 'bg-cover bg-center bg-no-repeat' : 'bg-cover'} bg-fixed px-5 pt-5 pb-[60px] text-white`}
         style={{
-          backgroundImage: `url(${Cathle})`,
+          backgroundImage: `url(${theme === 'light' ? Castle2 : Castle})`,
         }}
       >
         <SearchFieldComponent />
@@ -107,6 +118,20 @@ export function MainPage() {
           </>
         )}
         {selectedCharacters.length !== 0 && <FlyoutElement />}
+        <div className="absolute top-[-5px] left-[30px] flex gap-4 p-3">
+          <img
+            className="w-15 cursor-pointer"
+            src={theme === 'light' ? Light : Dark}
+            alt="dark"
+            onClick={toggleTheme}
+          />
+          <img
+            className="w-15 cursor-pointer"
+            src={sound === 'on' ? Sound : NoSound}
+            alt="sound"
+            onClick={toggleSound}
+          />
+        </div>
         <button
           className="text-dark-red hover:bg-dark-red fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-slate-50 px-3 py-2 hover:text-white"
           onClick={throwError}

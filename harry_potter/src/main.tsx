@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router';
 
 import { ErrorBoundary } from '$/components/ErrorBoundary';
+import { SoundProvider } from '$/context';
+import { ThemeProvider } from '$/context';
 import { store } from '$/data';
 
 import App from './App.tsx';
@@ -14,11 +16,15 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(
     <Provider store={store}>
-      <ErrorBoundary>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ErrorBoundary>
+      <SoundProvider>
+        <ThemeProvider>
+          <ErrorBoundary>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ErrorBoundary>
+        </ThemeProvider>
+      </SoundProvider>
     </Provider>
   );
 } else {
