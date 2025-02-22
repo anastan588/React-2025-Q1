@@ -32,15 +32,15 @@ export function Pangination() {
   return (
     <div className="flex gap-3 self-start">
       <button
-        className={`hover:bg-dark-green self-end rounded-lg bg-slate-50 px-6 py-2.5 text-[120%] hover:text-white ${disabledPrev ? 'pointer-events-none text-white' : 'text-dark-green'}`}
+        className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-fifth'}`}
         onClick={handlePrevPage}
         disabled={disabledPrev}
       >
         Prev page
       </button>
       <button
-        className={`hover:bg-dark-green self-end rounded-lg bg-slate-50 px-6 py-2.5 text-[120%] hover:text-white ${
-          disabledNext ? 'pointer-events-none text-white' : 'text-dark-green'
+        className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${
+          disabledNext ? 'pointer-events-none text-white' : 'text-text-fifth'
         }`}
         onClick={handleNextPage}
         disabled={disabledNext}

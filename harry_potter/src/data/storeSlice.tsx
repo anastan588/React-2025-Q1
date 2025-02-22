@@ -97,6 +97,7 @@ export const potterSlice = createSlice({
         potterApi.endpoints.getCharacters.matchRejected,
         (state, action) => {
           state.loading = false;
+          state.showErrorModal = true;
           state.error = { message: action.error.message as string, stack: '' };
         }
       );
@@ -111,6 +112,7 @@ export const potterSlice = createSlice({
       .addMatcher(
         potterApi.endpoints.getCharacterById.matchRejected,
         (state, action) => {
+          state.showErrorModal = true;
           state.error = { message: action.error.message as string, stack: '' };
         }
       );

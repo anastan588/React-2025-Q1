@@ -45,7 +45,7 @@ export function MainPage() {
   const navigate = useNavigate();
   const [errorThrownInMain, setErrorThrownInMain] = useState(false);
   const { sound, toggleSound } = useContext(SoundContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const { refetch } = potterApi.endpoints.getCharacters.useQuery({
     searchTerm: searchTerm,
@@ -93,7 +93,8 @@ export function MainPage() {
 
   return (
     <div
-      className="bg-light-blue relative flex h-full min-h-screen flex-col items-center bg-contain bg-center"
+      data-theme={theme}
+      className="bg-primary text-text-primary relative flex h-full min-h-screen flex-col items-center bg-contain bg-center"
       onClick={handleDetailesClose}
       style={{
         backgroundImage: `url(${Snow})`,
@@ -101,7 +102,7 @@ export function MainPage() {
     >
       <Header />
       <main
-        className={`flex w-full max-w-screen flex-1 flex-col items-center gap-4 ${theme === 'light' ? 'bg-cover bg-center bg-no-repeat' : 'bg-cover'} bg-fixed px-5 pt-5 pb-[60px] text-white`}
+        className={`flex w-full max-w-screen flex-1 flex-col items-center gap-4 ${theme === 'light' ? 'bg-cover bg-center bg-no-repeat' : 'bg-cover'} bg-fixed px-5 pt-5 pb-[60px]`}
         style={{
           backgroundImage: `url(${theme === 'light' ? Castle2 : Castle})`,
         }}
@@ -123,7 +124,7 @@ export function MainPage() {
             className="w-15 cursor-pointer"
             src={theme === 'light' ? Light : Dark}
             alt="dark"
-            onClick={toggleTheme}
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           />
           <img
             className="w-15 cursor-pointer"
@@ -133,7 +134,7 @@ export function MainPage() {
           />
         </div>
         <button
-          className="text-dark-red hover:bg-dark-red fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-slate-50 px-3 py-2 hover:text-white"
+          className="text-text-errorButton hover:bg-hover-errorButton hover:text-text-hover fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-white px-3 py-2"
           onClick={throwError}
         >
           Throw Error

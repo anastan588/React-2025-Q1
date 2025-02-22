@@ -41,7 +41,7 @@ export function DetailedCard() {
     <div
       data-testid="detailed"
       key={detailedCard.id}
-      className="bg-light-blue/70 flex flex-col justify-between gap-1.5 self-start rounded border-2 border-gray-200 p-3 tracking-widest"
+      className="bg-primary/70 flex flex-col justify-between gap-1.5 self-start rounded border-2 border-white p-3 tracking-widest"
     >
       <div className="flex max-h-40 flex-col justify-center">
         <img
@@ -56,31 +56,33 @@ export function DetailedCard() {
       <div className="flex flex-1 flex-col gap-0.5">
         {detailedCard.attributes.height && (
           <p className="flex gap-0.5">
-            <span className="text-dark-yellow font-bold">Born: </span>
+            <span className="text-text-secondary font-bold">Born: </span>
             {detailedCard.attributes.height}
           </p>
         )}
         {detailedCard.attributes.nationality && (
           <p className="flex gap-0.5">
-            <span className="text-dark-yellow font-bold">Nationality: </span>
+            <span className="text-text-secondary font-bold">Nationality: </span>
             {detailedCard.attributes.nationality}
           </p>
         )}
         {detailedCard.attributes.house && (
           <p className="flex gap-0.5">
-            <span className="text-dark-yellow font-bold">House: </span>
+            <span className="text-text-secondary font-bold">House: </span>
             {detailedCard.attributes.house}
           </p>
         )}
         {detailedCard.attributes.blood_status && (
           <p className="flex gap-0.5">
-            <span className="text-dark-yellow font-bold">Blood status: </span>
+            <span className="text-text-secondary font-bold">
+              Blood status:{' '}
+            </span>
             {detailedCard.attributes.blood_status}
           </p>
         )}
         {detailedCard.attributes?.alias_names?.length !== 0 && (
           <p className="flex flex-col gap-0.5">
-            <span className="text-dark-yellow font-bold">Alias names: </span>
+            <span className="text-text-secondary font-bold">Alias names: </span>
             {detailedCard.attributes?.alias_names?.map((alias, index) => (
               <span key={index}>{alias}; </span>
             )) || <span>No aliases available</span>}
@@ -88,7 +90,9 @@ export function DetailedCard() {
         )}
         {detailedCard.attributes?.family_members?.length !== 0 && (
           <p className="flex flex-col gap-0.5">
-            <span className="text-dark-yellow font-bold">Family members: </span>
+            <span className="text-text-secondary font-bold">
+              Family members:{' '}
+            </span>
             {detailedCard.attributes?.family_members?.map((member, index) => (
               <span key={index}>{member}; </span>
             )) || <span>No family members available</span>}
@@ -96,11 +100,11 @@ export function DetailedCard() {
         )}
         {detailedCard.attributes.wiki && (
           <p className="flex gap-0.5">
-            <span className="text-dark-yellow font-bold">More info:</span>
+            <span className="text-text-secondary font-bold">More info:</span>
             <a
               href={detailedCard.attributes.wiki}
               target="_blank"
-              className="text-light-red flex truncate overflow-hidden"
+              className="text-text-link flex truncate overflow-hidden"
               rel="noreferrer"
             >
               {detailedCard.attributes.wiki}
@@ -108,7 +112,7 @@ export function DetailedCard() {
           </p>
         )}
         <button
-          className="bg-secondary text-dark-red hover:bg-dark-red mt-auto rounded-lg bg-slate-50 py-2 text-center opacity-90 hover:text-white"
+          className="text-text-text-third hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white py-2 text-center opacity-90"
           onClick={handleCloseClick}
         >
           Close

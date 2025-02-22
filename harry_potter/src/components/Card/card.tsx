@@ -18,21 +18,14 @@ export function Card({ character }: CardProps) {
   );
   const dispatch = useDispatch();
 
-  const handleCheckboxChange = (
-    event: React.ChangeEvent<HTMLElement>,
-    character: Character
-  ) => {
-    console.log(event);
-    console.log(character);
+  const handleCheckboxChange = (character: Character) => {
     if (
       selectedCharacters.some(
         (characterFromSelected) => characterFromSelected.id === character.id
       )
     ) {
-      console.log('true');
       dispatch(removeSelectedChacters(character));
     } else {
-      console.log('false');
       dispatch(addSelectedCharacters(character));
     }
   };
@@ -40,7 +33,7 @@ export function Card({ character }: CardProps) {
   return (
     <div
       role="article"
-      className="bg-light-blue/60 flex max-h-116 flex-col justify-between rounded border-2 border-white p-3 text-2xl"
+      className="bg-primary/60 flex max-h-116 flex-col justify-between rounded border-2 border-white p-3 text-2xl"
     >
       <div className="flex max-h-40 flex-col justify-center">
         <img
@@ -49,7 +42,7 @@ export function Card({ character }: CardProps) {
         />
       </div>
       <div className="flex flex-1 flex-col">
-        <p className="flex justify-center pt-3 text-center font-bold tracking-widest text-white">
+        <p className="text-text-primary flex justify-center pt-3 text-center font-bold tracking-widest">
           {character.attributes.name}
         </p>
         <div className="my-4 flex flex-col">
@@ -57,15 +50,15 @@ export function Card({ character }: CardProps) {
             <input
               type="checkbox"
               id="favourite"
-              className="accent-dark-red h-5 w-5"
+              className="accent-accent h-5 w-5"
               checked={selectedCharacters.some(
                 (item) => item.id === character.id
               )}
-              onChange={(event) => handleCheckboxChange(event, character)}
+              onChange={() => handleCheckboxChange(character)}
             />
             <label
               htmlFor="favourite"
-              className="text-dark-yellow ml-2 tracking-wider"
+              className="text-text-secondary ml-2 tracking-wider"
             >
               Add to favourite
             </label>
@@ -88,7 +81,7 @@ export function Card({ character }: CardProps) {
           )}
         </div>
         <Link
-          className="text-dark-red hover:bg-dark-red mt-auto rounded-lg bg-slate-50 p-0.5 text-center opacity-90 hover:text-white"
+          className="text-text-third hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white p-0.5 text-center opacity-90"
           key={character.id}
           to={`/details/${character.id}`}
         >

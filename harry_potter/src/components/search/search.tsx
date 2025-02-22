@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ThemeContext } from '$/context';
 import { RootState } from '$/data/store';
 import { updatePageNumber, updateSerchTerm } from '$/data/storeSlice';
 import { useSearchStringLS } from '$/hooks';
@@ -9,6 +10,7 @@ export function SearchFieldComponent() {
   const [searchTermInComponent, setSearchTermInComponent] =
     useSearchStringLS('searchTerm');
   const { searchTerm } = useSelector((state: RootState) => state.potterData);
+  const { theme } = useContext(ThemeContext);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,14 +29,15 @@ export function SearchFieldComponent() {
   return (
     <div className="flex justify-center gap-5">
       <input
-        className="text-dark-green rounded-lg bg-white p-2.5 px-6 text-lg"
+        className="text-text-fifth rounded-lg bg-white p-2.5 px-6 text-lg"
         type="text"
         value={searchTermInComponent}
         onChange={handleInputChange}
         placeholder="Search for character"
       />
       <button
-        className="bg-dark-red transform rounded-lg p-2.5 px-6 text-lg text-white transition-transform duration-200 ease-in-out hover:scale-110"
+        data-theme={theme}
+        className="bg-search transform rounded-lg p-2.5 px-6 text-lg text-white transition-transform duration-200 ease-in-out hover:scale-110"
         onClick={handleSearch}
       >
         Search

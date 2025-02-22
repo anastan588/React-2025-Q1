@@ -3,7 +3,6 @@ export { ErrorBoundary } from './ErrorBoundary';
 export { ErrorModal } from './ErrorModal';
 export { Footer } from './Footer';
 export { Header } from './Header';
-export { NotFoundPage } from './NotFound';
 export { Pangination } from './pangination';
 export { CardList } from './Results';
 export { SearchFieldComponent } from './search';

@@ -29,18 +29,18 @@ export function CardList() {
   return (
     <div className="flex gap-2.5">
       {charactersList.length === 0 ? (
-        <p className="text-dark-yellow self-center text-lg">
+        <p className="text-text-secondary self-center text-lg">
           Characters haven&apos;t been found
         </p>
       ) : (
         <div
-          className={
+          className={`grid gap-4 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:${
             listLength
               ? listLength < 5
-                ? `grid grid-cols-${listLength.toString()} gap-4`
-                : `grid grid-cols-5 gap-4`
-              : `grid grid-cols-5 gap-4`
-          }
+                ? ` grid-cols-${listLength.toString()}`
+                : `grid-cols-5`
+              : `grid-cols-5`
+          }`}
         >
           {charactersList.map((character: Character) => (
             <Card key={character.id} character={character} />
