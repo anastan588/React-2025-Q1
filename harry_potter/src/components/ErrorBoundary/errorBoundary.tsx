@@ -27,10 +27,7 @@ export class ErrorBoundary extends React.Component<
   }
 
   handleResetError = () => {
-    console.log('kgjfgfkgjfkg');
-    console.log(this.props.children);
     this.setState({ hasError: false });
-    console.log(this.state);
   };
 
   render() {

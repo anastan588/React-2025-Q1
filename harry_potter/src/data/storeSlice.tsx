@@ -84,7 +84,11 @@ export const potterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(potterApi.endpoints.getCharacters.matchPending, () => {})
+      .addMatcher(potterApi.endpoints.getCharacters.matchPending, (state) => {
+        if (state.pageNumber === 1) {
+          state.loading = true;
+        }
+      })
       .addMatcher(
         potterApi.endpoints.getCharacters.matchFulfilled,
         (state, action) => {

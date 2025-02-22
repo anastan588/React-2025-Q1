@@ -4,28 +4,25 @@ import { useNavigate, useParams } from 'react-router';
 
 import { potterApi } from '$/api';
 import { MissCharacter } from '$/assets/assetsExport.ts';
-import { Spinner } from '$/components/spinner';
+import { Spinner } from '$/components/Spinner';
 import { RootState } from '$/data';
 import { updateDetailedId, updateIsDetailedOpened } from '$/data/storeSlice';
 
 export function DetailedCard() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  console.log(id);
 
   const { refetch } = potterApi.endpoints.getCharacterById.useQuery(`${id}`);
   const { detailedCard, pageNumber } = useSelector(
     (state: RootState) => state.potterData
   );
   const dispatch = useDispatch();
-  console.log(id);
 
   useEffect(() => {
     const url = `/?page=${pageNumber}&details=${id}`;
     window.history.pushState({}, '', url);
     if (id) {
       dispatch(updateDetailedId(id));
-      refetch();
     }
   }, [dispatch, id, pageNumber, refetch]);
 
@@ -112,7 +109,7 @@ export function DetailedCard() {
           </p>
         )}
         <button
-          className="text-text-text-third hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white py-2 text-center opacity-90"
+          className="text-text-closeButton hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white py-2 text-center opacity-90"
           onClick={handleCloseClick}
         >
           Close

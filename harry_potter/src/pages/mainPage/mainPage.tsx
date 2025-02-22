@@ -1,17 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import { potterApi } from '$/api';
-import {
-  Castle,
-  Castle2,
-  Dark,
-  Light,
-  NoSound,
-  Snow,
-  Sound,
-} from '$/assets/assetsExport';
+import { Castle, Castle2, Snow } from '$/assets/assetsExport';
 import {
   CardList,
   ErrorModal,
@@ -20,15 +12,12 @@ import {
   Header,
   Pangination,
   SearchFieldComponent,
+  Settings,
   Spinner,
 } from '$/components';
-import { SoundContext, ThemeContext } from '$/context';
+import { ThemeContext } from '$/context';
 import { RootState } from '$/data';
-import {
-  updateIsDetailedOpened,
-  updateLoading,
-  updateShowErrorMessageWindow,
-} from '$/data/storeSlice';
+import { updateIsDetailedOpened, updateShowErrorMessageWindow } from '$/data';
 
 export function MainPage() {
   const {
@@ -38,35 +27,18 @@ export function MainPage() {
     loading,
     showErrorModal,
     error,
-    charactersList,
     selectedCharacters,
   } = useSelector((state: RootState) => state.potterData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorThrownInMain, setErrorThrownInMain] = useState(false);
-  const { sound, toggleSound } = useContext(SoundContext);
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
-  const { refetch } = potterApi.endpoints.getCharacters.useQuery({
+  potterApi.endpoints.getCharacters.useQuery({
     searchTerm: searchTerm,
     pageNumber: pageNumber,
     pageSize: pageSize,
   });
-
-  useEffect(() => {
-    console.log('sezrc', searchTerm);
-    if (searchTerm) {
-      console.log('sezrc1', searchTerm);
-      refetch();
-    }
-    if (pageNumber) {
-      console.log('page1', searchTerm);
-      refetch();
-    }
-    if (searchTerm || charactersList.length === 0) {
-      dispatch(updateLoading(true));
-    }
-  }, [charactersList.length, dispatch, pageNumber, refetch, searchTerm]);
 
   const throwError = () => {
     setErrorThrownInMain(true);
@@ -119,20 +91,7 @@ export function MainPage() {
           </>
         )}
         {selectedCharacters.length !== 0 && <FlyoutElement />}
-        <div className="absolute top-[-5px] left-[30px] flex gap-4 p-3">
-          <img
-            className="w-15 cursor-pointer"
-            src={theme === 'light' ? Light : Dark}
-            alt="dark"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          />
-          <img
-            className="w-15 cursor-pointer"
-            src={sound === 'on' ? Sound : NoSound}
-            alt="sound"
-            onClick={toggleSound}
-          />
-        </div>
+        <Settings />
         <button
           className="text-text-errorButton hover:bg-hover-errorButton hover:text-text-hover fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-white px-3 py-2"
           onClick={throwError}

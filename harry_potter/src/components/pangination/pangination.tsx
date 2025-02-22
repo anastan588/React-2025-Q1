@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '$/data/store';
-import { updatePageNumber } from '$/data/storeSlice';
+import { updatePageNumber, updatePageSize } from '$/data/storeSlice';
 
 export function Pangination() {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
@@ -11,6 +11,7 @@ export function Pangination() {
     (state: RootState) => state.potterData
   );
   const dispatch = useDispatch();
+  const numberOfCharactersOnPage = [10, 20, 30, 50, 70, 100, 150];
 
   useEffect(() => {
     const disableNext =
@@ -21,7 +22,6 @@ export function Pangination() {
   }, [pageNumber, pageSize, records]);
 
   const handlePrevPage = async () => {
-    console.log('prev');
     if (pageNumber > 1) {
       dispatch(updatePageNumber(pageNumber - 1));
     }
@@ -29,24 +29,48 @@ export function Pangination() {
   const handleNextPage = async () => {
     dispatch(updatePageNumber(pageNumber + 1));
   };
+
+  const handleChangePageSize = (value: string) => {
+    dispatch(updatePageSize(parseInt(value)));
+  };
+
   return (
-    <div className="flex gap-3 self-start">
-      <button
-        className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-fifth'}`}
-        onClick={handlePrevPage}
-        disabled={disabledPrev}
-      >
-        Prev page
-      </button>
-      <button
-        className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${
-          disabledNext ? 'pointer-events-none text-white' : 'text-text-fifth'
-        }`}
-        onClick={handleNextPage}
-        disabled={disabledNext}
-      >
-        Next page
-      </button>
+    <div className="flex w-[100%] justify-between">
+      <div className="flex gap-3">
+        <button
+          className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-fifth'}`}
+          onClick={handlePrevPage}
+          disabled={disabledPrev}
+        >
+          Prev page
+        </button>
+        <p className="text-text-secondary flex items-center p-1 text-center">
+          {pageNumber} of {Math.ceil(records / pageSize)} pages
+        </p>
+        <button
+          className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${
+            disabledNext ? 'pointer-events-none text-white' : 'text-text-fifth'
+          }`}
+          onClick={handleNextPage}
+          disabled={disabledNext}
+        >
+          Next page
+        </button>
+      </div>
+      <div className="text-text-secondary flex items-center gap-3">
+        <p>Characters on page:</p>
+        <select
+          className="bg-primary"
+          value={pageSize}
+          onChange={(event) => handleChangePageSize(event.target.value)}
+        >
+          {numberOfCharactersOnPage.map((option, i) => (
+            <option key={i} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }

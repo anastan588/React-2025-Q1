@@ -14,12 +14,13 @@ export const potterApi = createApi({
         const { searchTerm = '', pageNumber, pageSize } = params;
         return `characters?filter[name_cont]=${searchTerm}&page[number]=${pageNumber}&page[size]=${pageSize}`;
       },
+      keepUnusedDataFor: 0,
     }),
     getCharacterById: builder.query<CharacterResponse, string>({
       query: (detailedId: string) => {
-        console.log(detailedId);
         return `characters/${detailedId}`;
       },
+      keepUnusedDataFor: 0,
     }),
   }),
 });

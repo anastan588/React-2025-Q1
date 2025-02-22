@@ -23,7 +23,6 @@ export function CardList() {
     if (charactersList.length > 0) {
       setListLength(charactersList.length);
     }
-    console.log(charactersList);
   }, [pageNumber, searchTerm, charactersList, charactersList.length]);
 
   return (

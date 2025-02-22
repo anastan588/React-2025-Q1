@@ -16,12 +16,10 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
     setSound((prevSound) => {
       const newSound = prevSound === 'on' ? 'off' : 'on';
       if (newSound === 'on') {
-        console.log('play');
         audioElement.current
           .play()
           .catch((error) => console.error('Error playing audio:', error));
       } else {
-        console.log('pause');
         audioElement.current.pause();
       }
       return newSound;
