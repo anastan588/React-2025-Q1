@@ -45,7 +45,6 @@ describe('CardList Component', () => {
         </Provider>
       </MemoryRouter>
     );
-    console.log(store.getState());
     const list = screen.getAllByRole('article');
     expect(list).toHaveLength(mockCharacterList.length);
   });

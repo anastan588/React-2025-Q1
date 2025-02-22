@@ -34,7 +34,7 @@
   --color-text-fifth: var(--color-dark-green);
   --color-text-hover: white;
   --color-text-hover-secondary: var(--color-dark-red);
- 
+
   --color-accent: var(--color-dark-red);
   @keyframes spin {
     0% {
@@ -67,7 +67,7 @@
     --color-text-fifth: var(--color-dark-green);
     --color-text-hover: white;
     --color-text-hover-secondary: var(--color-dark-red);
-   
+
     --color-accent: var(--color-dark-red);
   }
 
@@ -87,7 +87,7 @@
     --color-text-fourth: var(--color-dark-brown);
     --color-text-link: var(--color-golden);
     --color-text-errorButton: var(--color-dark-brown);
-    --color-text-closeButton: var(--color-dark-brown);;
+    --color-text-closeButton: var(--color-dark-brown);
     --color-text-fifth: var(--color-golden);
     --color-text-hover: white;
     --color-text-hover-secondary: var(--color-light-brown);

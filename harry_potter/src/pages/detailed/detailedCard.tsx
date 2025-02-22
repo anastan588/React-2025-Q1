@@ -12,7 +12,7 @@ export function DetailedCard() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const { refetch } = potterApi.endpoints.getCharacterById.useQuery(`${id}`);
+  potterApi.endpoints.getCharacterById.useQuery(`${id}`);
   const { detailedCard, pageNumber } = useSelector(
     (state: RootState) => state.potterData
   );
@@ -24,7 +24,7 @@ export function DetailedCard() {
     if (id) {
       dispatch(updateDetailedId(id));
     }
-  }, [dispatch, id, pageNumber, refetch]);
+  }, [dispatch, id, pageNumber]);
 
   if (!detailedCard) {
     return <Spinner />;
