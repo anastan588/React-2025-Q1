@@ -37,7 +37,7 @@ export function Pangination() {
     <div className="flex w-[100%] justify-between">
       <div className="flex gap-3">
         <button
-          className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-fifth'}`}
+          className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-input'}`}
           onClick={handlePrevPage}
           disabled={disabledPrev}
         >
@@ -48,7 +48,7 @@ export function Pangination() {
         </p>
         <button
           className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${
-            disabledNext ? 'pointer-events-none text-white' : 'text-text-fifth'
+            disabledNext ? 'pointer-events-none text-white' : 'text-text-input'
           }`}
           onClick={handleNextPage}
           disabled={disabledNext}

@@ -46,7 +46,7 @@ export class ErrorBoundary extends React.Component<
                 Something went wrong
               </h1>
               <button
-                className="text-text-fourth rounded-lg border-2 border-white px-6 py-2.5 text-[130%]"
+                className="text-text-errorBoundary rounded-lg border-2 border-white px-6 py-2.5 text-[130%]"
                 type="button"
                 onClick={this.handleResetError}
               >

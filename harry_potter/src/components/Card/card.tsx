@@ -89,7 +89,7 @@ export function Card({ character }: CardProps) {
           )}
         </div>
         <Link
-          className="text-text-third hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white p-0.5 text-center opacity-90"
+          className="text-text-card-button hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white p-0.5 text-center opacity-90"
           key={character.id}
           to={`/details/${character.id}`}
         >

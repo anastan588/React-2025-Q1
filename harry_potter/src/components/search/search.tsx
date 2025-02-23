@@ -28,7 +28,7 @@ export function SearchFieldComponent() {
   return (
     <div className="flex justify-center gap-5">
       <input
-        className="text-text-fifth rounded-lg bg-white p-2.5 px-6 text-lg"
+        className="text-text-input rounded-lg bg-white p-2.5 px-6 text-lg"
         type="text"
         value={searchTermInComponent}
         onChange={handleInputChange}
