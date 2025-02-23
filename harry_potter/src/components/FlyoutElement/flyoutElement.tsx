@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from '$/data';
-import { cleanSelectedState } from '$/data/storeSlice';
+import { cleanSelectedState, RootState } from '$/data';
 
 export function FlyoutElement() {
   const { selectedCharacters } = useSelector(

@@ -10,7 +10,7 @@ import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { Pangination } from '$/components';
-import { store } from '$/data/store';
+import { store } from '$/data';
 
 describe('Pangination Component', () => {
   beforeEach(() => {

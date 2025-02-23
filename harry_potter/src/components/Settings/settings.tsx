@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Dark, Light, NoSound, Sound } from '$/assets/assetsExport';
+import { Icons } from '$/assets';
 import { SoundContext, ThemeContext } from '$/context';
 
 export function Settings() {
@@ -10,13 +10,13 @@ export function Settings() {
     <div className="absolute top-[-5px] left-[30px] flex gap-4 p-3">
       <img
         className="w-15 cursor-pointer"
-        src={theme === 'light' ? Light : Dark}
+        src={theme === 'light' ? Icons.Light : Icons.Dark}
         alt="dark"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       />
       <img
         className="w-15 cursor-pointer"
-        src={sound === 'on' ? Sound : NoSound}
+        src={sound === 'on' ? Icons.Sound : Icons.NoSound}
         alt="sound"
         onClick={toggleSound}
       />

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, test, vi } from 'vitest';
 
-import { ErrorModal } from '$/components/ErrorModal';
+import { ErrorModal } from '$/components';
 
 describe('ErrorModal Component', () => {
   const mockOnClose = vi.fn();

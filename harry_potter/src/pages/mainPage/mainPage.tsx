@@ -3,21 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import { potterApi } from '$/api';
-import { Castle, Castle2, Snow } from '$/assets/assetsExport';
-import {
-  CardList,
-  ErrorModal,
-  FlyoutElement,
-  Footer,
-  Header,
-  Pangination,
-  SearchFieldComponent,
-  Settings,
-  Spinner,
-} from '$/components';
+import { Images } from '$/assets';
+import * as Components from '$/components';
 import { ThemeContext } from '$/context';
-import { RootState } from '$/data';
-import { updateIsDetailedOpened, updateShowErrorMessageWindow } from '$/data';
+import {
+  RootState,
+  updateIsDetailedOpened,
+  updateShowErrorMessageWindow,
+} from '$/data';
 
 export function MainPage() {
   const {
@@ -42,7 +35,6 @@ export function MainPage() {
 
   const throwError = () => {
     setErrorThrownInMain(true);
-    throw new Error('This is a test error');
   };
 
   const closeError = () => {
@@ -69,29 +61,29 @@ export function MainPage() {
       className="bg-primary text-text-primary relative flex h-full min-h-screen flex-col items-center bg-contain bg-center"
       onClick={handleDetailesClose}
       style={{
-        backgroundImage: `url(${Snow})`,
+        backgroundImage: `url(${Images.Snow})`,
       }}
     >
-      <Header />
+      <Components.Header />
       <main
         className={`flex w-full max-w-screen flex-1 flex-col items-center gap-4 ${theme === 'light' ? 'bg-cover bg-center bg-no-repeat' : 'bg-cover'} bg-fixed px-5 pt-5 pb-[60px]`}
         style={{
-          backgroundImage: `url(${theme === 'light' ? Castle2 : Castle})`,
+          backgroundImage: `url(${theme === 'light' ? Images.Castle2 : Images.Castle})`,
         }}
       >
-        <SearchFieldComponent />
+        <Components.SearchFieldComponent />
         {loading ? (
-          <Spinner />
+          <Components.Spinner />
         ) : showErrorModal ? (
-          <ErrorModal error={error} onClose={closeError} />
+          <Components.ErrorModal error={error} onClose={closeError} />
         ) : (
           <>
-            <Pangination />
-            <CardList />
+            <Components.Pangination />
+            <Components.CardList />
           </>
         )}
-        {selectedCharacters.length !== 0 && <FlyoutElement />}
-        <Settings />
+        {selectedCharacters.length !== 0 && <Components.FlyoutElement />}
+        <Components.Settings />
         <button
           className="text-text-errorButton hover:bg-hover-errorButton hover:text-text-hover fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-white px-3 py-2"
           onClick={throwError}
@@ -99,7 +91,7 @@ export function MainPage() {
           Throw Error
         </button>
       </main>
-      <Footer />
+      <Components.Footer />
     </div>
   );
 }

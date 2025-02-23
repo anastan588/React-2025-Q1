@@ -3,9 +3,8 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { CardList } from '$/components/Results';
-import { store } from '$/data/store';
-import { updateCharactersList } from '$/data/storeSlice';
+import { CardList } from '$/components';
+import { store, updateCharactersList } from '$/data';
 import { Character } from '$/types';
 
 const mockCharacterList: Character[] = [

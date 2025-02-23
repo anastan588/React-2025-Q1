@@ -1,4 +1,4 @@
-import { Router } from './components';
+import { Router } from '$/components';
 
 function App() {
   return <Router />;

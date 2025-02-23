@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from '$/data/store';
-import { updatePageNumber, updatePageSize } from '$/data/storeSlice';
+import { RootState, updatePageNumber, updatePageSize } from '$/data';
 
 export function Pangination() {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);

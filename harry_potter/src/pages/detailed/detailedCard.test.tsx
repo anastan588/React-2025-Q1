@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { potterApi } from '$/api';
-import { potterSlice } from '$/data/storeSlice';
+import { potterSlice } from '$/data';
 import { DetailedCard } from '$/pages';
 import { Character } from '$/types';
 

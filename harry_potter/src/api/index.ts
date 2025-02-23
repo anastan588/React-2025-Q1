@@ -1,1 +1,1 @@
-export { potterApi } from './apiRequest.tsx';
+export * from './apiRequest.tsx';

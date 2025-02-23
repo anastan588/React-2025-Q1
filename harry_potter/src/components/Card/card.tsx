@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 
-import { Griffindor, MissCharacter, Slitherin } from '$/assets/assetsExport.ts';
-import { RootState } from '$/data';
+import { Icons } from '$/assets';
 import {
   addSelectedCharacters,
   removeSelectedChacters,
-} from '$/data/storeSlice';
+  RootState,
+} from '$/data';
 import { Character } from '$/types';
 
 interface CardProps {
@@ -37,7 +37,7 @@ export function Card({ character }: CardProps) {
     >
       <div className="flex max-h-40 flex-col justify-center">
         <img
-          src={character.attributes.image || MissCharacter}
+          src={character.attributes.image || Icons.MissCharacter}
           className="h-full w-auto rounded-lg object-contain object-center"
         />
       </div>
@@ -65,7 +65,11 @@ export function Card({ character }: CardProps) {
           </div>
           {character.attributes.gender && (
             <div className="flex gap-2.5">
-              <img className="max-h-7 max-w-7" src={Griffindor} alt="Gender" />
+              <img
+                className="max-h-7 max-w-7"
+                src={Icons.Griffindor}
+                alt="Gender"
+              />
               <p className="flex flex-col justify-center gap-0.5 text-center">
                 {character.attributes.gender}
               </p>
@@ -73,7 +77,11 @@ export function Card({ character }: CardProps) {
           )}
           {character.attributes.species && (
             <div className="flex gap-2.5">
-              <img className="max-h-7 max-w-7" src={Slitherin} alt="Species" />
+              <img
+                className="max-h-7 max-w-7"
+                src={Icons.Slitherin}
+                alt="Species"
+              />
               <p className="flex flex-col justify-center gap-0.5 text-center">
                 {character.attributes.species}
               </p>

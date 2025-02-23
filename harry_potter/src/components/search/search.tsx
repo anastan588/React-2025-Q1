@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ThemeContext } from '$/context';
-import { RootState } from '$/data/store';
-import { updatePageNumber, updateSerchTerm } from '$/data/storeSlice';
+import { RootState, updatePageNumber, updateSerchTerm } from '$/data';
 import { useSearchStringLS } from '$/hooks';
 
 export function SearchFieldComponent() {

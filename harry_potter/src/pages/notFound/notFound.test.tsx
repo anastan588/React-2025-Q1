@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { NotFoundPage } from '$/pages/NotFound';
+import { NotFoundPage } from '$/pages';
 
 describe('Detailed Component', () => {
   beforeEach(() => {

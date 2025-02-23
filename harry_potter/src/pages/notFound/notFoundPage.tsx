@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 
-import { Snow } from '$/assets/assetsExport';
+import { Images } from '$/assets';
 import { ThemeContext } from '$/context';
 
 export function NotFoundPage() {
@@ -12,7 +12,7 @@ export function NotFoundPage() {
       data-theme={theme}
       className="bg-secondary text-text-primary bg-opacity-40 flex h-screen flex-col items-center gap-5 p-10"
       style={{
-        backgroundImage: `url(${Snow})`,
+        backgroundImage: `url(${Images.Snow})`,
       }}
     >
       <h1 className="text-2xl font-bold">Page not found</h1>

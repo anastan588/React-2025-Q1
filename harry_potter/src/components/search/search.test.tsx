@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { SearchFieldComponent } from '$/components';
-import { store } from '$/data/store';
+import { store } from '$/data';
 
 const mockSetSearchTermInComponent = vi.fn();
 vi.mock('$hooks', () => ({

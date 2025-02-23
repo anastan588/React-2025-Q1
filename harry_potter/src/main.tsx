@@ -1,13 +1,11 @@
 import './index.css';
 
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router';
 
-import { ErrorBoundary } from '$/components/ErrorBoundary';
-import { SoundProvider } from '$/context';
-import { ThemeProvider } from '$/context';
+import { ErrorBoundary } from '$/components';
+import { SoundProvider, ThemeProvider } from '$/context';
 import { store } from '$/data';
 
 import App from './App.tsx';

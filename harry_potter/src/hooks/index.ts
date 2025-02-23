@@ -1,1 +1,1 @@
-export { useSearchStringLS } from './useSearchStringLS.tsx';
+export * from './useSearchStringLS.tsx';

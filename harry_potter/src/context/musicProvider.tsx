@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Music } from '$/assets/assetsExport';
-
-import { SoundContext } from './contexts';
+import { Music } from '$/assets';
+import { SoundContext } from '$/context';
 
 export function SoundProvider({ children }: { children: React.ReactNode }) {
   const [sound, setSound] = useState('off');
-  const audioElement = useRef(new Audio(Music));
+  const audioElement = useRef(new Audio(Music.Sound));
 
   useEffect(() => {
     audioElement.current.loop = true;

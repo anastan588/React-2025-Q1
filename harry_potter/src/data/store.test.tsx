@@ -2,14 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { describe, expect, test } from 'vitest';
 
 import { potterApi } from '$/api';
-
-import potterReducer from './storeSlice';
+import { PotterReducer } from '$/data';
 
 describe('Redux Store Configuration', () => {
   test('should configure the store with potterReducer and potterApi', () => {
     const store = configureStore({
       reducer: {
-        potterData: potterReducer,
+        potterData: PotterReducer,
         [potterApi.reducerPath]: potterApi.reducer,
       },
       middleware: (getDefaultMiddleware) =>

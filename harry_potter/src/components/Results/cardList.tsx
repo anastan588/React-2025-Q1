@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
 
-import { Character } from '../../types/types';
-import { Card } from '$/components/Card';
-import { RootState } from '$/data/store';
+import { Card } from '$/components';
+import { RootState } from '$/data';
+import { Character } from '$/types';
 
 export function CardList() {
   const { searchTerm, pageNumber, charactersList } = useSelector(

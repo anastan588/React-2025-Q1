@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { ErrorBoundary } from '$/components/ErrorBoundary';
+import { ErrorBoundary } from '$/components';
 
 describe('ErrorBoundary Component', () => {
   beforeEach(() => {

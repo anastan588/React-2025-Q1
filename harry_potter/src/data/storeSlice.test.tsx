@@ -2,29 +2,12 @@ import { describe, expect, test } from 'vitest';
 
 import { potterApi } from '../api/apiRequest';
 import { store } from '$/data';
+import * as PotterReducer from '$/data';
 import { Character, ErrorDetails } from '$/types';
-
-import {
-  addSelectedCharacters,
-  cleanSelectedState,
-  removeSelectedChacters,
-  updateCharactersList,
-  updateDetailedCard,
-  updateDetailedId,
-  updateErrorMessage,
-  updateErrorThrow,
-  updateIsDetailedOpened,
-  updateLoading,
-  updateNumberAllCharacters,
-  updatePageNumber,
-  updatePageSize,
-  updateSerchTerm,
-  updateShowErrorMessageWindow,
-} from './storeSlice';
 
 describe('potterSlice Reducers', () => {
   test('should update search term', () => {
-    store.dispatch(updateSerchTerm('Harry'));
+    store.dispatch(PotterReducer.updateSerchTerm('Harry'));
     const state = store.getState().potterData;
     expect(state.searchTerm).toBe('Harry');
   });
@@ -33,7 +16,7 @@ describe('potterSlice Reducers', () => {
     const characters: Character[] = [
       { id: '1', attributes: { name: 'Harry Potter', house: 'Gryffindor' } },
     ];
-    store.dispatch(updateCharactersList(characters));
+    store.dispatch(PotterReducer.updateCharactersList(characters));
     const state = store.getState().potterData;
     expect(state.charactersList).toEqual(characters);
   });
@@ -43,7 +26,7 @@ describe('potterSlice Reducers', () => {
       id: '1',
       attributes: { name: 'Harry Potter', house: 'Gryffindor' },
     };
-    store.dispatch(addSelectedCharacters(character));
+    store.dispatch(PotterReducer.addSelectedCharacters(character));
     const state = store.getState().potterData;
     expect(state.selectedCharacters).toContainEqual(character);
   });
@@ -53,8 +36,8 @@ describe('potterSlice Reducers', () => {
       id: '1',
       attributes: { name: 'Harry Potter', house: 'Gryffindor' },
     };
-    store.dispatch(addSelectedCharacters(character));
-    store.dispatch(removeSelectedChacters(character));
+    store.dispatch(PotterReducer.addSelectedCharacters(character));
+    store.dispatch(PotterReducer.removeSelectedChacters(character));
     const state = store.getState().potterData;
     expect(state.selectedCharacters).not.toContainEqual(character);
   });
@@ -64,39 +47,39 @@ describe('potterSlice Reducers', () => {
       id: '1',
       attributes: { name: 'Harry Potter', house: 'Gryffindor' },
     };
-    store.dispatch(addSelectedCharacters(character));
-    store.dispatch(cleanSelectedState());
+    store.dispatch(PotterReducer.addSelectedCharacters(character));
+    store.dispatch(PotterReducer.cleanSelectedState());
     const state = store.getState().potterData;
     expect(state.selectedCharacters).toEqual([]);
   });
 
   test('should update loading state', () => {
-    store.dispatch(updateLoading(false));
+    store.dispatch(PotterReducer.updateLoading(false));
     const state = store.getState().potterData;
     expect(state.loading).toBe(false);
   });
 
   test('should update error message', () => {
     const error: ErrorDetails = { message: 'Error occurred', stack: '' };
-    store.dispatch(updateErrorMessage(error));
+    store.dispatch(PotterReducer.updateErrorMessage(error));
     const state = store.getState().potterData;
     expect(state.error).toEqual(error);
   });
 
   test('should update show error modal', () => {
-    store.dispatch(updateShowErrorMessageWindow(true));
+    store.dispatch(PotterReducer.updateShowErrorMessageWindow(true));
     const state = store.getState().potterData;
     expect(state.showErrorModal).toBe(true);
   });
 
   test('should update error throw', () => {
-    store.dispatch(updateErrorThrow(true));
+    store.dispatch(PotterReducer.updateErrorThrow(true));
     const state = store.getState().potterData;
     expect(state.errorThrow).toBe(true);
   });
 
   test('should update detailed ID', () => {
-    store.dispatch(updateDetailedId('123'));
+    store.dispatch(PotterReducer.updateDetailedId('123'));
     const state = store.getState().potterData;
     expect(state.detailedId).toBe('123');
   });
@@ -106,40 +89,38 @@ describe('potterSlice Reducers', () => {
       id: '1',
       attributes: { name: 'Harry Potter', house: 'Gryffindor' },
     };
-    store.dispatch(updateDetailedCard(character));
+    store.dispatch(PotterReducer.updateDetailedCard(character));
     const state = store.getState().potterData;
     expect(state.detailedCard).toEqual(character);
   });
 
   test('should update is detailed opened', () => {
-    store.dispatch(updateIsDetailedOpened(true));
+    store.dispatch(PotterReducer.updateIsDetailedOpened(true));
     const state = store.getState().potterData;
     expect(state.detailesOpened).toBe(true);
   });
 
   test('should update page number', () => {
-    store.dispatch(updatePageNumber(2));
+    store.dispatch(PotterReducer.updatePageNumber(2));
     const state = store.getState().potterData;
     expect(state.pageNumber).toBe(2);
   });
 
   test('should update page size', () => {
-    store.dispatch(updatePageSize(50));
+    store.dispatch(PotterReducer.updatePageSize(50));
     const state = store.getState().potterData;
     expect(state.pageSize).toBe(50);
   });
 
   test('should update number of all characters', () => {
-    store.dispatch(updateNumberAllCharacters(100));
+    store.dispatch(PotterReducer.updateNumberAllCharacters(100));
     const state = store.getState().potterData;
     expect(state.records).toBe(100);
   });
 
   describe('potterSlice ExtraReducers', () => {
     test('should handle getCharacters.pending', () => {
-      console.log(store.getState().potterData.pageNumber);
-      console.log(store.getState().potterData);
-      store.dispatch(updatePageNumber(1));
+      store.dispatch(PotterReducer.updatePageNumber(1));
       store.dispatch(
         potterApi.endpoints.getCharacters.initiate({
           searchTerm: store.getState().potterData.searchTerm,

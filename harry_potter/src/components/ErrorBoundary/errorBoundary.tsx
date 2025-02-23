@@ -1,6 +1,6 @@
 import React, { ErrorInfo } from 'react';
 
-import { Snow } from '$/assets/assetsExport';
+import { Images } from '$/assets';
 import { ThemeContext } from '$/context';
 import { ErrorBoundaryState } from '$/types';
 
@@ -39,7 +39,7 @@ export class ErrorBoundary extends React.Component<
               data-theme={theme}
               className="bg-secondary flex h-screen flex-col items-center gap-5 p-10"
               style={{
-                backgroundImage: `url(${Snow})`,
+                backgroundImage: `url(${Images.Snow})`,
               }}
             >
               <h1 className="text-text-secondary text-[130%]">

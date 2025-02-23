@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { potterApi } from '../api/apiRequest';
+import { potterApi } from '$/api';
 import { Character, ErrorDetails, State } from '$/types';
 
 const initialState: State = {

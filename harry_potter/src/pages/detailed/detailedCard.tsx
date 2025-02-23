@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
 import { potterApi } from '$/api';
-import { MissCharacter } from '$/assets/assetsExport.ts';
-import { Spinner } from '$/components/Spinner';
-import { RootState } from '$/data';
-import { updateDetailedId, updateIsDetailedOpened } from '$/data/storeSlice';
+import { Icons } from '$/assets';
+import { Spinner } from '$/components';
+import { RootState, updateDetailedId, updateIsDetailedOpened } from '$/data';
 
 export function DetailedCard() {
   const { id } = useParams<{ id: string }>();
@@ -42,7 +41,7 @@ export function DetailedCard() {
     >
       <div className="flex max-h-40 flex-col justify-center">
         <img
-          src={detailedCard.attributes.image || MissCharacter}
+          src={detailedCard.attributes.image || Icons.MissCharacter}
           className="max-h-40 w-full rounded-lg object-contain object-center"
           alt="character"
         />

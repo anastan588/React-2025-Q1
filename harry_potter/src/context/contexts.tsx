@@ -1,14 +1,11 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
+
+import { ThemeContextType } from '$/types/types';
 
 export const SoundContext = createContext({
   sound: 'off',
   toggleSound: () => {},
 });
-
-type ThemeContextType = {
-  theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
-};
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: 'dark',
