@@ -34,42 +34,46 @@ export function Pangination() {
   };
 
   return (
-    <div className="flex w-[100%] justify-between">
-      <div className="flex gap-3">
-        <button
-          className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-input'}`}
-          onClick={handlePrevPage}
-          disabled={disabledPrev}
-        >
-          Prev page
-        </button>
-        <p className="text-text-secondary flex items-center p-1 text-center">
-          {pageNumber} of {Math.ceil(records / pageSize)} pages
-        </p>
-        <button
-          className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${
-            disabledNext ? 'pointer-events-none text-white' : 'text-text-input'
-          }`}
-          onClick={handleNextPage}
-          disabled={disabledNext}
-        >
-          Next page
-        </button>
+    records !== 0 && (
+      <div className="flex w-[100%] justify-between">
+        <div className="flex gap-3">
+          <button
+            className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${disabledPrev ? 'pointer-events-none text-white' : 'text-text-input'}`}
+            onClick={handlePrevPage}
+            disabled={disabledPrev}
+          >
+            Prev page
+          </button>
+          <p className="text-text-secondary flex items-center p-1 text-center">
+            {pageNumber} of {Math.ceil(records / pageSize)} pages
+          </p>
+          <button
+            className={`hover:bg-hover-secondary hover:text-text-hover self-end rounded-lg bg-white px-6 py-2.5 text-[120%] ${
+              disabledNext
+                ? 'pointer-events-none text-white'
+                : 'text-text-input'
+            }`}
+            onClick={handleNextPage}
+            disabled={disabledNext}
+          >
+            Next page
+          </button>
+        </div>
+        <div className="text-text-secondary flex items-center gap-3">
+          <p>Characters on page:</p>
+          <select
+            className="bg-primary"
+            value={pageSize}
+            onChange={(event) => handleChangePageSize(event.target.value)}
+          >
+            {numberOfCharactersOnPage.map((option, i) => (
+              <option key={i} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <div className="text-text-secondary flex items-center gap-3">
-        <p>Characters on page:</p>
-        <select
-          className="bg-primary"
-          value={pageSize}
-          onChange={(event) => handleChangePageSize(event.target.value)}
-        >
-          {numberOfCharactersOnPage.map((option, i) => (
-            <option key={i} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-    </div>
+    )
   );
 }
