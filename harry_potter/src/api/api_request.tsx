@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { CharactersResponse } from '$/types';
-import { CharacterResponse, SearchPropsForCharacters } from '$/types/types';
+import { CharacterResponse, SearchPropsForCharacters } from '$/types';
 
 export const potterApi = createApi({
   reducerPath: 'potterApi',

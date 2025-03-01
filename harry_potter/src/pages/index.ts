@@ -1,3 +1,3 @@
-export * from './Detailed';
-export * from './MainPage';
-export * from './NotFound';
+export { DetailedCard } from './Detailed';
+export { MainPage } from './MainPage';
+export { NotFoundPage } from './NotFound';

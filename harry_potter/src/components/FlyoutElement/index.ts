@@ -1,1 +1,1 @@
-export { FlyoutElement } from './flyoutElement.tsx';
+export { FlyoutElement } from './flyout_element.tsx';

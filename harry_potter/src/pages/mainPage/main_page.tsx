@@ -4,7 +4,17 @@ import { useNavigate } from 'react-router';
 
 import { potterApi } from '$/api';
 import { Images } from '$/assets';
-import * as Components from '$/components';
+import {
+  CardList,
+  ErrorModal,
+  FlyoutElement,
+  Footer,
+  Header,
+  Pangination,
+  SearchFieldComponent,
+  Settings,
+  Spinner,
+} from '$/components';
 import { ThemeContext } from '$/context';
 import {
   RootState,
@@ -64,26 +74,26 @@ export function MainPage() {
         backgroundImage: `url(${Images.Snow})`,
       }}
     >
-      <Components.Header />
+      <Header />
       <main
         className={`flex w-full max-w-screen flex-1 flex-col items-center gap-4 ${theme === 'light' ? 'bg-cover bg-center bg-no-repeat' : 'bg-cover'} bg-fixed px-5 pt-5 pb-[60px]`}
         style={{
           backgroundImage: `url(${theme === 'light' ? Images.Castle2 : Images.Castle})`,
         }}
       >
-        <Components.SearchFieldComponent />
+        <SearchFieldComponent />
         {loading ? (
-          <Components.Spinner />
+          <Spinner />
         ) : showErrorModal ? (
-          <Components.ErrorModal error={error} onClose={closeError} />
+          <ErrorModal error={error} onClose={closeError} />
         ) : (
           <>
-            <Components.Pangination />
-            <Components.CardList />
+            <Pangination />
+            <CardList />
           </>
         )}
-        {selectedCharacters.length !== 0 && <Components.FlyoutElement />}
-        <Components.Settings />
+        {selectedCharacters.length !== 0 && <FlyoutElement />}
+        <Settings />
         <button
           className="text-text-errorButton hover:bg-hover-errorButton hover:text-text-hover fixed right-[20px] bottom-[50px] rounded-lg border-2 border-white bg-white px-3 py-2"
           onClick={throwError}
@@ -91,7 +101,7 @@ export function MainPage() {
           Throw Error
         </button>
       </main>
-      <Components.Footer />
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { ThemeContextType } from '$/types/types';
+import { ThemeContextType } from '$/types';
 
 export const SoundContext = createContext({
   sound: 'off',

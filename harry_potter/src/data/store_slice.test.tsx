@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { potterApi } from '../api/apiRequest';
+import { potterApi } from '../api/api_request';
 import { store } from '$/data';
 import * as PotterReducer from '$/data';
 import { Character, ErrorDetails } from '$/types';
