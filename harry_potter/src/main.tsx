@@ -1,18 +1,30 @@
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router';
-import App from './App.tsx';
-import { ErrorBoundary } from '$/components/ErrorBoundary';
 import './index.css';
+
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router';
+
+import { ErrorBoundary } from '$/components';
+import { SoundProvider, ThemeProvider } from '$/context';
+import { store } from '$/data';
+
+import App from './App.tsx';
 
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
   createRoot(rootElement).render(
-    <ErrorBoundary>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ErrorBoundary>
+    <Provider store={store}>
+      <SoundProvider>
+        <ThemeProvider>
+          <ErrorBoundary>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ErrorBoundary>
+        </ThemeProvider>
+      </SoundProvider>
+    </Provider>
   );
 } else {
   console.error('Root element not found');

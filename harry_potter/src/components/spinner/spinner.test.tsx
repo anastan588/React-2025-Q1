@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom';
+
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
-import { Spinner } from '$/components/Spinner';
+
+import { Spinner } from '$/components';
 
 describe('Spinner Component', () => {
   test('renders the spinner', () => {

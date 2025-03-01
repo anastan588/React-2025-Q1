@@ -1,9 +1,12 @@
 export type State = {
   searchTerm: string;
   charactersList: Character[];
+  selectedCharacters: Character[];
   loading: boolean;
   error: ErrorDetails;
   showErrorModal: boolean;
+  detailedId: string;
+  detailedCard: Character | undefined;
   detailesOpened: boolean;
   errorThrow: boolean;
   pageSize: number;
@@ -14,6 +17,12 @@ export type State = {
 export interface StateProps {
   state: State;
   setState: React.Dispatch<React.SetStateAction<State>>;
+}
+
+export interface SearchPropsForCharacters {
+  searchTerm: string;
+  pageSize: number;
+  pageNumber: number;
 }
 
 export interface ErrorDetails {
@@ -65,20 +74,20 @@ export interface Character {
   type?: string;
   attributes: {
     slug?: string | null;
-    alias_names?: [];
+    alias_names?: string[];
     animagus?: string | null;
     blood_status?: string | null;
     boggart?: string | null;
     born?: string | null;
     died?: string | null;
     eye_color?: string | null;
-    family_members?: [];
+    family_members?: string[];
     gender?: string | null;
     hair_color?: string | null;
     height?: string | null;
     house?: string | null;
     image?: string | null;
-    jobs?: [];
+    jobs?: string[];
     marital_status?: string | null;
     name: string;
     nationality?: string | null;
@@ -86,10 +95,15 @@ export interface Character {
     romances?: string | null;
     skin_color?: string | null;
     species?: string | null;
-    titles?: [];
-    wands?: [];
+    titles?: string[];
+    wands?: string[];
     weight?: string | null;
     wiki?: string;
   };
   links?: { self: string };
 }
+
+export type ThemeContextType = {
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+};

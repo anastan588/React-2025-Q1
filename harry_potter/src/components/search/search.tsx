@@ -1,44 +1,42 @@
-import React, { useEffect } from 'react';
-import { handleRequestForCharacters } from '$/api';
-import { useSearchStringLS } from '$/hooks';
-import { State, StateProps } from '$/types/types';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-export function SearchFieldComponent({ state, setState }: StateProps) {
-  const [searchTerm, setSearchTerm] = useSearchStringLS('searchTerm');
+import { ThemeContext } from '$/context';
+import { RootState, updatePageNumber, updateSerchTerm } from '$/data';
+import { useSearchStringLS } from '$/hooks';
+
+export function SearchFieldComponent() {
+  const [searchTermInComponent, setSearchTermInComponent] =
+    useSearchStringLS('searchTerm');
+  const { searchTerm } = useSelector((state: RootState) => state.potterData);
+  const { theme } = useContext(ThemeContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    handleRequestForCharacters({ state, setState });
-  }, []);
+    setSearchTermInComponent(searchTerm);
+  }, [searchTerm, setSearchTermInComponent]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchTerm: string = event.target.value.toLowerCase();
-    console.log(searchTerm);
-    setState((prevState: State) => ({
-      ...prevState,
-      searchTerm: newSearchTerm,
-    }));
+    setSearchTermInComponent(event.target.value.toLowerCase());
   };
 
   const handleSearch = () => {
-    setSearchTerm(state.searchTerm);
-    setState((prevState: State) => ({
-      ...prevState,
-      pageNumber: 1,
-    }));
-    handleRequestForCharacters({ state, setState });
+    dispatch(updateSerchTerm(searchTermInComponent));
+    dispatch(updatePageNumber(1));
   };
 
   return (
     <div className="flex justify-center gap-5">
       <input
-        className="p-2.5 px-6 rounded-lg text-lg bg-white"
+        className="text-text-input rounded-lg bg-white p-2.5 px-6 text-lg"
         type="text"
-        value={state.searchTerm}
+        value={searchTermInComponent}
         onChange={handleInputChange}
         placeholder="Search for character"
       />
       <button
-        className="p-2.5 px-6 rounded-lg bg-rose-400 text-lg text-white transform hover:scale-110 transition-transform duration-200 ease-in-out"
+        data-theme={theme}
+        className="bg-search transform rounded-lg p-2.5 px-6 text-lg text-white transition-transform duration-200 ease-in-out hover:scale-110"
         onClick={handleSearch}
       >
         Search

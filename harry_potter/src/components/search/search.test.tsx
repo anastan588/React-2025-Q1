@@ -1,42 +1,17 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
-import { SearchFieldComponent } from '$/components/Search';
-import { Character } from '$/types';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-const mockCharacterList: Character[] = [
-  {
-    id: '8b7e8ccb-f2ef-42b0-a4cd-fb3c2572e619',
-    attributes: {
-      name: '1992 Gryffindor vs Slytherin Quidditch match spectators',
-    },
-  },
-  {
-    id: '9b7e8ccb-f2ef-42b0-a4cd-fb3c2572e619',
-    attributes: {
-      name: '1992 Gryffindors',
-    },
-  },
-];
-const mockSetState = vi.fn();
+import { SearchFieldComponent } from '$/components';
+import { store } from '$/data';
+
+const mockSetSearchTermInComponent = vi.fn();
+vi.mock('$hooks', () => ({
+  useSearchStringLS: () => ['initial term', mockSetSearchTermInComponent],
+}));
 
 describe('Search Component', () => {
-  const mockState = {
-    searchTerm: '',
-    charactersList: mockCharacterList,
-    loading: true,
-    error: {
-      message: '',
-      stack: '',
-    },
-    showErrorModal: false,
-    errorThrow: false,
-    detailesOpened: false,
-    pageNumber: 1,
-    pageSize: 20,
-    records: 0,
-  };
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -44,7 +19,9 @@ describe('Search Component', () => {
   test('render search field', async () => {
     render(
       <MemoryRouter>
-        <SearchFieldComponent state={mockState} setState={mockSetState} />
+        <Provider store={store}>
+          <SearchFieldComponent />
+        </Provider>
       </MemoryRouter>
     );
     const button = screen.getByRole('button', { name: 'Search' });
@@ -56,7 +33,9 @@ describe('Search Component', () => {
   test('render input field', async () => {
     render(
       <MemoryRouter>
-        <SearchFieldComponent state={mockState} setState={mockSetState} />
+        <Provider store={store}>
+          <SearchFieldComponent />
+        </Provider>
       </MemoryRouter>
     );
     const newValue = 'Harry Potter';
@@ -66,26 +45,35 @@ describe('Search Component', () => {
     }).toBeTruthy();
   });
 
-  test('calls handleRequestForCharacters on search', () => {
+  test('calls handle updateSearchTerm, numberPage', () => {
+    const dispatchSpy = vi.spyOn(store, 'dispatch');
     render(
       <MemoryRouter>
-        <SearchFieldComponent state={mockState} setState={mockSetState} />
+        <Provider store={store}>
+          <SearchFieldComponent />
+        </Provider>
       </MemoryRouter>
     );
     const searchButton = screen.getByRole('button', { name: 'Search' });
     fireEvent.click(searchButton);
-    expect(mockSetState).toHaveBeenCalled();
+    expect(dispatchSpy).toHaveBeenCalled();
   });
 
-  test('calls handleInputChange on search', () => {
+  test('calls handle update searchTerm in component', () => {
     render(
       <MemoryRouter>
-        <SearchFieldComponent state={mockState} setState={mockSetState} />
+        <Provider store={store}>
+          <SearchFieldComponent />
+        </Provider>
       </MemoryRouter>
     );
     const input = screen.getByRole('textbox');
     const newValue = 'Harry Potter';
     fireEvent.change(input, { target: { value: newValue } });
-    expect(mockSetState).toHaveBeenCalled();
+    waitFor(() => {
+      expect(mockSetSearchTermInComponent).toHaveBeenCalledWith(
+        newValue.toLowerCase()
+      );
+    });
   });
 });

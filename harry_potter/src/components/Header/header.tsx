@@ -1,7 +1,9 @@
+import { Icons } from '$/assets';
+
 export function Header() {
   return (
-    <header className="w-full flex justify-around p-1.5 bg-rose-400 text-white text-xl">
-      <h1>Harry Potter Characters</h1>
+    <header className="bg-secondary flex w-full justify-around p-1.5 text-xl text-teal-950">
+      <img className="max-w-32" src={Icons.HarryTitle} alt="Harry_Potter" />
     </header>
   );
 }

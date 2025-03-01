@@ -2,7 +2,7 @@ export function Spinner() {
   return (
     <div
       data-testid="spinner"
-      className="border-8 border-white border-opacity-30 border-t-[10px] border-t-rose-300 rounded-full w-24 h-24 animate-spin mx-auto"
+      className="border-opacity-30 border-t-spinner mx-auto h-16 w-16 animate-spin rounded-full border-8 border-t-[6px] border-white"
     ></div>
   );
 }

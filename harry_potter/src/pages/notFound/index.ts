@@ -1,1 +1,1 @@
-export { NotFoundPage } from './notFoundPage.tsx';
+export { NotFoundPage } from './not_found_page.tsx';

@@ -6,6 +6,7 @@ import react from 'eslint-plugin-react';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
 import reactCompiler from 'eslint-plugin-react-compiler';
+import simpleSort from 'eslint-plugin-simple-import-sort';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -25,6 +26,7 @@ export default tseslint.config(
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'react-compiler': reactCompiler,
+      'simple-import-sort': simpleSort,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -36,6 +38,19 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       '@typescript-eslint/no-non-null-assertion': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^\\u0000'],
+            ['^react$', '^@?\\w'],
+            ['^@', '^'],
+            ['^\\./'],
+            ['^.+\\.(module.css|module.scss)$'],
+            ['^.+\\.(gif|png|svg|jpg)$'],
+          ],
+        },
+      ],
     },
     settings: {
       react: {

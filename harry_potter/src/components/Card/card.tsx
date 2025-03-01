@@ -1,41 +1,101 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
+
+import { Icons } from '$/assets';
+import {
+  addSelectedCharacters,
+  removeSelectedChacters,
+  RootState,
+} from '$/data';
 import { Character } from '$/types';
-import { MissCharacter } from '$/assets/assetsExport.ts';
 
 interface CardProps {
   character: Character;
 }
 export function Card({ character }: CardProps) {
+  const { selectedCharacters } = useSelector(
+    (state: RootState) => state.potterData
+  );
+  const dispatch = useDispatch();
+
+  const handleCheckboxChange = (character: Character) => {
+    if (
+      selectedCharacters.some(
+        (characterFromSelected) => characterFromSelected.id === character.id
+      )
+    ) {
+      dispatch(removeSelectedChacters(character));
+    } else {
+      dispatch(addSelectedCharacters(character));
+    }
+  };
+
   return (
     <div
       role="article"
-      className="flex flex-col gap-1.5 rounded border-2 border-gray-200 p-4 flex flex-col max-h-[520px] max-w-[340px]"
+      className="bg-primary/60 flex max-h-116 flex-col justify-between rounded border-2 border-white p-3 text-2xl"
     >
-      <img
-        src={character.attributes.image || MissCharacter}
-        className="rounded-lg h-auto w-auto object-contain object-center max-h-[300px]"
-        rel="noreferrer"
-      ></img>
-      <p className="flex justify-center text-center font-bold">
-        {character.attributes.name}
-      </p>
-      <div className="flex flex-col gap-1.5 my-4">
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Gender:</span>{' '}
-          {character.attributes.gender}
-        </p>
-        <p className="flex flex-col gap-0.5 justify-center text-center text-sm">
-          <span className="font-bold">Species:</span>{' '}
-          {character.attributes.species}
-        </p>
+      <div className="flex max-h-40 flex-col justify-center">
+        <img
+          src={character.attributes.image || Icons.MissCharacter}
+          className="h-full w-auto rounded-lg object-contain object-center"
+        />
       </div>
-      <Link
-        className="mt-auto text-center bg-secondary rounded-lg py-2 opacity-90 hover:bg-rose-400 hover:text-white bg-slate-50 text-rose-500"
-        key={character.id}
-        to={`/details/${character.id}`}
-      >
-        More...
-      </Link>
+      <div className="flex flex-1 flex-col">
+        <p className="text-text-primary flex justify-center pt-3 text-center font-bold tracking-widest">
+          {character.attributes.name}
+        </p>
+        <div className="my-4 flex flex-col">
+          <div className="flex justify-center">
+            <input
+              type="checkbox"
+              id="favourite"
+              className="accent-accent h-5 w-5"
+              checked={selectedCharacters.some(
+                (item) => item.id === character.id
+              )}
+              onChange={() => handleCheckboxChange(character)}
+            />
+            <label
+              htmlFor="favourite"
+              className="text-text-secondary ml-2 tracking-wider"
+            >
+              Add to favourite
+            </label>
+          </div>
+          {character.attributes.gender && (
+            <div className="flex gap-2.5">
+              <img
+                className="max-h-7 max-w-7"
+                src={Icons.Griffindor}
+                alt="Gender"
+              />
+              <p className="flex flex-col justify-center gap-0.5 text-center">
+                {character.attributes.gender}
+              </p>
+            </div>
+          )}
+          {character.attributes.species && (
+            <div className="flex gap-2.5">
+              <img
+                className="max-h-7 max-w-7"
+                src={Icons.Slitherin}
+                alt="Species"
+              />
+              <p className="flex flex-col justify-center gap-0.5 text-center">
+                {character.attributes.species}
+              </p>
+            </div>
+          )}
+        </div>
+        <Link
+          className="text-text-card-button hover:bg-hover-primary hover:text-text-hover mt-auto rounded-lg bg-white p-0.5 text-center opacity-90"
+          key={character.id}
+          to={`/details/${character.id}`}
+        >
+          More...
+        </Link>
+      </div>
     </div>
   );
 }

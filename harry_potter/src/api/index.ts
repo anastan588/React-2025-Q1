@@ -1,3 +1,1 @@
-export { requestForCharacters } from './api.tsx';
-export { handleRequestForCharacters } from './api.tsx';
-export { handleRequestCharacterDetails } from './api.tsx';
+export { potterApi } from './api_request.tsx';

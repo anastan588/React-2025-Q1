@@ -1,1 +1,1 @@
-export { ErrorModal } from './errorModal.tsx';
+export { ErrorModal } from './error_window.tsx';
