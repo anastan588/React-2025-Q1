@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -18,7 +16,6 @@ export function Card({ character }: CardProps) {
   const { selectedCharacters, pageNumber, searchTerm, pageSize } = useSelector(
     (state: RootState) => state.potterData
   );
-  const navigate = useRouter();
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (character: Character) => {
