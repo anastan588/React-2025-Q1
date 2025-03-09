@@ -40,7 +40,8 @@
     "public/images",
     "public/icons",
     "public/fonts",
-    "globals.d.ts"
+    "globals.d.ts",
+    "files.d.ts"
   ],
   "exclude": ["node_modules"]
 }

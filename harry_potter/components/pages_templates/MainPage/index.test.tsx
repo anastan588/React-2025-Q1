@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { GetServerSidePropsContext } from 'next';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { getServerSideProps } from '.';
+import { getServerSideProps } from '../../../pages';
 
 vi.mock('$components', () => ({
   potterApi: {

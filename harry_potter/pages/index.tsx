@@ -1,3 +1,5 @@
+import { GetServerSidePropsContext } from 'next';
+
 import {
   potterApi,
   updateDetailedId,
@@ -6,10 +8,11 @@ import {
   updateSerchTerm,
 } from '$/components';
 import { wrapper } from '$/components';
+import { AppStore } from '$/components/data/store';
 import { MainPage } from '$/components/pages_templates';
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async (context) => {
+  (store: AppStore) => async (context: GetServerSidePropsContext) => {
     if (context.resolvedUrl.includes('details')) {
       const detailedCardId = context.query['details'] as string;
       store.dispatch(updateDetailedId(detailedCardId));
@@ -24,7 +27,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const state = store.getState();
     let pageNumber = Number(context.query['page']);
     let pageSize = Number(context.query['pageSize']);
-    console.log(pageSize, 'pagesize');
     let searchTerm = context.query['search'] as string;
     if (!pageNumber) {
       pageNumber = state.potterData.pageNumber;
