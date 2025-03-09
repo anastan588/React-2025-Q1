@@ -3,6 +3,8 @@ import { Provider } from 'react-redux';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import {
+  Character,
+  CharactersResponse,
   MainPage,
   makeStore,
   ThemeContext,
@@ -14,18 +16,45 @@ const mockThemeContext = {
   setTheme: vi.fn(),
 };
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     query: { page: '1' },
     push: vi.fn(),
   }),
 }));
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     query: { page: '1' },
     replace: vi.fn(),
   }),
 }));
+
+const mockCharacter: Character = {
+  id: '1',
+  attributes: {
+    name: 'Harry Potter',
+  },
+};
+
+const mockResponse: CharactersResponse = {
+  data: [mockCharacter],
+  links: {
+    self: 'https://api.potterdb.com/v1/characters?page[number]=1',
+    current: 'https://api.potterdb.com/v1/characters?page[number]=1',
+    next: 'https://api.potterdb.com/v1/characters?page[number]=2',
+    last: 'https://api.potterdb.com/v1/characters?page[number]=10',
+  },
+  meta: {
+    copyright: '© 2023 Wizarding World',
+    generated_at: new Date().toISOString(),
+    pagination: {
+      current: 1,
+      next: 2,
+      last: 10,
+      records: 100,
+    },
+  },
+};
 
 describe('Main Component', () => {
   beforeEach(() => {
@@ -36,7 +65,7 @@ describe('Main Component', () => {
     const store = makeStore();
     render(
       <Provider store={store}>
-        <MainPage />
+        <MainPage response={mockResponse} />
       </Provider>
     );
     const button = screen.getByRole('button', { name: 'Throw Error' });
@@ -50,7 +79,7 @@ describe('Main Component', () => {
     render(
       <Provider store={store}>
         <ThemeContext.Provider value={mockThemeContext}>
-          <MainPage />
+          <MainPage response={mockResponse} />
         </ThemeContext.Provider>
       </Provider>
     );
@@ -65,7 +94,7 @@ describe('Main Component', () => {
     render(
       <Provider store={store}>
         <ThemeContext.Provider value={mockThemeContext}>
-          <MainPage />
+          <MainPage response={mockResponse} />
         </ThemeContext.Provider>
       </Provider>
     );
@@ -88,7 +117,7 @@ describe('Main Component', () => {
     render(
       <Provider store={store}>
         <ThemeContext.Provider value={mockThemeContext}>
-          <MainPage />
+          <MainPage response={mockResponse} />
         </ThemeContext.Provider>
       </Provider>
     );
@@ -102,7 +131,7 @@ describe('Main Component', () => {
     render(
       <Provider store={store}>
         <ThemeContext.Provider value={mockThemeContext}>
-          <MainPage />
+          <MainPage response={mockResponse} />
         </ThemeContext.Provider>
       </Provider>
     );

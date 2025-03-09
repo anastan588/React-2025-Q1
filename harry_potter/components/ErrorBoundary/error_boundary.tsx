@@ -1,3 +1,4 @@
+'use client';
 import React, { ErrorInfo } from 'react';
 
 import { ErrorBoundaryState, ThemeContext } from '$/components';

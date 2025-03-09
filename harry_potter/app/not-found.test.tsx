@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, test, vi } from 'vitest';
 
-import NotFoundPage from './404';
+import NotFoundPage from './not-found';
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     pathname: '/',
     query: {},

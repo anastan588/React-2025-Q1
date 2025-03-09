@@ -1,18 +1,21 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Card, Character, DetailedCard, RootState } from '$/components';
 
 export function CardList() {
-  const { searchTerm, pageNumber, charactersList, detailesOpened } =
-    useSelector((state: RootState) => state.potterData);
+  const { charactersList, detailesOpened } = useSelector(
+    (state: RootState) => state.potterData
+  );
   const [listLength, setListLength] = useState<number>();
 
   useEffect(() => {
     if (charactersList.length > 0) {
       setListLength(charactersList.length);
     }
-  }, [pageNumber, searchTerm, charactersList, charactersList.length]);
+  }, [charactersList.length]);
 
   return (
     <div className="flex gap-2.5">

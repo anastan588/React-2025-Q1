@@ -1,10 +1,13 @@
+'use client';
 import React, { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
   AppDispatch,
   CardList,
+  CharacterResponse,
+  CharactersResponse,
   ErrorModal,
   FlyoutElement,
   Footer,
@@ -15,12 +18,20 @@ import {
   Settings,
   Spinner,
   ThemeContext,
+  updateCharactersList,
+  updateDetailedCard,
   updateIsDetailedOpened,
+  updateLoading,
+  updateNumberAllCharacters,
   updateShowErrorMessageWindow,
 } from '$/components';
 import { Images } from '$/public';
 
-export function MainPage() {
+type MainPageProps = {
+  response: CharactersResponse | CharacterResponse;
+};
+
+export function MainPage({ response }: MainPageProps) {
   const {
     pageNumber,
     loading,
@@ -35,17 +46,18 @@ export function MainPage() {
   const [errorThrownInMain, setErrorThrownInMain] = useState(false);
   const { theme } = useContext(ThemeContext);
   const [mounted, setMounted] = useState(false);
-  const state = useSelector((state: RootState) => state.potterData);
+
   useEffect(() => {
-    if (state) {
-      setMounted(true);
-      if (searchTerm !== '') {
-        navigate.replace(`/?page=${pageNumber}&search=${searchTerm}`);
-      } else {
-        navigate.replace(`/?page=${pageNumber}`);
-      }
+    setMounted(true);
+    if (!Array.isArray(response.data)) {
+      dispatch(updateIsDetailedOpened(true));
+      dispatch(updateDetailedCard(response.data));
+    } else {
+      dispatch(updateCharactersList(response.data));
+      dispatch(updateNumberAllCharacters(response.meta.pagination.records));
+      dispatch(updateLoading(false));
     }
-  }, [mounted, pageNumber, searchTerm]);
+  }, [response]);
 
   const throwError = () => {
     setErrorThrownInMain(true);
@@ -70,7 +82,8 @@ export function MainPage() {
         currentTarget.innerText !== 'Next page' &&
         currentTarget.tagName.toLowerCase() !== 'select' &&
         currentTarget.tagName.toLowerCase() !== 'input' &&
-        currentTarget.tagName.toLowerCase() !== 'a'
+        currentTarget.tagName.toLowerCase() !== 'a' &&
+        currentTarget.innerText !== 'Search'
       ) {
         if (searchTerm !== '') {
           navigate.replace(

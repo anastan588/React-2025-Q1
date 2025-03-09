@@ -9,7 +9,7 @@ vi.mock('$hooks', () => ({
   useSearchStringLS: () => ['initial term', mockSetSearchTermInComponent],
 }));
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     push: vi.fn(),
     query: { page: '1' },

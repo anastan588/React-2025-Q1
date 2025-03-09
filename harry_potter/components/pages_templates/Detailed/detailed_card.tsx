@@ -1,37 +1,18 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+'use client';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
 
-import {
-  RootState,
-  Spinner,
-  updateDetailedId,
-  updateIsDetailedOpened,
-} from '$/components';
+import { RootState, Spinner, updateIsDetailedOpened } from '$/components';
 import { Icons } from '$/public';
 
 export function DetailedCard() {
-  const { id } = useParams<{ id: string }>();
   const navigate = useRouter();
 
-  const { detailedCard, pageNumber, searchTerm, detailesOpened, pageSize } =
-    useSelector((state: RootState) => state.potterData);
+  const { detailedCard, pageNumber, searchTerm, pageSize } = useSelector(
+    (state: RootState) => state.potterData
+  );
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (id) {
-      dispatch(updateDetailedId(id));
-    }
-    if (searchTerm !== '') {
-      navigate.push(
-        `/?page=${pageNumber}&search=${searchTerm}&details=${detailedCard?.id}`
-      );
-    } else {
-      navigate.push(`/?page=${pageNumber}&details=${detailedCard?.id}`);
-    }
-  }, [dispatch, id, pageNumber, searchTerm, detailesOpened]);
 
   if (!detailedCard) {
     return <Spinner />;

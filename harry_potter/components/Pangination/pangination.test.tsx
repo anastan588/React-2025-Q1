@@ -10,7 +10,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { makeStore, Pangination, potterSlice } from '$/components';
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     query: { page: '1' },
     push: vi.fn(),

@@ -1,5 +1,7 @@
+'use client';
+
 import { useContext } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import { ThemeContext } from '$/components';
 import { Images } from '$/public';

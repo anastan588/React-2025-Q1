@@ -9,7 +9,7 @@ import {
   updateCharactersList,
 } from '$/components';
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     push: vi.fn(),
     query: { page: '1' },

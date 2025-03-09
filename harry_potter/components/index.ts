@@ -17,7 +17,6 @@ export {
 } from './context';
 export { potterApi } from './api';
 export {
-  wrapper,
   makeStore,
   PotterReducer,
   potterSlice,

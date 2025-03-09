@@ -1,8 +1,9 @@
+'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState, updatePageSize } from '$/components';
+import { RootState, updatePageNumber, updatePageSize } from '$/components';
 
 export function Pangination() {
   const [disabledNext, setDisabledNext] = useState<boolean>(false);
@@ -24,12 +25,14 @@ export function Pangination() {
 
   const handlePrevPage = async () => {
     if (pageNumber > 1) {
+      dispatch(updatePageNumber(pageNumber - 1));
       navigate.push(
         `/?page=${pageNumber - 1}&search=${searchTerm}&pageSize=${pageSize}`
       );
     }
   };
   const handleNextPage = async () => {
+    dispatch(updatePageNumber(pageNumber + 1));
     navigate.push(
       `/?page=${pageNumber + 1}&search=${searchTerm}&pageSize=${pageSize}`
     );

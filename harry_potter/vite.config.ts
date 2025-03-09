@@ -22,6 +22,7 @@ export default defineConfig({
         'src/main.tsx',
         'pages/_app.tsx',
         'pages/_document.tsx',
+        'app/layout.tsx',
       ],
     },
   },
