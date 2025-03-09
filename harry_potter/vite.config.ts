@@ -6,7 +6,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: [{ find: '$', replacement: resolve(__dirname, './src/') }],
+    alias: [{ find: '$', replacement: resolve(__dirname, './') }],
   },
   test: {
     globals: true,
@@ -20,6 +20,10 @@ export default defineConfig({
         'src/__tests__/setup.ts',
         'src/App.tsx',
         'src/main.tsx',
+        'pages/_app.tsx',
+        'pages/_document.tsx',
+        '**/dist/**',
+        '**/.next/**',
       ],
     },
   },
