@@ -1,4 +1,3 @@
-
 @import 'tailwindcss';
 
 @theme {
@@ -25,11 +24,11 @@
   --color-search: var(--color-dark-red);
   --color-hover-primary: var(--color-dark-red);
   --color-hover-secondary: var(--color-dark-green);
-  --color-hover-errorButton: var(--color-dark-red);
+  --color-hover-form-button: var(--color-dark-red);
   --color-hover-flyout: var(--color-white);
   --color-text-primary: var(--color-white);
-  --color-text-secondary: var(--color-dark-yellow);
-  --color-text-card-button: var(--color-dark-red);
+  --color-text-secondary: var(--color-dark-green);
+  --color-text-form-button: var(--color-dark-red);
   --color-text-errorBoundary: var(--color-light-red);
   --color-text-link: var(--color-light-red);
   --color-text-errorButton: var(--color-dark-red);
@@ -38,9 +37,21 @@
   --color-text-hover: var(--color-white);
   --color-text-hover-secondary: var(--color-dark-red);
   --color-accent: var(--color-dark-red);
-
 }
 
+@font-face {
+  font-family: 'Potter';
+  src: url(assets/fonts/potter_font.ttf) format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  @apply relative h-screen w-full text-base leading-normal;
+  font-family: 'Potter', sans-serif;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
 
 /*Normalize*/
 

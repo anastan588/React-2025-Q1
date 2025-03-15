@@ -5,26 +5,28 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && cp ./src/_redirects ./dist/_redirects",
+    "format:fix": "prettier --write .",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "cd .. && husky forms/.husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router": "^7.1.5"
+    "react-hook-form": "^7.54.2",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.1.5",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tailwindcss/postcss": "^4.0.6",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
     "@types/node": "^22.13.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "^3.0.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^10.0.1",
