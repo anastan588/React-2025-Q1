@@ -16,7 +16,7 @@ function Button({
   return (
     <button
       type={type}
-      className={`hover:bg-hover-form-button hover:text-text-hover border-whit rounded-lg border-2 px-3 py-2 ${className} ${isFilled ? 'bg-dark-green text-text-primary' : 'text-text-form-button bg-white'}`}
+      className={`hover:bg-hover-form-button hover:text-text-hover rounded-lg border-2 border-white px-3 py-2 ${className} ${isFilled ? 'bg-dark-green text-text-primary' : 'text-text-form-button bg-white'}`}
       onClick={onClick}
     >
       {children}

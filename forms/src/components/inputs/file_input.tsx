@@ -17,7 +17,7 @@ export function FileInput(props: FileInputProps) {
         type="file"
         accept="image/png, image/jpeg"
         onChange={onChange}
-        className="rounded-lg border-1 p-1 transition duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className="focus:ring-dark-blue rounded-lg border-1 p-1 transition duration-200 focus:ring-2 focus:outline-none"
       />
       {picture && <img src={picture} alt="Uploaded" className="max-h-8" />}
       {error && (
