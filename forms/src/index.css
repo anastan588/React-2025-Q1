@@ -1,0 +1,69 @@
+
+@import 'tailwindcss';
+
+@theme {
+  --color-dark-blue: rgba(14, 26, 64, 1);
+  --color-light-blue: rgba(34, 47, 91, 1);
+  --color-dark-red: rgba(116, 0, 1, 1);
+  --color-light-red: rgba(174, 0, 1, 1);
+  --color-dark-green: rgba(26, 71, 42, 1);
+  --color-light-green: rgba(42, 98, 61, 1);
+  --color-dark-yellow: rgba(236, 185, 57, 1);
+  --color-light-yellow: rgba(240, 199, 94, 1);
+  --color-dark-grey: rgba(93, 93, 93, 1);
+  --color-light-grey: rgba(170, 170, 170, 1);
+  --color-lightest-grey: rgba(190, 190, 190, 1);
+  --color-dark-brown: rgba(55, 46, 41, 1);
+  --color-light-brown: rgba(114, 98, 85, 1);
+  --color-golden: rgba(148, 107, 45, 1);
+  --color-white: rgba(255, 255, 255, 1);
+
+  --color-primary: var(--color-light-blue);
+  --color-secondary: var(--color-dark-blue);
+  --color-flyout: var(--color-dark-red);
+  --color-spinner: var(--color-dark-red);
+  --color-search: var(--color-dark-red);
+  --color-hover-primary: var(--color-dark-red);
+  --color-hover-secondary: var(--color-dark-green);
+  --color-hover-errorButton: var(--color-dark-red);
+  --color-hover-flyout: var(--color-white);
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-dark-yellow);
+  --color-text-card-button: var(--color-dark-red);
+  --color-text-errorBoundary: var(--color-light-red);
+  --color-text-link: var(--color-light-red);
+  --color-text-errorButton: var(--color-dark-red);
+  --color-text-closeButton: var(--color-dark-red);
+  --color-text-input: var(--color-dark-green);
+  --color-text-hover: var(--color-white);
+  --color-text-hover-secondary: var(--color-dark-red);
+  --color-accent: var(--color-dark-red);
+
+}
+
+
+/*Normalize*/
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+ul li {
+  @apply list-none;
+}
+
+img {
+  @apply align-top;
+}
+
+/*Normalize*/
