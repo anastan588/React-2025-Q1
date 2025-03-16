@@ -1,29 +1,34 @@
-import React from 'react';
+import { forwardRef, useRef } from 'react';
 
-interface CheckboxInputProps {
-  label: string;
-  name: string;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string;
-}
+import { CheckboxInputProps } from '$/types';
 
-export function CheckboxInput(props: CheckboxInputProps) {
-  const { label, name, checked, onChange, error } = props;
+export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxInputProps>(
+  (props, ref) => {
+    const { label, name, checked, onChange, error, ...rest } = props;
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
-  return (
-    <div className="flex gap-2 tracking-widest">
-      <input
-        type="checkbox"
-        id={name}
-        name={name}
-        checked={checked}
-        onChange={onChange}
-      />
-      <label htmlFor={name}>{label}</label>
-      {error && (
-        <div className="text-text-closeButton col-span-2 w-full">{error}</div>
-      )}
-    </div>
-  );
-}
+    return (
+      <div className="flex gap-2 tracking-widest">
+        <input
+          {...rest}
+          type="checkbox"
+          id={name}
+          name={name}
+          checked={checked}
+          onChange={onChange}
+          ref={(el) => {
+            inputRef.current = el;
+            if (typeof ref === 'function') ref(el);
+            else if (ref) ref.current = el;
+          }}
+        />
+        <label htmlFor={name}>{label}</label>
+        {error && (
+          <div className="text-text-closeButton col-span-2 w-full">{error}</div>
+        )}
+      </div>
+    );
+  }
+);
+
+CheckboxInput.displayName = 'CheckboxInput';

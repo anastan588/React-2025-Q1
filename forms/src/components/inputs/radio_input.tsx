@@ -1,13 +1,4 @@
-import React from 'react';
-
-interface RadioInputProps {
-  label: string;
-  name: string;
-  options: { value: string; label: string }[];
-  selectedValue: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string;
-}
+import { RadioInputProps } from '$/types';
 
 export function RadioInput(props: RadioInputProps) {
   const { label, name, options, selectedValue, onChange, error } = props;

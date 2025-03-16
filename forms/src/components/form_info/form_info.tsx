@@ -1,11 +1,6 @@
-import { FormState } from '$/types/types';
+import { FormInfoProps, FormState } from '$/types';
 
-interface FormInfoProps {
-  formInfo: FormState;
-  info_title: string;
-}
-
-function FormInfo({ formInfo, info_title }: FormInfoProps) {
+export function FormInfo({ formInfo, info_title }: FormInfoProps) {
   return (
     <div className="text-text-primary bg-dark-grey flex h-full flex-col items-center gap-8 rounded-lg border-2 border-white p-4">
       <h2 className="text-text-secondary bg-light-grey rounded-lg border-2 border-white p-2">
@@ -45,5 +40,3 @@ function FormInfo({ formInfo, info_title }: FormInfoProps) {
     </div>
   );
 }
-
-export default FormInfo;

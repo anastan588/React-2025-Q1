@@ -1,10 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import Button from '$/components/button/button';
-import FormInfo from '$/components/form_info/form_info';
-import { Header } from '$/components/header/header';
-import { RootState } from '$/store/store';
+import { Button, FormInfo, Header } from '$/components';
+import { RootState } from '$/store';
 
 function MainPage() {
   const stateUncont = useSelector(
@@ -35,7 +33,7 @@ function MainPage() {
           Controlled form
         </Button>
       </div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-4">
         {stateUncont.isFormUncontFilled && (
           <FormInfo
             formInfo={stateUncont}
@@ -44,7 +42,7 @@ function MainPage() {
         )}
         {stateCont.isFormContFilled && (
           <FormInfo
-            formInfo={stateUncont}
+            formInfo={stateCont}
             info_title={'Controlled form information'}
           />
         )}

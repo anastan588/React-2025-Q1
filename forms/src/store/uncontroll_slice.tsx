@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { FormState } from '$/types/types';
+import { FormState } from '$/types';
 
 const initialUncontrolledState: FormState = {
   name: '',
-  age: '',
+  age: 0,
   email: '',
   password: '',
   confirmPassword: '',
@@ -22,7 +22,6 @@ export const formUncontrolledSlice = createSlice({
   initialState: initialUncontrolledState,
   reducers: {
     updateUncontrolledForm: (state, action: PayloadAction<FormState>) => {
-      console.log(action.payload);
       return { ...state, ...action.payload };
     },
   },

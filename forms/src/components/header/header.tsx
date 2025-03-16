@@ -1,6 +1,4 @@
-interface HeaderProps {
-  title_text: string;
-}
+import { HeaderProps } from '$/types';
 
 export function Header({ title_text }: HeaderProps) {
   return (

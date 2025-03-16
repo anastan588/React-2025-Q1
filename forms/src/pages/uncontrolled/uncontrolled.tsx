@@ -3,23 +3,24 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import * as Yup from 'yup';
 
-import Button from '$/components/button/button';
-import { handlePictureUpload } from '$/components/file_upload/file_upload';
-import { Header } from '$/components/header/header';
-import { CheckboxInput } from '$/components/inputs/check_box_input';
-import { FileInput } from '$/components/inputs/file_input';
-import { RadioInput } from '$/components/inputs/radio_input';
-import { SelectInput } from '$/components/inputs/select_input';
-import { TextInput } from '$/components/inputs/text_input';
-import { dataSchema } from '$/store/dataShema';
-import { updateUncontrolledForm } from '$/store/uncontroll_slice';
+import {
+  Button,
+  CheckboxInput,
+  FileInput,
+  handlePictureUpload,
+  Header,
+  RadioInput,
+  SelectInput,
+  TextInput,
+} from '$/components';
+import { dataSchema, updateUncontrolledForm } from '$/store';
 
 function UnControlledPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: '',
-    age: '',
+    age: 0,
     email: '',
     password: '',
     confirmPassword: '',
@@ -36,19 +37,13 @@ function UnControlledPage() {
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    console.log(formData);
     const { name, type, value } = event.target;
     const checked = (event.target as HTMLInputElement).checked;
-    console.log(value, 'value');
-    console.log(checked, 'checked');
-    console.log(type);
-    console.log(type === 'checkbox');
-    console.log(name);
+
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value,
     });
-    console.log(formData);
   };
 
   const handleFile = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +65,6 @@ function UnControlledPage() {
           isFormUncontFilled: true,
         }));
         setErrors({});
-        console.log(formData);
       });
     } catch (err) {
       const newErrors: { [key: string]: string } = {};
@@ -110,7 +104,7 @@ function UnControlledPage() {
           <TextInput
             label="Age"
             name="age"
-            value={formData.age}
+            value={formData.age.toString()}
             onChange={handleChange}
             error={errors.age}
           />

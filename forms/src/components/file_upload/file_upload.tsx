@@ -2,7 +2,6 @@ import { ChangeEvent } from 'react';
 
 export function handlePictureUpload(event: ChangeEvent<HTMLInputElement>) {
   const file = event.target.files?.[0];
-  console.log(file);
   if (!file) return;
   const maxFileSize = 2 * 1024 * 1024;
   if (file.size > maxFileSize) {

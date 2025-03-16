@@ -1,27 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { FormState } from '$/types/types';
+import { ControlledFormState } from '$/types';
 
-const initialControlledState: FormState = {
+const initialControlledState: ControlledFormState = {
+  terms: false,
+  gender: 'male',
+  country: ['Russia', 'Belarus', 'China'],
   name: '',
-  age: '',
+  age: 0,
   email: '',
   password: '',
   confirmPassword: '',
-  gender: 'male',
-  terms: false,
   picture: '',
-  country: ['Russia', 'Belarus', 'China'],
   countrySelect: '',
   isFormContFilled: false,
   isFormUncontFilled: false,
 };
-
 export const formControlledSlice = createSlice({
   name: 'controlled_form',
   initialState: initialControlledState,
   reducers: {
-    updateControlledForm: (state, action: PayloadAction<FormState>) => {
+    updateControlledForm: (
+      state,
+      action: PayloadAction<ControlledFormState>
+    ) => {
       console.log(action.payload);
       return { ...state, ...action.payload };
     },
