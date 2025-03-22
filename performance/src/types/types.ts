@@ -1,12 +1,3 @@
-export type ButtonProps = {
-  className?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-  type?: 'button' | 'submit' | 'reset';
-  isFilled?: boolean;
-  disabled?: boolean;
-};
-
 export interface HeaderProps {
   title_text: string;
 }
@@ -92,4 +83,27 @@ export interface CountryData {
   coatOfArms: Record<string, unknown>;
   startOfWeek: string;
   capitalInfo: CapitalInfo;
+}
+
+export interface SearchInputProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+}
+
+export interface SortButtonProps {
+  label?: string;
+  sortCriterion: string;
+  sortOrder: string;
+  setSortCriterion: (criterion: string) => void;
+  onSort: () => void;
+}
+
+export interface RegionSelectorProps {
+  selectedRegion: string;
+  setSelectedRegion: (region: string) => void;
+  uniqueRegions: string[];
+}
+
+export interface CountryListProps {
+  countries: CountryData[];
 }

@@ -41,7 +41,7 @@
 
 @font-face {
   font-family: 'Potter';
-  src: url(assets/fonts/potter_font.ttf) format('truetype');
+  src: url(/fonts/potter_font.ttf) format('truetype');
   font-style: normal;
   font-weight: normal;
 }
