@@ -24,14 +24,18 @@ export function MainPage() {
     'ascending' | 'descending' | 'not sorting'
   >('not sorting');
   const [visitedCountries, setVisitedCountries] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getCountries = async () => {
+      setIsLoading(true);
       try {
         const data = await fetchCountries();
         setCountries(data);
       } catch (error) {
         console.error('Error fetching countries:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getCountries();
@@ -115,11 +119,17 @@ export function MainPage() {
           />
           <p className="flex items-center justify-center">Flag</p>
         </div>
-        <CountryList
-          countries={filteredCountries}
-          onVisitToggle={handleVisitToggle}
-          visitedCountries={visitedCountries}
-        />
+        {isLoading ? (
+          <p className="text-text-primary text-center text-lg">
+            Loading countries...
+          </p>
+        ) : (
+          <CountryList
+            countries={filteredCountries}
+            onVisitToggle={handleVisitToggle}
+            visitedCountries={visitedCountries}
+          />
+        )}
       </div>
     </div>
   );
