@@ -1,54 +1,102 @@
-# React + TypeScript + Vite
+# Performance app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App downloads information about countries
 
-Currently, two official plugins are available:
+### Apps and Packages
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+"react"
+"react-router"
+"eslint"
+"husky":
+"prettier"
+"typescript"
+"vite"
+"vitest"
+"tailwindcss"
 
-## Expanding the ESLint configuration
+### Working locally
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+cd performance
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+npm i
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+npm run build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+npm run dev
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+### Profiling with React Dev Tools Profiler before optimization 
+
+#### 1. Sort Countries by name:
+
+1. Click on arrow image to make an ascending sorting
+
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170405.png)
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170426.png)
+
+2. Click on arrow image to make an descending sorting
+
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170412.png)
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170431.png)
+
+3. Click on arrow image to make a default (without sorting)
+
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170419.png)
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170436.png)
+
+#### 2. Sort Countries by population:
+
+1. Click on arrow image to make an ascending sorting
+
+![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184159.png)
+![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184222.png)
+
+2. Click on arrow image to make an descending sorting
+
+![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184205.png)
+![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184226.png)
+
+3. Click on arrow image to make a default (without sorting)
+
+![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184210.png)
+![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184231.png)
+
+#### 3. Search Country by name (Italy):
+
+1. Click on seacrh input field and enter letter 'I'
+
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184422.png)
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184512.png)
+
+2. Enter letter 't'
+
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184428.png)
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184517.png)
+
+3. Enter letter 'a'
+
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184432.png)
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184521.png)
+
+4. Enter letter 'l'
+
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184437.png)
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184526.png)
+
+5. Enter letter 'y'
+
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184442.png)
+![](./src/assets/search_by_name/before/ice_screenshot_20250323-184530.png)
+
+#### 3. Filter Countries by region (Africa):
+
+1. Click on regions select field and choose 'Africa' region
+
+![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184806.png)
+![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184822.png)
+
+2. Click on regions select field and choose 'All' regions (default)
+
+![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184813.png)
+![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png)
+
+
