@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 
-import MainPage from '$/pages/main';
+import { MainPage } from '$/pages';
 
 export function Router() {
   return (

@@ -5,4 +5,5 @@ export type {
   RegionSelectorProps,
   CountryListProps,
   CountryCardProps,
+  HeaderProps,
 } from './types.ts';

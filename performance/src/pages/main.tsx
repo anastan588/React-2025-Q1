@@ -15,7 +15,7 @@ import {
 } from '$/components';
 import { CountryData } from '$/types';
 
-function MainPage() {
+export function MainPage() {
   const [countries, setCountries] = useState<CountryData[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
@@ -124,5 +124,3 @@ function MainPage() {
     </div>
   );
 }
-
-export default MainPage;

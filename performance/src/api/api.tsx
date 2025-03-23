@@ -1,4 +1,4 @@
-import { CountryData } from '$/types/types';
+import { CountryData } from '$/types';
 
 export async function fetchCountries() {
   const url = `https://restcountries.com/v3.1/all`;
