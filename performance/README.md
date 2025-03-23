@@ -11,7 +11,6 @@ App downloads information about countries
 "prettier"
 "typescript"
 "vite"
-"vitest"
 "tailwindcss"
 
 ### Working locally
