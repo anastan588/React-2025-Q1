@@ -4,4 +4,5 @@ export type {
   SortButtonProps,
   RegionSelectorProps,
   CountryListProps,
+  CountryCardProps,
 } from './types.ts';

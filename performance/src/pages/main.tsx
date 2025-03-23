@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import {
   filterAndSortCountries,
@@ -36,16 +36,19 @@ function MainPage() {
     getCountries();
   }, []);
 
-  const filteredCountries = filterAndSortCountries(
-    countries,
-    searchQuery,
-    selectedRegion,
-    sortOrder,
-    sortCriterion
-  );
-  const uniqueRegions = getUniqueRegions(countries);
+  const filteredCountries = useMemo(() => {
+    return filterAndSortCountries(
+      countries,
+      searchQuery,
+      selectedRegion,
+      sortOrder,
+      sortCriterion
+    );
+  }, [countries, searchQuery, selectedRegion, sortOrder, sortCriterion]);
 
-  const handleSortByName = () => {
+  const uniqueRegions = useMemo(() => getUniqueRegions(countries), [countries]);
+
+  const handleSortByName = useCallback(() => {
     const { newSortOrder, newSortCriterion } = toggleSortOrder(
       sortCriterion,
       sortOrder,
@@ -53,9 +56,9 @@ function MainPage() {
     );
     setSortCriterion(newSortCriterion);
     setSortOrder(newSortOrder);
-  };
+  }, [sortCriterion, sortOrder]);
 
-  const handleSortByPopulation = () => {
+  const handleSortByPopulation = useCallback(() => {
     const { newSortOrder, newSortCriterion } = toggleSortOrder(
       sortCriterion,
       sortOrder,
@@ -63,7 +66,7 @@ function MainPage() {
     );
     setSortCriterion(newSortCriterion);
     setSortOrder(newSortOrder);
-  };
+  }, [sortCriterion, sortOrder]);
 
   return (
     <div className="bg-primary flex h-full min-h-screen flex-col items-center bg-contain bg-center">

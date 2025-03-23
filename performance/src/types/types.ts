@@ -107,3 +107,7 @@ export interface RegionSelectorProps {
 export interface CountryListProps {
   countries: CountryData[];
 }
+
+export interface CountryCardProps {
+  country: CountryData;
+}

@@ -26,25 +26,26 @@ npm run dev
 
 ### Profiling with React Dev Tools Profiler before optimization
 
-| Before optimization    | After optimization |
-| -------- | ------- |
-| #### 1. Sort Countries by name: | #### 1. Sort Countries by name:    |
+| Before optimization             | After optimization              |
+| ------------------------------- | ------------------------------- |
+| #### 1. Sort Countries by name: | #### 1. Sort Countries by name: |
+
 | 1. Click on arrow image to make an ascending sorting
 
 ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170405.png)
 ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170426.png)
- | 1. Click on arrow image to make an ascending sorting
+| 1. Click on arrow image to make an ascending sorting
 
 ![](./src/assets/sorting_by_name/after)
 ![](./src/assets/sorting_by_name/after)
-   |
+|
 | 2. Click on arrow image to make an descending sorting
 
 ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170412.png)
-![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170431.png)    | 2. Click on arrow image to make an descending sorting
+![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170431.png) | 2. Click on arrow image to make an descending sorting
 
 ![](./src/assets/after/)
-![](./src/assets/after/)    |
+![](./src/assets/after/) |
 
 #### 1. Sort Countries by name:
 
