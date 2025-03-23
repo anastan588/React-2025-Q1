@@ -24,7 +24,7 @@ npm run build
 
 npm run dev
 
-### Performance Analysis of Country Sorting
+### 1. Performance Analysis of Country Sorting
 
 | Action                        | Before Optimization (Time)                                                                                                                                   | After Optimization (Time)                                                                                                                                  | Change   |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -32,7 +32,7 @@ npm run dev
 | **Sort by Name (Descending)** | ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170412.png) <br> ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170431.png) | ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200523.png) <br> ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200541.png) | Improved |
 | **Reset Sorting**             | ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170419.png) <br> ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170436.png) | ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200528.png) <br> ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200545.png) | Improved |
 
-### Performance Analysis of Country Sorting by Population
+### 2. Performance Analysis of Country Sorting by Population
 
 | Action                              | Before Optimization (Time)                                                                                                                                               | After Optimization (Time)                                                                                                                                              | Change   |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -40,36 +40,19 @@ npm run dev
 | **Sort by Population (Descending)** | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184205.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184226.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202328.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202306.png) | Improved |
 | **Reset Sorting**                   | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184210.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184231.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202332.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202311.png) | Improved |
 
+### 3. Performance Analysis of Searching Country by Name (Italy)
+
+| Action                          | Before Optimization (Time) | After Optimization (Time) | Change        |
+|---------------------------------|----------------------------|---------------------------|---------------|
+| **Search for 'I'**             | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184422.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184512.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203425.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203350.png) | Improved       |
+| **Search for 'It'**            | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184428.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184517.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203430.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203358.png) | Improved       |
+| **Search for 'Ita'**           | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184432.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184521.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203434.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203403.png) | Improved       |
+| **Search for 'Ital'**          | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184437.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184526.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203439.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203408.png) | Improved       |
+| **Search for 'Italy'**         | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184442.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184530.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203444.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203412.png) | Improved       |
+
 ### Profiling with React Dev Tools Profiler before optimization
 
-#### 3. Search Country by name (Italy):
-
-1. Click on seacrh input field and enter letter 'I'
-
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184422.png)
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184512.png)
-
-2. Enter letter 't'
-
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184428.png)
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184517.png)
-
-3. Enter letter 'a'
-
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184432.png)
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184521.png)
-
-4. Enter letter 'l'
-
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184437.png)
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184526.png)
-
-5. Enter letter 'y'
-
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184442.png)
-![](./src/assets/search_by_name/before/ice_screenshot_20250323-184530.png)
-
-#### 3. Filter Countries by region (Africa):
+#### 4. Filter Countries by region (Africa):
 
 1. Click on regions select field and choose 'Africa' region
 
