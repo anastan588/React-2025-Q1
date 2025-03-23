@@ -52,11 +52,8 @@ npm run dev
 
 ### 4. Performance Analysis of Filtering Countries by Region (Africa)
 
-| Action                          | Before Optimization (Time) | After Optimization (Time) | Change        |
-|---------------------------------|----------------------------|---------------------------|---------------|
-| **Filter by Region (Africa)**   | ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184806.png) <br> ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184822.png) | ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204424.png) <br> ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204306.png) | Improved       |
-| **Reset Filter (All Regions)**  | ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184813.png) <br> ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png) | ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204255.png) <br> ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204323.png) | Improved       |
-
-![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204255.png)
-![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204323.png)
+| Action                         | Before Optimization (Time)                                                                                                                                     | After Optimization (Time)                                                                                                                                    | Change   |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| **Filter by Region (Africa)**  | ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184806.png) <br> ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184822.png) | ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204424.png) <br> ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204306.png) | Improved |
+| **Reset Filter (All Regions)** | ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184813.png) <br> ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png) | ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204255.png) <br> ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204323.png) | Improved |
 
