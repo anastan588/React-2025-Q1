@@ -34,11 +34,11 @@ npm run dev
 
 ### Performance Analysis of Country Sorting by Population
 
-| Action                          | Before Optimization (Time) | After Optimization (Time) | Change        |
-|---------------------------------|----------------------------|---------------------------|---------------|
-| **Sort by Population (Ascending)**    | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184159.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184222.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202302.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202323.png) | Improved       |
-| **Sort by Population (Descending)**   | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184205.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184226.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202306.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202328.png) | Improved       |
-| **Reset Sorting**               | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184210.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184231.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202311.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202332.png) | Improved       |
+| Action                              | Before Optimization (Time)                                                                                                                                               | After Optimization (Time)                                                                                                                                              | Change   |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Sort by Population (Ascending)**  | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184159.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184222.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202323.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202302.png) | Improved |
+| **Sort by Population (Descending)** | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184205.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184226.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202328.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202306.png) | Improved |
+| **Reset Sorting**                   | ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184210.png) <br> ![](./src/assets/sorting_by_population/before/ice_screenshot_20250323-184231.png) | ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202332.png) <br> ![](./src/assets/sorting_by_population/after/ice_screenshot_20250323-202311.png) | Improved |
 
 ### Profiling with React Dev Tools Profiler before optimization
 
@@ -82,4 +82,3 @@ npm run dev
 ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png)
 
 ### Profiling with React Dev Tools Profiler after optimization
-
