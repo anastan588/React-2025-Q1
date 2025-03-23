@@ -42,26 +42,21 @@ npm run dev
 
 ### 3. Performance Analysis of Searching Country by Name (Italy)
 
+| Action                 | Before Optimization (Time)                                                                                                                                 | After Optimization (Time)                                                                                                                                | Change   |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Search for 'I'**     | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184422.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184512.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203425.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203350.png) | Improved |
+| **Search for 'It'**    | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184428.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184517.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203430.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203358.png) | Improved |
+| **Search for 'Ita'**   | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184432.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184521.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203434.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203403.png) | Improved |
+| **Search for 'Ital'**  | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184437.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184526.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203439.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203408.png) | Improved |
+| **Search for 'Italy'** | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184442.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184530.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203444.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203412.png) | Improved |
+
+### 4. Performance Analysis of Filtering Countries by Region (Africa)
+
 | Action                          | Before Optimization (Time) | After Optimization (Time) | Change        |
 |---------------------------------|----------------------------|---------------------------|---------------|
-| **Search for 'I'**             | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184422.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184512.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203425.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203350.png) | Improved       |
-| **Search for 'It'**            | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184428.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184517.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203430.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203358.png) | Improved       |
-| **Search for 'Ita'**           | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184432.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184521.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203434.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203403.png) | Improved       |
-| **Search for 'Ital'**          | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184437.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184526.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203439.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203408.png) | Improved       |
-| **Search for 'Italy'**         | ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184442.png) <br> ![](./src/assets/search_by_name/before/ice_screenshot_20250323-184530.png) | ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203444.png) <br> ![](./src/assets/search_by_name/after/ice_screenshot_20250323-203412.png) | Improved       |
+| **Filter by Region (Africa)**   | ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184806.png) <br> ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184822.png) | ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204424.png) <br> ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204306.png) | Improved       |
+| **Reset Filter (All Regions)**  | ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184813.png) <br> ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png) | ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204255.png) <br> ![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204323.png) | Improved       |
 
-### Profiling with React Dev Tools Profiler before optimization
+![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204255.png)
+![](./src/assets/filter_by_region/after/ice_screenshot_20250323-204323.png)
 
-#### 4. Filter Countries by region (Africa):
-
-1. Click on regions select field and choose 'Africa' region
-
-![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184806.png)
-![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184822.png)
-
-2. Click on regions select field and choose 'All' regions (default)
-
-![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184813.png)
-![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png)
-
-### Profiling with React Dev Tools Profiler after optimization
