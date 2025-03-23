@@ -106,8 +106,12 @@ export interface RegionSelectorProps {
 
 export interface CountryListProps {
   countries: CountryData[];
+  onVisitToggle: (countryCode: string) => void;
+  visitedCountries: string[];
 }
 
 export interface CountryCardProps {
   country: CountryData;
+  onVisitToggle: (countryCode: string) => void;
+  isVisited: boolean;
 }

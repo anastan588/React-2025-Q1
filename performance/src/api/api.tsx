@@ -13,6 +13,5 @@ export async function fetchCountries() {
     throw new Error('Network response was not ok');
   }
   const data: CountryData[] = await response.json();
-  console.log(data);
   return data;
 }

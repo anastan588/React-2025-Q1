@@ -23,6 +23,7 @@ function MainPage() {
   const [sortOrder, setSortOrder] = useState<
     'ascending' | 'descending' | 'not sorting'
   >('not sorting');
+  const [visitedCountries, setVisitedCountries] = useState<string[]>([]);
 
   useEffect(() => {
     const getCountries = async () => {
@@ -34,6 +35,10 @@ function MainPage() {
       }
     };
     getCountries();
+    const storedVisited = localStorage.getItem('visitedCountries');
+    if (storedVisited) {
+      setVisitedCountries(JSON.parse(storedVisited));
+    }
   }, []);
 
   const filteredCountries = useMemo(() => {
@@ -68,11 +73,22 @@ function MainPage() {
     setSortOrder(newSortOrder);
   }, [sortCriterion, sortOrder]);
 
+  const handleVisitToggle = (countryCode: string) => {
+    setVisitedCountries((prevVisited) => {
+      const updatedVisited = prevVisited.includes(countryCode)
+        ? prevVisited.filter((code) => code !== countryCode)
+        : [...new Set([...prevVisited, countryCode])];
+      localStorage.setItem('visitedCountries', JSON.stringify(updatedVisited));
+      return updatedVisited;
+    });
+  };
+
   return (
     <div className="bg-primary flex h-full min-h-screen flex-col items-center bg-contain bg-center">
       <Header title_text={'Performance'} />
       <div className="flex flex-col p-5">
-        <div className="text-text-primary bg-dark-green grid grid-cols-4 justify-items-center gap-2 p-2">
+        <div className="text-text-primary bg-dark-green grid grid-cols-[50px_1fr_1fr_1fr_0.5fr] justify-items-center p-2">
+          <p className="flex items-center justify-center">Visited</p>
           <div className="flex items-center justify-center gap-2">
             <SearchInput
               searchQuery={searchQuery}
@@ -97,9 +113,13 @@ function MainPage() {
             setSelectedRegion={setSelectedRegion}
             uniqueRegions={uniqueRegions}
           />
-          <p>Flag</p>
+          <p className="flex items-center justify-center">Flag</p>
         </div>
-        <CountryList countries={filteredCountries} />
+        <CountryList
+          countries={filteredCountries}
+          onVisitToggle={handleVisitToggle}
+          visitedCountries={visitedCountries}
+        />
       </div>
     </div>
   );

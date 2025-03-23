@@ -1,12 +1,20 @@
+import { CountryCard } from '$/components';
 import { CountryListProps } from '$/types';
 
-import Countrycard from './countrycard';
-
-export function CountryList({ countries }: CountryListProps) {
+export function CountryList({
+  countries,
+  onVisitToggle,
+  visitedCountries,
+}: CountryListProps) {
   return (
     <>
       {countries.map((country) => (
-        <Countrycard key={country.cca2} country={country} />
+        <CountryCard
+          key={country.cca2}
+          country={country}
+          onVisitToggle={onVisitToggle}
+          isVisited={visitedCountries.includes(country.cca2)}
+        />
       ))}
     </>
   );
