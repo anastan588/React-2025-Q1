@@ -5,6 +5,7 @@ import { CountryCardProps } from '$/types';
 function CountryCard({ country, onVisitToggle, isVisited }: CountryCardProps) {
   return (
     <div
+      id={country.cca2}
       className={`text-text-primary ${isVisited ? 'bg-light-green border-1 border-dotted' : 'bg-dark-grey'} grid grid-cols-[50px_1fr_1fr_1fr_0.5fr] justify-items-center pr-2 pl-2`}
     >
       <input
