@@ -24,28 +24,15 @@ npm run build
 
 npm run dev
 
+### Performance Analysis of Country Sorting
+
+| Action                        | Before Optimization (Time)                                                                                                                                   | After Optimization (Time)                                                                                                                                  | Change   |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Sort by Name (Ascending)**  | ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170405.png) <br> ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170426.png) | ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200518.png) <br> ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200541.png) | Improved |
+| **Sort by Name (Descending)** | ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170412.png) <br> ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170431.png) | ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200523.png) <br> ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200541.png) | Improved |
+| **Reset Sorting**             | ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170419.png) <br> ![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170436.png) | ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200528.png) <br> ![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200545.png) | Improved |
+
 ### Profiling with React Dev Tools Profiler before optimization
-
-| Before optimization             | After optimization              |
-| ------------------------------- | ------------------------------- |
-| #### 1. Sort Countries by name: | #### 1. Sort Countries by name: |
-
-| 1. Click on arrow image to make an ascending sorting
-
-![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170405.png)
-![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170426.png)
-| 1. Click on arrow image to make an ascending sorting
-
-![](./src/assets/sorting_by_name/after)
-![](./src/assets/sorting_by_name/after)
-|
-| 2. Click on arrow image to make an descending sorting
-
-![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170412.png)
-![](./src/assets/sorting_by_name/before/ice_screenshot_20250323-170431.png) | 2. Click on arrow image to make an descending sorting
-
-![](./src/assets/after/)
-![](./src/assets/after/) |
 
 #### 1. Sort Countries by name:
 
@@ -119,3 +106,22 @@ npm run dev
 
 ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184813.png)
 ![](./src/assets/filter_by_region/before/ice_screenshot_20250323-184828.png)
+
+### Profiling with React Dev Tools Profiler before optimization
+
+#### 1. Sort Countries by name:
+
+1. Click on arrow image to make an ascending sorting
+
+![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200518.png)
+![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200541.png)
+
+2. Click on arrow image to make an descending sorting
+
+![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200523.png)
+![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200541.png)
+
+3. Click on arrow image to make a default (without sorting)
+
+![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200528.png)
+![](./src/assets/sorting_by_name/after/ice_screenshot_20250323-200545.png)
